@@ -31,7 +31,13 @@ const userSchema = new Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: "Cart"
         }
-    ]
+    ],
+
+    address:{
+        type:String,
+        required:true,
+        default:""
+    }
 
 
 },{timestamps:true});
@@ -69,9 +75,9 @@ userSchema.statics.loginStatic = async function(email,password) {
 
 //Sign up the user
 
-userSchema.statics.signUpStatic = async function(name,email,password) {
+userSchema.statics.signUpStatic = async function(name,email,password,address) {
 
-    if (!name || !email || !password) { 
+    if (!name || !email || !password || !address) { 
 
         throw Error("All fields are required")
  
@@ -96,7 +102,7 @@ if (exists){
 
 const hashedpassword = await bcrypt.hash(password,10)
 
-const user  = await this.create({name,email,password:hashedpassword})
+const user  = await this.create({name,email,password:hashedpassword,address})
 
 return user;
 

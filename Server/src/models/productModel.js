@@ -2,6 +2,26 @@ import mongoose from 'mongoose';
 
 const Schema = mongoose.Schema;
 
+const productReviewSchema = new Schema({
+
+    user:{
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: false,
+    },
+
+    text:{
+        type: String,
+        required: false,
+    },
+    rating:{
+        type: Number,
+        required: false,
+        default: 0,
+    }
+
+})
+
 const productSchema = new Schema({
 
     name: {
@@ -34,10 +54,12 @@ const productSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: true,
-    }
+    },
+
+    productReviews:[productReviewSchema]
   
 
-})
+},{timestamps:true})
 
 
 
