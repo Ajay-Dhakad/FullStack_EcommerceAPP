@@ -1,0 +1,38 @@
+# Ignore node_modules directory
+node_modules/
+
+# Ignore environment files
+.env
+
+# Ignore log files
+logs/
+*.log
+
+# Ignore npm debug log
+npm-debug.log*
+
+# Ignore coverage directory
+coverage/
+
+# Ignore VS Code settings
+.vscode/
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore environment-specific files
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Ignore production build files
+/build
+
+# Ignore dependency cruft
+npm-debug.log
+npm-error.log
+
+# Ignore .env files except the example
+!.env.example
