@@ -3,6 +3,7 @@ import cors from 'cors';
 import {Dbconnection} from './Db/Dbconnection.js';
 import userRoutes from './Routes/userRoutes.js';
 import 'dotenv/config.js'
+import productRoutes from './Routes/ProductRoutes.js'
 
 // const express = require('express');
 const app = express();
@@ -17,7 +18,11 @@ app.use(cors({
     origin: '*'
 }))
 
+
+
 app.use('/api',userRoutes) 
+
+app.use('/api/product',productRoutes)
 
 const Port = process.env.APP_PORT || 5000
 

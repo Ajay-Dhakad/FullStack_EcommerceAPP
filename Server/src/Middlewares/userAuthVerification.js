@@ -15,7 +15,7 @@ export default async function userAuthVerification(req,res,next) {
         return res.status(401).json({ error: "Token is Not Valid -Expired" })
     }
 
-    const user =await User.findById(_id).select('_id')
+    const user =await User.findById(_id).select('_id role')
 
     if (!user){
         return res.status(401).json({ error: "You are not authorized to view this resource." })

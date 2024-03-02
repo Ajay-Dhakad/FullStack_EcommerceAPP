@@ -34,17 +34,10 @@ const orderSchema = new Schema({
         type: String,
         required: true,
     },
-    paymentMethod: {
-        type: String,
-        required: true,
-        enum: ["Cash","CreditCard","Paypal"],
-        default: "Cash",
-    },
     paymentStatus: {
         type: String,
         required: true,
-        enum: ["Unpaid","Paid"],
-        default: "Unpaid",
+        default: false,
     }
 
 },{timestamps:true})
