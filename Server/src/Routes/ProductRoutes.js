@@ -1,5 +1,5 @@
 import express from 'express';
-import { getProducts,getProduct,createProduct,deleteProduct,updateProduct,searchProduct } from '../Controllers/ProductControllers.js';
+import { getProducts,getProduct,createProduct,deleteProduct,updateProduct,searchProduct,ProductReview } from '../Controllers/ProductControllers.js';
 import userVerification from '../Middlewares/userAuthVerification.js'
 
 const router = express.Router();
@@ -17,6 +17,10 @@ router.patch('/updateproduct/:productid',userVerification,updateProduct);
 router.delete('/deleteproduct/:productid',userVerification,deleteProduct);
 
 router.get('/search/:searchquery?',searchProduct)
+
+router.post('/review/:productid',userVerification,ProductReview)
+
+
 
 
 

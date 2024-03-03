@@ -28,15 +28,20 @@ const userSchema = new Schema({
 
     carts:[
         {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Cart"
+            type:Schema.Types.ObjectId,
+            ref: "Cart",
+            
         }
     ],
 
     address:{
         type:String,
         required:true,
-        default:""
+    },
+
+    phoneNumber:{
+        type:Number,
+        required:true,
     }
 
 

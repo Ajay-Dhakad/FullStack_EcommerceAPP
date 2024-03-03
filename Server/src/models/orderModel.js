@@ -27,7 +27,7 @@ const orderSchema = new Schema({
     orderStatus: {
         type: String,
         required: true,
-        enum: ["Pending","Delivered"],
+        enum: ["Pending","Delivered","Cancelled"],
         default: "Pending",
     },
     deliveryAddress: {
@@ -35,7 +35,7 @@ const orderSchema = new Schema({
         required: true,
     },
     paymentStatus: {
-        type: String,
+        type: Boolean,
         required: true,
         default: false,
     }

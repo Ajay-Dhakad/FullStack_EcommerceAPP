@@ -28,12 +28,12 @@ const loginUser = async (req, res) => {
 const signUpUser = async (req, res) => {
     //code to sign up the user
 
-    const {name,email,password,address} = req.body
+    const {name,email,password,address,phoneNumber} = req.body
 
 
     try{
 
-        const user = await User.signUpStatic(name, email, password,address)
+        const user = await User.signUpStatic(name, email, password,address,phoneNumber)
 
         const token = generateToken(user._id)
 
@@ -73,7 +73,7 @@ const getUser = async (req, res) => {
 
     }
 
-    const user = await User.findById(_id).select("-password")
+    const user = await User.findById(_id).select("-password").populate("carts")
 
     if (!user){
        return res.status(401).json({ error: "You are not authorized to view this resource." })

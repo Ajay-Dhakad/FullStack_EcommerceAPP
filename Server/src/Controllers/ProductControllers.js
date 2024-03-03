@@ -3,7 +3,7 @@ import { Product } from "../models/productModel.js";
 
     export const getProducts = async(req,res) => {
      
-        const {category} = req.params;
+      try{  const {category} = req.params;
 
 
         if (!category) {
@@ -11,8 +11,17 @@ import { Product } from "../models/productModel.js";
         return res.status(200).json({success:true,products})}
 
         const products = await Product.find({category}).sort({createdAt:-1})
-        return res.status(200).json({success:true,products})
 
+        if (!products){
+            return res.status(404).json({success:false,message:"Products Not Found"})
+        }
+
+        return res.status(200).json({success:true,products})}
+
+        catch(e){
+        return res.status(400).json({error: e.message})
+
+        }
 
     }
 
@@ -121,6 +130,44 @@ import { Product } from "../models/productModel.js";
     }
 
 
+    export const ProductReview = async(req,res) => {
+
+            const {text, rating } = req.body;
+            const productId = req.params.productid;
+
+            if (!text ||!rating ||!productId) {
+              return res.status(400).json({ error: 'All fields are required' });
+            }
+          
+            try {
+              const product = await Product.findById(productId);
+          
+              if (!product) {
+                return res.status(404).json({ error: 'Product not found' });
+              }
+
+              const existingReview = product.productReviews.find(review => review.user.toString() === req.user._id.toString());
+
+              if (existingReview) {
+                return res.status(400).json({ error: "You can Only review Once" });
+              }
+          
+              const newReview = {
+                user: req.user._id, 
+                text: text,
+                rating: rating,
+              };
+          
+              product.productReviews.push(newReview);
+          
+              const updatedProduct = await product.save();
+          
+              res.status(201).json({ success: true, product: updatedProduct });
+            } catch (error) {
+              console.error(error);
+              res.status(500).json({success:false,message:error.message});
+            }
+          };
     
      
         

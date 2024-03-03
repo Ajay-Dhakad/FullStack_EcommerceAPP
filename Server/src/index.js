@@ -4,6 +4,9 @@ import {Dbconnection} from './Db/Dbconnection.js';
 import userRoutes from './Routes/userRoutes.js';
 import 'dotenv/config.js'
 import productRoutes from './Routes/ProductRoutes.js'
+import cartRoutes from './Routes/CartRoutes.js'
+import orderRoutes from './Routes/orderRoutes.js'
+import wishlistRoutes from './Routes/wishlistRoutes.js'
 
 // const express = require('express');
 const app = express();
@@ -23,6 +26,12 @@ app.use(cors({
 app.use('/api',userRoutes) 
 
 app.use('/api/product',productRoutes)
+
+app.use('/api/cart',cartRoutes)
+
+app.use('/api/order',orderRoutes)
+
+app.use('/api/wishlist',wishlistRoutes)
 
 const Port = process.env.APP_PORT || 5000
 
