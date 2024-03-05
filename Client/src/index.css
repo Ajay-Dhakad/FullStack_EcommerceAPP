@@ -1,68 +1,140 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+
+@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap');
+.kaushan-script-regular {
+  font-family: "Kaushan Script", cursive;
   font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-style: normal;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
 
-body {
+*{
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+html , body ,#root{
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  color: white;
+} 
+
+.homepage{
+  width: 100%;
+  height: 100%;
+  background-image: url('https://websitedemos.net/black-friday-04/wp-content/uploads/sites/1419/2023/11/bg-01-b.jpg');
+  background-position: center center;
+  background-size: cover;
+
+}
+
+.intro{
+  width: 100%;
+  height: 100%;
+}
+
+header{
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  font-weight: bold;
+  font-size: larger;
+  /* border: 2px solid red; */
+  height: 50px;
+  z-index: 99;
+  top: 0;
+  padding: 0 20px;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+header h1{
+  font-family: cursive;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+header ul{
+  display: flex;
+  list-style: none;
+  justify-content: center;
+  height: 100%;
+  align-items: center;
+
+}
+
+header ul li{
+  margin: 0 10px;
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+
+  &:hover a {
+     
+    color: #ff0011;
+    
+  }
+  
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
+.navactive{
+  color: red;
+}
+
+header ul li a{
+  text-decoration: none;
+  transition: .5s all;
+  color: white;
+
+}
+
+
+.homepage .intro{
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: brightness(.6);
+
+  gap: 20px;
+  flex-direction: column;
+}
+
+.homepage .intro h1{
+  font-size: 40px;
+  font-family:sans-serif;
+  text-transform:uppercase;
+  width: 70%;
+}
+
+.homepage .intro p{
+  font-size: 25px;
+  width: 80%;
+  font-family: "Kaushan Script", cursive;
+}
+
+.homepage .intro p b{
+  color: #ff0011;
+  font-family: "Kaushan Script", cursive;
+
+}
+
+
+.homepage .intro button{
+  font-size: 25px;
+  width: 250px;
+  background-color: rgb(255, 0, 0);
+  border: none;
+  color: white;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    transition: 0.5s;
+    border-radius: 10px;
+
+  cursor: pointer;
+  &:hover{
+    background-color: rgb(255, 0, 0);
+    color: white;
+    box-shadow: 0 0 10px rgb(255, 0, 0);
+    transform: translateY(-5px);
+    /* width: 250px; */
+
   }
 }
