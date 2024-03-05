@@ -35,6 +35,12 @@ const productSchema = new Schema({
     price: {
         type: Number,
         required: true,
+        default:0
+    },
+    actualprize:{
+        type: Number,
+        required: true,
+        default:0,
     },
     stock: {
         type: Number,
