@@ -6,6 +6,13 @@
   font-style: normal;
 }
 
+::-webkit-scrollbar{
+  display: none;
+}
+
+::selection{
+  background-color: #ff0011;
+}
 
 *{
   margin: 0;
@@ -14,12 +21,22 @@
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
-html , body ,#root{
+html , body {
   width: 100%;
   height: 100%;
   background-color: black;
   color: white;
 } 
+
+
+
+
+#root{
+
+  width: 100%;
+  height: 100%;
+}
+
 
 .homepage{
   width: 100%;
@@ -27,7 +44,6 @@ html , body ,#root{
   background-image: url('https://websitedemos.net/black-friday-04/wp-content/uploads/sites/1419/2023/11/bg-01-b.jpg');
   background-position: center center;
   background-size: cover;
-
 }
 
 .intro{
@@ -44,10 +60,10 @@ header{
   font-weight: bold;
   font-size: larger;
   /* border: 2px solid red; */
-  height: 50px;
+  height: 70px;
   z-index: 99;
   top: 0;
-  padding: 0 20px;
+  padding: 5px 20px;
 }
 
 header h1{
@@ -59,13 +75,18 @@ header ul{
   list-style: none;
   justify-content: center;
   height: 100%;
+  text-align: center;
+  width:40%;
   align-items: center;
+  /* border: 2px solid red; */
 
 }
 
 header ul li{
   margin: 0 10px;
   cursor: pointer;
+  font-size: 18px;
+  text-transform: uppercase;
 
   &:hover a {
      
@@ -73,6 +94,24 @@ header ul li{
     
   }
   
+}
+
+.sitelogo{
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  height: 100%;
+  align-items: center;
+  font-weight: bold;
+  gap: 5px;
+  font-size: larger;
+}
+
+.sitelogo img{
+  width: 40px;
+  height: 40px;
 }
 
 .navactive{
@@ -93,20 +132,20 @@ header ul li a{
   justify-content: center;
   align-items: center;
   backdrop-filter: brightness(.6);
-
   gap: 20px;
   flex-direction: column;
 }
 
 .homepage .intro h1{
-  font-size: 40px;
+  font-size: 50px;
   font-family:sans-serif;
   text-transform:uppercase;
-  width: 70%;
+  width: 80%;
+  line-height:55px;
 }
 
 .homepage .intro p{
-  font-size: 25px;
+  font-size: 35px;
   width: 80%;
   font-family: "Kaushan Script", cursive;
 }
@@ -138,3 +177,242 @@ header ul li a{
 
   }
 }
+
+.homepage .advertise{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+
+ 
+  
+}
+
+
+.homepage .advertise .content{
+  background-image: url('https://websitedemos.net/black-friday-04/wp-content/uploads/sites/1419/2023/11/bg-006.jpg');
+  width: 80%;
+  height:90%;
+  display: flex;
+  flex-wrap: wrap-reverse;
+  background-position: center;
+  justify-content: space-between;
+  background-size: cover;
+  align-items: center;
+
+}
+
+.homepage .advertise .content .product,.text{
+  width: 600px;
+  height: 100%;
+  max-height: fit-content;
+  /* text-align: start; */
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-direction: column;
+  /* backdrop-filter: brightness(.7); */
+  /* border: 2px solid red; */
+  align-items: start;
+  font-size: larger;
+  padding-left: 20px;
+}
+
+.homepage.advertise.content,.text h1{
+  font-size: 55px;
+  font-family: sans-serif;
+  line-height: 50px;
+  letter-spacing: -1px;
+  text-transform: uppercase;
+  font-weight: bold;
+  /* margin-bottom: 20px; */
+}
+
+.homepage.advertise.content,.text p{
+  font-size: 18px;
+  font-weight: bold;
+  opacity: .8;
+  /* margin-bottom: 20px; */
+}
+
+.homepage.advertise .content,.text h3{
+  font-family: "Kaushan Script", cursive;
+  color: red;
+  font-size: 25px;
+
+}
+
+.homepage .advertise .content .product img{
+
+  width: 400px;
+  
+
+}
+
+.homepage .advertise .content .text button{
+
+  /* width: 200px; */
+  height: 40px;
+  background-color: red;
+  padding: 0 10px;
+  font-weight: bold;
+  border: none;
+  letter-spacing: -1px;
+  color: white;
+  font-size: 20px;
+  transition: .2s all;
+
+  &:hover{
+    background-color: rgb(255, 0, 0);
+    color: white;
+    box-shadow: 0 0 10px rgb(255, 0, 0);
+    transform: translateY(-5px);
+    /* width: 250px; */
+  }
+
+}
+
+.homepage .productshowcase{
+  width: 100%;
+  min-height: 100%;
+  height: fit-content;
+  display: flex;
+padding:20px;
+  justify-content:flex-start;
+  align-items:center;
+  flex-direction: column;
+}
+
+.homepage .productshowcase p{
+  font-size: 30px;
+  font-weight: bold;
+  color: red;
+  font-family:"Kaushan Script", cursive;
+  /* margin-bottom: 20px; */
+}
+
+.homepage .productshowcase h1{
+  font-size: 55px;
+  font-family: sans-serif;
+  line-height: 50px;
+  letter-spacing: -1px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+
+.homepage .products{
+  width: 90%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+  /* border: 2px solid red; */
+}
+
+.products .product{
+  width: 400px;
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  flex-wrap: wrap;
+  gap: 10px;
+  text-align: center;
+  padding: 20px;
+  /* border: 2px solid red; */
+}
+
+
+.products .product .img{
+  width: 100%;
+  height: 400px;
+}
+
+
+.products .product .img img{
+  width: 100%;
+  height: 100%;
+}
+
+
+.products .product h1{
+  font-size: 25px;
+  font-weight: bold;
+  color: rgb(253, 253, 253);
+  font-family:"Kaushan Script", cursive;
+}
+
+.whychooseus{
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  width: 100%;
+  padding: 0 5px;
+  min-height: 50%;
+  height: fit-content;
+  /* border: 2px solid red; */
+  
+
+  & p {
+    font-family: "Kaushan Script", cursive;
+    font-size: 30px;
+    color: red;
+  }
+  
+  & h1{
+
+    font-size: 50px;
+    font-family: sans-serif;
+  }
+
+  & .services{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 50px;
+    gap: 20px;
+    height: 100%;
+    /* height: fit-content; */
+    width: 100%;
+    /* border: 2px solid red; */
+    flex-wrap: wrap;
+
+    & .service{
+
+      width: 300px;
+      /* height: 400px; */
+      text-align: center;
+      /* border: 1px solid white; */
+      & p{
+        font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-size: 18px;
+        opacity: .8;
+        color: white;
+      }
+
+      & img{
+        width: 40px;
+        height: 40px;
+      }
+
+
+    }
+  }
+
+
+}
+/* 
+footer{
+  position:fixed;
+  bottom: 0;
+  width: 100%;
+  height: 100px;
+  display: flex;
+} */

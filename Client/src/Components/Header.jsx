@@ -1,6 +1,6 @@
 import React from 'react'
 import {  NavLink } from 'react-router-dom'
-
+import {motion} from 'framer-motion'
 function Header() {
 
     const navItems = [{name: 'Home',link:'/'}, {name: 'Categories',link:'/categories'},{name: 'About', link: '/about'
@@ -10,11 +10,13 @@ function Header() {
     
     <header>
 
-    <h2>FashionHUB</h2>
+    <div className='sitelogo'>
+        <img src="https://cdn-icons-png.flaticon.com/512/8764/8764182.png" alt="" />
+        <h2>SnapStore</h2></div>
     <ul>
         {
             navItems.map((item,index) => {
-                return <li key={index}><NavLink className={({isActive}) => {return isActive ? 'navactive' : ''}} to={item.link}>{item.name}</NavLink></li>
+                return <motion.li initial={{opacity:0,translateX:-10}} whileInView={{opacity:1,translateX:0}} viewport={{once:true}} transition={{delay:.1*index}} key={index}><NavLink className={({isActive}) => {return isActive ? 'navactive' : ''}} to={item.link}>{item.name}</NavLink></motion.li>
             })
         }
 
