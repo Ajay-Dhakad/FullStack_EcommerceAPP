@@ -82,7 +82,7 @@ userSchema.statics.loginStatic = async function(email,password) {
 
 userSchema.statics.signUpStatic = async function(name,email,password,address) {
 
-    if (!name || !email || !password || !address) { 
+    if (!name || !email || !password || !address || !phoneNumber) { 
 
         throw Error("All fields are required")
  

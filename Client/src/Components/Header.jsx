@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import {useLocation} from 'react-router-dom'
+import { useLocation } from "react-router-dom";
 import { useAuth } from "../authContext/AuthContext.jsx";
 function Header() {
   const navItems = [
@@ -11,12 +11,34 @@ function Header() {
     { name: "Contact", link: "/contact" },
   ];
 
-  const { isAuthenticated, dispatch } = useAuth();
+  const optionsData = [
+    {
+      iconSrc:
+        "https://threedio-cdn.icons8.com/nyQTub5XpLLjDfeBRnGZWVUGg_zQTGs4QC0GAdhQSKM/rs:fit:1024:1024/czM6Ly90aHJlZWRp/by1wcm9kL3ByZXZp/ZXdzLzExNy82M2Qx/NDFiNS04MjQ4LTRi/ZDQtYmQ1Mi1lNWE2/ZmI0NDBjNTMucG5n.png",
+      title: "Profile",
+    },
+    {
+      iconSrc:
+        "https://threedio-cdn.icons8.com/CXxmo8CW6ZgmvcmrtJzwrNvzcHrZOGj3kyIS_M2W5Oc/rs:fit:1024:1024/czM6Ly90aHJlZWRp/by1wcm9kL3ByZXZp/ZXdzLzgxNS80YTg1/YmY3MC0xNGRmLTQw/ZmQtYTE5YS0xM2Vj/ZTU4NzZjNWMucG5n.png",
+      title: "Cart",
+    },
+    {
+      iconSrc:
+        "https://threedio-cdn.icons8.com/wSm9abwAUOMFOoG41Le1hMW2PYS_auKnzZd29SE5AzI/rs:fit:256:256/czM6Ly90aHJlZWRp/by1wcm9kL3ByZXZp/ZXdzLzg1Mi9hMzRj/MWY1Ni1kOTA1LTQ5/NzUtYjNkNC1jNjRk/YTRmNWU5ODcucG5n.png",
+      title: "WishList",
+    },
+    {
+      iconSrc:
+        "https://threedio-cdn.icons8.com/L3r1XjtbhA5IbNmmonDtRL4K24WexXp2zVc4t4fap64/rs:fit:256:256/czM6Ly90aHJlZWRp/by1wcm9kL3ByZXZp/ZXdzLzEyNS80ZTVj/NjJlMy1lNTgyLTRl/NDAtYjFmMi1mNTZh/ZjljNzY2M2QucG5n.png",
+      title: "MyOrders",
+    },
+  ];
+
+  const { isAuthenticated,user, dispatch } = useAuth();
   const [menu, setmenu] = useState(false);
   const navigate = useNavigate();
   const headerstyles = { top: 0, position: "fixed" };
-  const {pathname} = useLocation()
-
+  const { pathname } = useLocation();
 
   useEffect(() => {
     if (menu) {
@@ -35,7 +57,7 @@ function Header() {
           <h2>SnapStore</h2>
         </div>
 
-{/* hamberger Buttons |>> */}
+        {/* hamberger Buttons |>> */}
 
         <div className="useractions">
           {!menu && (
@@ -70,7 +92,7 @@ function Header() {
         </div>
       </header>
 
-        {/* hamberger div |>> */}
+      {/* hamberger div |>> */}
 
       {menu && (
         <motion.div
@@ -87,11 +109,8 @@ function Header() {
           <ul>
             {navItems.map((item, index) => {
               return (
-                <motion.li
-                  initial={{ opacity: 0, translateX: -10 }}
-                  whileInView={{ opacity: 1, translateX: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.1 * index }}
+                <li
+                  
                   key={index}
                 >
                   <NavLink
@@ -102,7 +121,7 @@ function Header() {
                   >
                     {item.name}
                   </NavLink>
-                </motion.li>
+                </li>
               );
             })}
 
@@ -121,9 +140,18 @@ function Header() {
           </ul>
 
           <br />
-          <hr />
-
-          <div className="usersections"></div>
+          <h2>{isAuthenticated ? `WelCome ${user.name}` : 'Hey User! Please Login To Continue.'}</h2>
+          <br />
+          
+          
+          {isAuthenticated && <div className="useroptions">
+          {optionsData.map((option, index) => (
+        <motion.div initial={{opacity:0,scale:0}} whileInView={{opacity:1,scale:1}} transition={{delay:0.001*index,duration:.2}} key={index} className="option">
+          <img src={option.iconSrc} alt="" />
+          <h1>{option.title}</h1>
+        </motion.div>
+      ))}
+          </div>}
         </motion.div>
       )}
     </>
