@@ -79,6 +79,9 @@ function Homepage() {
             whileInView={{ opacity: 1, translateY: 0, width: "250px" }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.6 }}
+            onClick={() => {
+              navigate('/categories')
+            }}
           >
             ShopNow
           </motion.button>
@@ -119,6 +122,9 @@ function Homepage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.8 }}
                 viewport={{ once: true }}
+                onClick={() => {
+                  navigate('/categories')
+                }}
               >
                 EXPLORE CATEGORIES
               </motion.button>
@@ -150,6 +156,7 @@ function Homepage() {
                   whileInView={{ opacity: 1, translateY: 0 }}
                   transition={{ delay: 0.3 * index, duration: 1.5 }}
                   viewport={{ once: true }}
+                  key={product.title}
                   className="product"
                 >
                   <div className="img">
