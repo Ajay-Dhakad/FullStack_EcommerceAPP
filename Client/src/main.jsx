@@ -7,6 +7,8 @@ import Homepage from './Components/Homepage.jsx'
 import { AuthContextProvider } from './authContext/AuthContext.jsx'
 import Login from './Components/userAuthComponents/Login.jsx'
 import SignUp from './Components/userAuthComponents/SignUp.jsx'
+import Categories from './Components/Categories.jsx'
+import ProductsPage from './Components/ProductsPage.jsx'
 
 const router = createBrowserRouter([
   {
@@ -22,6 +24,12 @@ const router = createBrowserRouter([
       },{
         path:'/signup',
         element:<SignUp/>
+      },{
+        path:'/categories',
+        element:<Categories/>
+      },{
+        path:'/products',
+        element:<ProductsPage/>
       }
     ]
   }

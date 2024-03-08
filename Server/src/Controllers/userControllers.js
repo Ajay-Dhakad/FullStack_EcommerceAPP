@@ -28,8 +28,7 @@ const loginUser = async (req, res) => {
 const signUpUser = async (req, res) => {
     //code to sign up the user
 
-    const {name,email,password,address,phoneNumber} = req.body
-
+    const {name,email,password,address,phoneNumber} = req.body;
 
     try{
 

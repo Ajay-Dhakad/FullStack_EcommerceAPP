@@ -35,6 +35,7 @@ html , body {
 
   width: 100%;
   height: 100%;
+  /* padding-top: 70px; */
 }
 
 
@@ -66,6 +67,7 @@ header{
   position: absolute;
   width: 100%;
   font-weight: bold;
+  background-color: #e4000000;
   backdrop-filter: blur(100px);
   font-size: larger;
   /* border: 2px solid red; */
@@ -100,7 +102,7 @@ header h1{
 
   & .useroptions{
     width: 100%;
-    background-color: rgb(21, 21, 21);
+    /* background-color: rgb(21, 21, 21); */
     height: fit-content;
     align-items: center;
     overflow-y: scroll;
@@ -271,6 +273,7 @@ header ul li a{
   color: white;
 
 }
+
 
 
 .homepage .intro{
@@ -624,13 +627,14 @@ footer ul li a{
   background: #141E30;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #243B55, #141E30);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to right, #131d28, #0d131f); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    height: 100%;
+    min-height: 100%;
   background-size: cover;
   display: flex;
   justify-content: center;
   align-items: center;
   background-position: center;
-  padding-top: 50px;
+  /* padding: 10px 0px; */
+  padding-top: 70px;
 
 
   & .login_form{
@@ -659,6 +663,7 @@ footer ul li a{
       align-items: center;
       justify-content: center;
       gap: 10px;
+
 
       & input{
         min-width: 350px;
@@ -708,14 +713,13 @@ footer ul li a{
         margin-top: 10px;
 
         & a{
-          text-decoration: none;
-          color: white;
+          text-decoration: underline;
+          color: rgb(255, 19, 19);
           font-weight: bold;
           transition:.2s all;
 
           &:hover{
-            color: rgb(255, 0, 0);
-            text-decoration: underline;
+            color: rgb(255, 255, 255);
           }
         }
       }
@@ -724,81 +728,144 @@ footer ul li a{
 
     & .illustration{
       gap: 20px;
-      width: 200px;
+      width: 100%;
+      height: fit-content;
+      text-align: center;
+      
 
       & img{
-        width: 100%;
+        width: 200px;
         /* height: 400px; */
+      }
+
+      & h2{
+        width: 100%;
       }
     }
   }
 
 }
 
+/* loader css */
 
-@media (max-width: 848px) {
+/* HTML: <div class="loader"></div> */
 
-  .homepage .productshowcase {
-    width: 100%;
-    margin-top: 10px;
-    text-align: center;
-    padding: 0;
-  }
-
-  .homepage .productshowcase h1{
-    font-size: 30px;
-  }
-
-  .homepage .productshowcase p{
-
-    font-size: 20px;
-  }
-
- header ul{
-   display: none;
- }
-
-.whychooseus h1{
-
-  /* border: 2px solid white; */
+.loaderwrapper{
   width: 100%;
-  text-align: center;
-  font-size: 30px;
-  
-  
- }
-
- .whychooseus .services{
-  gap: 30px;
- }
-
- .whychooseus .service{
-  scale: 1;
-  opacity: .9;
- }
-
-
- .homepage .intro h1{
-font-size: 30px;
-height: fit-content;
-line-height: 1;
-width: 100%;
-text-transform: none;
-/* border: 2px solid red; */
- }
-
- .homepage .intro p{
-   font-size: 30px;
-   width: 100%;
-   height: fit-content;
-   line-height: 1;
-   /* border: 2px solid red; */
- }
-
-
-
-  
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+
+/* HTML: <div class="loader"></div> */
+.loader {
+  width: 60px;
+  aspect-ratio: 1;
+  display: grid;
+  border: 4px solid #0000;
+  border-radius: 50%;
+  border-right-color: #ff0000;
+  animation: l15 1s infinite linear;
+}
+.loader::before,
+.loader::after {    
+  content: "";
+  grid-area: 1/1;
+  margin: 2px;
+  border: inherit;
+  border-radius: 50%;
+  animation: l15 2s infinite;
+}
+.loader::after {
+  margin: 8px;
+  animation-duration: 3s;
+}
+@keyframes l15{ 
+  100%{transform: rotate(1turn)}
+}
+
+/* loader */
+
+
+.categoriespage{
+  width: 100%;
+  min-height: 100%;
+  background-color:#202020;
+  padding-top: 70px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+
+  & h1{
+    font-family: "Kaushal Script",cursive;
+    color: rgb(255, 255, 255);
+    text-decoration: underline;
+    font-size: 35px;
+    background-color: red;
+    min-height: 50px;
+    padding:0px 10px;
+    line-height: 40px;
+  }
+
+  & .categories{
+    
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    min-height:500px;
+    /* border: 2px solid red; */
+    
+    & .category{
+      
+      display: flex;
+      flex-direction: column;
+      align-items: center;  
+      justify-content: center;
+      width: 300px;
+      /* border: 2px solid red; */
+      height: 500px;
+
+      & .img{
+        width: 100%;
+        height: 80%;
+        overflow: hidden;
+
+        & img{
+          width: 100%;
+          border-radius: 10px;
+          height: 100%;
+          transition: .5s all;
+          object-fit: cover;
+
+          &:hover{
+            scale: 1.2;
+            cursor: pointer;
+          }
+
+        }
+        /* height: 100%; */
+      }
+
+      & h2{
+        width: 100%;
+        font-size: 30px;
+        font-weight: bold;
+        color: rgb(255, 255, 255);
+        text-align: center;
+      }
+      
+
+    }
+  }
+}
+
+
+
 
 
 @media (max-width: 1100px) {
@@ -868,4 +935,141 @@ text-transform: none;
       /* height: 20px; */
     }
 
+}
+
+
+.productspage{
+
+  width: 100%;
+  padding-top: 70px;
+
+  min-height: 100%;
+
+
+& .slidertext{
+  position: absolute;
+  left: 0% ;
+  top: 0%;
+  /* color: red; */
+  /* font-size: 20px; */
+  /* transform: translate(-50%,-50%); */
+  width: 100%;
+  z-index: 999;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2px;
+  text-align: center;
+  align-items:center;
+  /* padding-bottom: 5%; */
+
+  backdrop-filter: brightness(.7);
+  height: 100%;
+
+  & h1{
+    font-size: 50px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.58);
+  }
+
+  & p{
+    color: #000000;
+    background-color: rgba(255, 255, 255, 0.733);
+    font-size: 30px;
+  }
+  & button{
+    width: 200px;
+    padding: 10px;
+    border-radius: 10px;
+
+    border: none;
+    outline: none;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    background-color: red;
+    transition:.2s all;
+
+    &:hover{
+      background-color: rgb(255, 0, 0);
+      color: white;
+      box-shadow: 0 0 10px rgb(255, 0, 0);
+      transform: translateY(2px);
+    }
+  }
+}
+
+
+
+}
+
+
+@media (max-width: 848px) {
+
+  .categoriespage h1{
+    font-size: 30px;
+  }
+  
+
+  .homepage .productshowcase {
+    width: 100%;
+    margin-top: 10px;
+    text-align: center;
+    padding: 0;
+  }
+
+  .homepage .productshowcase h1{
+    font-size: 30px;
+  }
+
+  .homepage .productshowcase p{
+
+    font-size: 20px;
+  }
+
+ header ul{
+   display: none;
+ }
+
+.whychooseus h1{
+
+  /* border: 2px solid white; */
+  width: 100%;
+  text-align: center;
+  font-size: 30px;
+  
+  
+ }
+
+ .whychooseus .services{
+  gap: 30px;
+ }
+
+ .whychooseus .service{
+  scale: 1;
+  opacity: .9;
+ }
+
+
+ .homepage .intro h1{
+font-size: 30px;
+height: fit-content;
+line-height: 1;
+width: 100%;
+text-transform: none;
+/* border: 2px solid red; */
+ }
+
+ .homepage .intro p{
+   font-size: 30px;
+   width: 100%;
+   height: fit-content;
+   line-height: 1;
+   /* border: 2px solid red; */
+ }
+
+
+
+  
 }

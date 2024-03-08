@@ -12,7 +12,7 @@ const AuthReducers = (state,action) => {
                 }
             case 'LOGOUT':
 
-                localStorage.removeItem('authToken')
+                localStorage.removeItem('auth_token')
                 return {
                     isAuthenticated: false,
                     user: null

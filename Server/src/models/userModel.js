@@ -80,7 +80,7 @@ userSchema.statics.loginStatic = async function(email,password) {
 
 //Sign up the user
 
-userSchema.statics.signUpStatic = async function(name,email,password,address) {
+userSchema.statics.signUpStatic = async function(name,email,password,address,phoneNumber) {
 
     if (!name || !email || !password || !address || !phoneNumber) { 
 
@@ -107,7 +107,7 @@ if (exists){
 
 const hashedpassword = await bcrypt.hash(password,10)
 
-const user  = await this.create({name,email,password:hashedpassword,address})
+const user  = await this.create({name,email,password:hashedpassword,address,phoneNumber})
 
 return user;
 

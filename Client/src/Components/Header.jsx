@@ -6,6 +6,7 @@ import { useAuth } from "../authContext/AuthContext.jsx";
 function Header() {
   const navItems = [
     { name: "Home", link: "/" },
+    {name:'Shop',link:'/products'},
     { name: "Categories", link: "/categories" },
     { name: "About", link: "/about" },
     { name: "Contact", link: "/contact" },
@@ -140,7 +141,7 @@ function Header() {
           </ul>
 
           <br />
-          <h2>{isAuthenticated ? `WelCome ${user.name}` : 'Hey User! Please Login To Continue.'}</h2>
+          <h2>{isAuthenticated ? `WelCome - ${user.name}` : 'Hey User! Please Login To Continue.'}</h2>
           <br />
           
           
