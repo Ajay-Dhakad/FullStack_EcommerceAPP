@@ -8,3 +8,12 @@ export const getProducts = async(category=false,filter=false) => {
     return json;
 
 }
+
+
+export const getProduct = async (productid) => {
+    const product = await fetch(`${import.meta.env.VITE_API_URI}/api/product/getproduct/${productid}`)
+    
+    const json = await product.json()
+    
+    return json;
+}

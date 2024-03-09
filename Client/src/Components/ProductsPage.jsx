@@ -3,6 +3,7 @@ import ImageSliderComponent from './ImageSlider/ImageSliderComponent'
 import Categories from './Categories'
 import { getProducts } from './ProductHandlers/ProductHandler.jsx'
 import {useParams,useNavigate,useLocation}  from 'react-router-dom'
+import {motion} from 'framer-motion'
 function ProductPage() {
 
   
@@ -88,7 +89,7 @@ function ProductPage() {
         Products.map((product,index) => {
           console.log(product)
           return (
-            <div className="product" key={product._id}>
+            <motion.div initial={{opacity:0,translateX:-50}} whileInView={{opacity:1,translateX:0}} transition={{delay:index*.1}}  onClick={() => navigate(`/product/${product._id}`)} className="product" key={product._id}>
               <div className="img">
                 <img src={product.image} alt="" />
               </div>
@@ -97,7 +98,9 @@ function ProductPage() {
               <h1>{product.name}</h1>
               <p className="ratings">Ratings : {product.totalRatings && product.productReviews.length !==0 ? product.totalRatings/product.productReviews.length : '0'}/5⭐</p>
               <div className='discount'>{((product.actualprize - product.price) / product.actualprize)*100}%Off</div>
-            </div> 
+
+              
+            </motion.div> 
           )
         })
       }

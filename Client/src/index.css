@@ -1,5 +1,10 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap');
+
+
+@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&family=League+Gothic&display=swap');
+
+
 .kaushan-script-regular {
   font-family: "Kaushan Script", cursive;
   font-weight: 400;
@@ -1080,6 +1085,7 @@ flex-wrap: wrap;
     align-items:center;
     text-align: start;
     gap: 0;
+    cursor: pointer;
     padding: 10px 0;
     background-color: #141e3090;
     display: flex;
@@ -1150,6 +1156,122 @@ flex-wrap: wrap;
 .loadersm{
   scale: .7;
   margin-top: 50px;
+}
+
+
+.product_page{
+  width: 100%;
+  min-height: 100%;
+ 
+
+  
+ 
+
+  & .cover{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    backdrop-filter: blur(10px) brightness(.1);
+  }
+
+  & .product_image{
+    width: 300;
+    height: 500px;
+    text-align: center;
+    overflow: hidden;
+    border-radius: 5px;
+
+    /* border: 2px solid red; */
+
+    & img{
+
+      /* width: 80%; */
+      height: 100%;
+      transition: .5s all;
+      &:hover{
+        scale: 1.1;
+        cursor:pointer;
+      }
+    }
+  }
+
+  & .product_details{
+    
+    width: 50%;
+    background-color: #00000099;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    height: 500px;  
+    padding: 0 10px;
+    
+    & 
+    .star-rating {
+        width: 70%;
+        color: gray;
+        font-size: 24px;
+
+        & span {
+          color: gold;
+      }
+    }
+    
+    
+    
+
+    & h1{
+      width: 100%;
+      padding: 20px 0;
+      /* border: 2px solid #ff000099; */
+      font-size: 50px;
+      font-family: "League Gothic", sans-serif;
+      letter-spacing: 1px;      
+      
+    }
+
+    & h2{
+      font-size: 30px;
+      padding: 10px 0;
+      border-bottom: 0.4px solid rgba(194, 194, 194, 0.829);
+
+      & del{
+        color: rgb(253, 44, 44);
+      }
+
+      & b{
+        font-size: 17px;
+        background-color: rgb(1, 157, 1);
+        padding: 0px 10px;
+        border-radius: 10px;
+      }
+    }
+
+    & p{
+      width: 100%;
+      font-family: Manrope, sans-serif
+      ;
+      font-size: 22px;
+
+      & a{
+        font-size: 20px;
+        color: rgb(161, 161, 161);
+        font-weight: bold;
+        text-decoration: none;
+
+        &:hover{
+          text-decoration: none;
+          color: rgb(255, 255, 255);
+        }
+      }
+    }
+    
+    /* border: 2px solid red; */
+
+  }
 }
 
 

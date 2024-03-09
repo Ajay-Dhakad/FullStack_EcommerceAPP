@@ -9,6 +9,7 @@ import Login from './Components/userAuthComponents/Login.jsx'
 import SignUp from './Components/userAuthComponents/SignUp.jsx'
 import Categories from './Components/Categories.jsx'
 import ProductsPage from './Components/ProductsPage.jsx'
+import ProductPage from './Components/ProductPage.jsx'
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,9 @@ const router = createBrowserRouter([
       },{
         path:'/products/filter?/:filter?/category?/:category?',
         element:<ProductsPage/>
+      },{
+        path:'/product/:productid',
+        element: <ProductPage/>
       }
     ]
   }
