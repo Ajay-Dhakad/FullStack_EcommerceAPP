@@ -14,7 +14,7 @@ function CustomCarousel({ children }) {
         setTimeout(() => {
           slideNext();
           setSlideDone(true);
-        }, 5000)
+        }, 3000)
       );
     }
   }, [slideDone]);

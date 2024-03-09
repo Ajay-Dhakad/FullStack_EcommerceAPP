@@ -13,10 +13,10 @@
   }
   
   .container__slider > button {
-    background-color:black;
+    background-color:rgba(0, 0, 0, 0.447);
     outline: none;
     padding: 10px;
-    border-radius: 50px;
+    border-radius: 10px;
     border: 0;
     font-weight: bold;
     color: whitesmoke;

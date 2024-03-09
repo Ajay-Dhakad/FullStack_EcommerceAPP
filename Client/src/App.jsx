@@ -62,13 +62,18 @@ function App() {
   if (!user){
   userData()
   }
+  window.document.title = pathname.replace(/\/|\-/g, " ")
+  if (pathname == '/'){
+    window.document.title = "Home"
+  }
+
 
   },[pathname])
 
   return (
     <>
     <Header/>
-    {!loader ? <Outlet/> : <div className='loaderwrapper'><div class="loader"></div>
+    {!loader ? <Outlet/> : <div className='loaderwrapper'><div className="loader"></div>
 </div> }
     <Footer/>
     </>

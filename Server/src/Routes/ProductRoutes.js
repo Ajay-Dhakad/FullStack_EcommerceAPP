@@ -1,12 +1,12 @@
 import express from 'express';
-import { getProducts,getProduct,createProduct,deleteProduct,updateProduct,searchProduct,ProductReview } from '../Controllers/ProductControllers.js';
+import { getProducts,getProduct,createProduct,deleteProduct,updateProduct,searchProduct,ProductReview} from '../Controllers/ProductControllers.js';
 import userVerification from '../Middlewares/userAuthVerification.js'
 
 const router = express.Router();
 
 
 
-router.get('/getproducts/:category?',getProducts );
+router.get('/getproducts',getProducts);
 
 router.get('/getproduct/:productid',getProduct);
 

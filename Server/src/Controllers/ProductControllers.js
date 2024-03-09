@@ -3,20 +3,88 @@ import { Product } from "../models/productModel.js";
 
     export const getProducts = async(req,res) => {
      
-      try{  const {category} = req.params;
+      try{  const {category,filter} = req.query;
+
+      console.log(filter,category)
 
 
-        if (!category) {
+        if (!category && !filter) {
         const products = await Product.find().sort({createdAt:-1})
         return res.status(200).json({success:true,products})}
 
-        const products = await Product.find({category}).sort({createdAt:-1})
 
-        if (!products){
-            return res.status(404).json({success:false,message:"Products Not Found"})
+
+        if (category && !filter){
+          const products = await Product.find({category}).sort({createdAt:-1})
+          
+          return res.status(200).json({success: true , message : 'Product list by category',products })
+
+         }
+
+
+        if (!category && filter){
+          
+          let products;
+
+
+          switch(filter){
+
+
+            case 'prize-high':
+            products = await Product.find().sort({price:-1})
+              return res.status(200).json({success:true,products})
+
+            case 'prize-low':
+            products = await Product.find().sort({price:1})
+              return res.status(200).json({success:true,products})
+
+              case 'rating-high':
+              products = await Product.find().sort({totalRatings:-1})
+                return res.status(200).json({success:true,products})
+              
+                case 'rating-low':
+                products = await Product.find().sort({totalRatings:1})
+                  return res.status(200).json({success:true,products})
+
+                  default:
+                    return res.status(400).json({success:false,message:"Invalid filter"})
+          }
+
         }
 
-        return res.status(200).json({success:true,products})}
+        
+        if (category && filter){
+
+         let products;
+
+          switch(filter){
+
+            case 'prize-high':
+               products = await Product.find({category}).sort({price:-1})
+              return res.status(200).json({success:true,products})
+
+            case 'prize-low':
+               products = await Product.find({category}).sort({price:1})
+              return res.status(200).json({success:true,products})
+
+              case 'rating-high':
+                 products = await Product.find({category}).sort({totalRatings:-1})
+                return res.status(200).json({success:true,products})
+              
+                case 'rating-low':
+                   products = await Product.find({category}).sort({totalRatings:1})
+                  return res.status(200).json({success:true,products})
+
+                  default:
+                    return res.status(400).json({success:false,message:"Invalid filter"})
+
+
+          }
+        }
+            return res.status(404).json({success:false,message:"Products Not Found"})
+       
+
+      }
 
         catch(e){
         return res.status(400).json({error: e.message})
@@ -24,6 +92,7 @@ import { Product } from "../models/productModel.js";
         }
 
     }
+
 
 
     export const getProduct = async(req,res) => {
@@ -159,6 +228,7 @@ import { Product } from "../models/productModel.js";
               };
           
               product.productReviews.push(newReview);
+              product.totalRatings += newReview.rating;
           
               const updatedProduct = await product.save();
           

@@ -1,28 +1,112 @@
-import React from 'react'
-import CustomCarousel from './ImageSlider/ImageSlider.jsx'
-
+import React, { useEffect, useState } from 'react'
+import ImageSliderComponent from './ImageSlider/ImageSliderComponent'
+import Categories from './Categories'
+import { getProducts } from './ProductHandlers/ProductHandler.jsx'
+import {useParams,useNavigate,useLocation}  from 'react-router-dom'
 function ProductPage() {
 
-  const images = [{url:'https://images.unsplash.com/photo-1445205170230-053b83016050?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'},{url:'https://images.unsplash.com/photo-1636115305669-9096bffe87fd?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'},{
-    url:'https://images.unsplash.com/photo-1559669865-5995d995c52c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'}]
+  
+  const [Products,setproducts] = useState()
+
+  const {filter,category} = useParams();
+
+  // console.log(filter,category)
+
+  const {pathname} = useLocation();
+
+  const navigate  = useNavigate();
+
+  const GetProducts = async() => {
+
+    const data = await getProducts(category,filter)
+    // console.log(data)
+
+    if (data?.success && data?.products?.length > 0) {
+
+      setproducts([...data.products])
+      
+
+    }
+
+  }
+
+  
+  const handleFilterChange = (e) => {
+    const selectedFilter = e.target.value;
+    const newFilter = selectedFilter !== '' ? `/filter/${selectedFilter}` : '';
+  
+    const currentCategory = category ? `/category/${category}` : '';
+  
+    navigate(`/products${newFilter}${currentCategory}`);
+  };
+
+  const handleCategoryChange = (e) => {
+    const selectedCategory = e.target.value;
+    const newCategory = selectedCategory !== '' ? `/category/${selectedCategory}` : '';
+
+    navigate(`/products${filter ? `/filter/${filter}` : ''}${newCategory}`);
+  };
+
+  useEffect(() => {
+
+    GetProducts()
+
+  },[filter,category])
+
 
   return (
-    <div className='productspage'>
+<div className='productspage'>
 
-<div className="slider">
-      <CustomCarousel>
+  <ImageSliderComponent/>
 
-      {images.map((image, index) => {
-          return <div style={{position:'relative'}}> <img key={index} src={image.url} alt={image.imgAlt} /> <div className="slidertext"><h1>Grab Your Favorites Before There're Gone!</h1>
-          <p>Get <b>MAXX </b> Discounts On Every Product Category </p>
-          <button>Shop Now</button>
-          </div></div>;
-        })}
+  <div className="sortings">
+
+     <div className='sorting'>
+      <h1>Categories </h1>
+      <select value={category} onChange={handleCategoryChange} className="custom-select">
+            <option value=''>All Categories</option>
+            <option value='mens clothings'>Mens Clothing</option>
+            <option value='category2'>Category 2</option>
+            {/* Add more categories as needed */}
+          </select>
+       </div>
+       <div className="sorting">
+          <h1>Sort By</h1>
+          <select value={filter} onChange={(e) => e.target.value == '' ? navigate('/products') : navigate(`/products/filter/${e.target.value}`)}>
+          <option value=''>Sort By</option>
+            <option value="prize-low">Price: Low to High</option>
+            <option value="prize-high">Price: High to Low</option>
+            <option value="rating-high">Rating: High to Low</option>
+            <option value="rating-low">Rating: Low to High</option>
+          </select>
+        </div>
+        </div>
+
+      {Products?.length > 0 ? <div className="products">  
         
-      </CustomCarousel>
-      </div>
+      {
+        Products.map((product,index) => {
+          console.log(product)
+          return (
+            <div className="product" key={product._id}>
+              <div className="img">
+                <img src={product.image} alt="" />
+              </div>
+              
+              <p><del style={{color:'red'}}>{product.actualprize}₹  </del>{product.price}₹ </p>
+              <h1>{product.name}</h1>
+              <p className="ratings">Ratings : {product.totalRatings && product.productReviews.length !==0 ? product.totalRatings/product.productReviews.length : '0'}/5⭐</p>
+              <div className='discount'>{((product.actualprize - product.price) / product.actualprize)*100}%Off</div>
+            </div> 
+          )
+        })
+      }
+      </div> : <div className='loaderwrapper'><div className="loader loadersm"></div>
+</div> }
       
-    </div>
+      
+</div>
+    
   )
 }
 

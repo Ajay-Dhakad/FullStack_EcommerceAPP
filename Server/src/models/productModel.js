@@ -62,7 +62,13 @@ const productSchema = new Schema({
         required: true,
     },
 
-    productReviews:[productReviewSchema]
+    productReviews:[productReviewSchema],
+
+    totalRatings:{
+        type: Number,
+        required: true,
+        default: 0
+    }
   
 
 },{timestamps:true})

@@ -986,6 +986,7 @@ footer ul li a{
     border: none;
     outline: none;
     font-size: 20px;
+    margin-top: 10px;
     font-weight: bold;
     color: white;
     background-color: red;
@@ -1000,8 +1001,155 @@ footer ul li a{
   }
 }
 
+& .sortings{
+  display: flex;
+  justify-content:center;
+  padding: 0 20px;
+  width: 100%;
+
+  font-size: 10px;  
+  align-items: center;
+  gap: 10px;
+  min-height: 70px;
+  color: white;
+flex-wrap: wrap;
+  /* Add these styles to your CSS or SCSS file */
+
+  & .sorting{
+    display: flex;
+    gap: 5px;
+    /* border: 2px solid red; */
+    height: fit-content;
+    width: fit-content;
+    flex-direction: column;
+    text-align: center;
+    /* justify-content: space-around; */
+  }
+
+& select {
+  width: 200px;
+  height: 30px;
+  font-weight: bold;
+  text-align: center;
+  border: none;
+  border-radius: 5px;
+  font-size: 17px;
+  background-color: #ffffff;
+  outline: none;
+  cursor: pointer; /* Add cursor style for better usability */
+
+  &:hover {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Add a subtle box-shadow on hover */
+  }
+
+  & option {
+    background-color: black;
+    color: rgb(255, 255, 255);
+
+    &:hover {
+      background-color: #333; /* Change background color on hover */
+    }
+
+    &:focus {
+      background-color: #555; /* Change background color on focus */
+    }
+
+    &::selection {
+      background-color: white;
+    }
+  }
+}
+
+ 
+}
+
+& .products{
+  width: 100%;
+  display: flex;
+  margin-top: 50px;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  /* border: 2px solid red ; */
+
+  & .product{
+    width: 300px;
+    /* border: 2px solid rgb(255, 255, 255); */
+    min-height: 470px;
+    justify-content: start;
+    align-items:center;
+    text-align: start;
+    gap: 0;
+    padding: 10px 0;
+    background-color: #141e3090;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    & p.ratings{
+      /* scale: 1.2; */
+      width: 100%;
+      font-size: 20px;
+      /* border: 2px solid red; */
+      padding-left: 15px;
+    }
+
+    & .discount{
+      position: absolute;
+      padding: 0 5px;
+      background-color: red;
+      min-width: fit-content;
+      left: 10px;
+      border-radius: 20px;
+      top: 10px;
+
+    }
+
+    & p{
+      font-size: 25px;
+      color: rgb(255, 255, 255);
+      padding-left: 15px;
+      height: fit-content;
+      margin-top: 5px;
+      text-align: start;
+      width: 100%
+      /* border: 2px solid red; */
+     
+    }
+
+    & h1{
+      padding-left: 15px;
+      text-align: start;
+      width: 100%;
+      /* border: 2px solid red; */
+
+    }
 
 
+
+    & .img{
+      width: 90%;
+      height: 350px;
+
+      & img{
+        width: 100%;
+        height: 350px;
+        object-fit: cover;
+        border-radius: 10px;
+      }
+    }
+
+
+  }
+}
+
+
+
+}
+
+.loadersm{
+  scale: .7;
+  margin-top: 50px;
 }
 
 
@@ -1010,6 +1158,24 @@ footer ul li a{
   .categoriespage h1{
     font-size: 30px;
   }
+
+  .productspage{
+    color: red;
+  & .slidertext{
+    margin-top: 50px;
+    & h1{
+      font-size: 20px;
+      scale: 1.2;
+      width: 80%;
+      /* color: red; */
+    }
+    & p{
+      font-size: 20px;
+    }
+    & button{
+      font-size: 15px;
+    }
+  }}
   
 
   .homepage .productshowcase {
