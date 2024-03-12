@@ -1,4 +1,6 @@
 
+import {useAuth} from '../../authContext/AuthContext.jsx'
+
 export const getProducts = async(category=false,filter=false) => {
 
     const product = await fetch(`${import.meta.env.VITE_API_URI}/api/product/getproducts${category ?  '?category='+category : ''}${filter && category ? '&filter='+filter : ''}${filter && !category ? '?filter='+filter : ''}`)
@@ -17,3 +19,66 @@ export const getProduct = async (productid) => {
     
     return json;
 }
+
+
+export const AddToCart = async (productid,quantity,user) => {
+    const product = await fetch(`${import.meta.env.VITE_API_URI}/api/cart/addtocart`,{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${user.token}`
+        },
+        body: JSON.stringify({productid,quantity})
+    })
+    
+    const json = await product.json()
+    
+    return json;
+}
+
+export const getCart = async(user) => {
+    const product = await fetch(`${import.meta.env.VITE_API_URI}/api/cart/getcart`,{
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${user.token}`
+        }
+    })
+    
+    const json = await product.json()
+    
+    return json;
+}
+
+export const updateCartQuantity = async(productid,action) => {
+
+    const product = await fetch(`${import.meta.env.VITE_API_URI}/api/cart/updatecart/${productid}/${action}`,{
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('auth_token')}`
+        },
+
+    })
+    
+    const json = await product.json()
+    
+    return json;
+
+}
+
+export const deleteFromCart = async(productid) => {
+    const product = await fetch(`${import.meta.env.VITE_API_URI}/api/cart/removefromcart/${productid}`,{
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('auth_token')}`
+        },
+    })
+
+    const json = await product.json()
+    
+    return json;
+
+}
+

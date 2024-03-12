@@ -96,14 +96,26 @@ import { Product } from "../models/productModel.js";
 
 
     export const getProduct = async(req,res) => {
-     
+
+
+      try {
+        
         const {productid} = req.params;
-    
+
        if (productid){
         const product = await Product.findById(productid)
+
+        if (product){
         return res.status(200).json({success:true,product})}
+      }
         
-        return res.status(404).json({success:false,message:"Product Not Found"})
+        return res.status(404).json({success:false,error:"Product Not Found"})
+
+      } catch (error) {
+
+        return res.status(400).json({success:false,error:'Product Not Found'})
+        
+      }
     }
 
     export const createProduct = async(req,res) => {    

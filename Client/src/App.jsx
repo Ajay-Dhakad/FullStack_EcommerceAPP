@@ -52,7 +52,7 @@ function App() {
      }
       
      if(data.success){
-      dispatch({type: 'LOGIN', payload: data.user})
+      dispatch({type: 'LOGIN', payload: {...data.user,token:token}})
       setloader(false)
      }
 

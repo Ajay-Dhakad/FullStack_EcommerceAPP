@@ -28,7 +28,7 @@ const AuthReducers = (state,action) => {
 export const AuthContextProvider = ({children}) => {
     const [state,dispatch] = useReducer(AuthReducers,{
         isAuthenticated:false,
-        user:null
+        user:null,
     }
         )
 

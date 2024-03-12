@@ -17,25 +17,31 @@ function Header() {
       iconSrc:
         "https://threedio-cdn.icons8.com/nyQTub5XpLLjDfeBRnGZWVUGg_zQTGs4QC0GAdhQSKM/rs:fit:1024:1024/czM6Ly90aHJlZWRp/by1wcm9kL3ByZXZp/ZXdzLzExNy82M2Qx/NDFiNS04MjQ4LTRi/ZDQtYmQ1Mi1lNWE2/ZmI0NDBjNTMucG5n.png",
       title: "Profile",
+      link: "/profile",
     },
     {
       iconSrc:
         "https://threedio-cdn.icons8.com/CXxmo8CW6ZgmvcmrtJzwrNvzcHrZOGj3kyIS_M2W5Oc/rs:fit:1024:1024/czM6Ly90aHJlZWRp/by1wcm9kL3ByZXZp/ZXdzLzgxNS80YTg1/YmY3MC0xNGRmLTQw/ZmQtYTE5YS0xM2Vj/ZTU4NzZjNWMucG5n.png",
       title: "Cart",
+      link:'/cart'
     },
     {
       iconSrc:
         "https://threedio-cdn.icons8.com/wSm9abwAUOMFOoG41Le1hMW2PYS_auKnzZd29SE5AzI/rs:fit:256:256/czM6Ly90aHJlZWRp/by1wcm9kL3ByZXZp/ZXdzLzg1Mi9hMzRj/MWY1Ni1kOTA1LTQ5/NzUtYjNkNC1jNjRk/YTRmNWU5ODcucG5n.png",
       title: "WishList",
+      link:'/wishlist'
     },
     {
       iconSrc:
         "https://threedio-cdn.icons8.com/L3r1XjtbhA5IbNmmonDtRL4K24WexXp2zVc4t4fap64/rs:fit:256:256/czM6Ly90aHJlZWRp/by1wcm9kL3ByZXZp/ZXdzLzEyNS80ZTVj/NjJlMy1lNTgyLTRl/NDAtYjFmMi1mNTZh/ZjljNzY2M2QucG5n.png",
       title: "MyOrders",
+      link:'/orders'
     },
   ];
 
   const { isAuthenticated,user, dispatch } = useAuth();
+
+  console.log(user)
   const [menu, setmenu] = useState(false);
   const navigate = useNavigate();
   const headerstyles = { top: 0, position: "fixed" };
@@ -147,7 +153,7 @@ function Header() {
           
           {isAuthenticated && <div className="useroptions">
           {optionsData.map((option, index) => (
-        <motion.div initial={{opacity:0,scale:0}} whileInView={{opacity:1,scale:1}} transition={{delay:0.001*index,duration:.2}} key={index} className="option">
+        <motion.div onClick={() => navigate(`${option.link}`)} initial={{opacity:0,scale:0}} whileInView={{opacity:1,scale:1}} transition={{delay:0.001*index,duration:.2}} key={index} className="option">
           <img src={option.iconSrc} alt="" />
           <h1>{option.title}</h1>
         </motion.div>

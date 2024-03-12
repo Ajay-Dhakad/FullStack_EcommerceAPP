@@ -10,6 +10,8 @@ import SignUp from './Components/userAuthComponents/SignUp.jsx'
 import Categories from './Components/Categories.jsx'
 import ProductsPage from './Components/ProductsPage.jsx'
 import ProductPage from './Components/ProductPage.jsx'
+import CartPage from './Components/CartPage.jsx'
+import { CartContextProvider } from './cartContext/CartContext.jsx'
 
 const router = createBrowserRouter([
   {
@@ -34,6 +36,9 @@ const router = createBrowserRouter([
       },{
         path:'/product/:productid',
         element: <ProductPage/>
+      },{
+        path:'/cart',
+        element:<CartPage/>
       }
     ]
   }
@@ -41,8 +46,11 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
+    <CartContextProvider>  
     <AuthContextProvider>
     <RouterProvider router={router}/>
     </AuthContextProvider>
+    </CartContextProvider>
+
   </React.StrictMode>,
 )

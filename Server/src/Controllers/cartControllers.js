@@ -73,15 +73,30 @@ export const updateCart = async(req, res) => {
 
     try{
         
-        const {productid} = req.params;
-
-        console.log({...req.body})
+        const {productid,action} = req.params;
 
     if (!productid){
         return res.status(400).json({success:false,message:"Product ID is required"})
     }
 
-    const updatedCart = await Cart.findOneAndUpdate({product:productid,user:req.user._id},{...req.body},{new:true})
+    const product = await Cart.findOne({product:productid,user:req.user._id})
+
+    console.log(product)
+    
+    if (action =='increment'){
+
+        product.quantity += 1
+
+    }
+    else if (action =='decrement'){
+        if (product.quantity >1){
+        product.quantity -= 1
+        }else{
+            return res.status(400).json({success:false,message:"Quantity can't be Zero!"})
+        }
+    }
+
+    const updatedCart = await product.save();
     
     if (!updatedCart){
         return res.status(404).json({success:false,message:"Product Not Found"})
@@ -90,6 +105,6 @@ export const updateCart = async(req, res) => {
     return res.status(200).json({success:true,updatedCart})}
 
     catch(e){
-        return res.status(400).json({success:false,message:e.message})
+        return res.status(400).json({success:false,message:'Server Error'})
     }
 }
