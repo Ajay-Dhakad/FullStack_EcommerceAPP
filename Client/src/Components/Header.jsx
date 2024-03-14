@@ -12,6 +12,8 @@ function Header() {
     { name: "Contact", link: "/contact" },
   ];
 
+  const [search,setsearch] = useState('')
+
   const optionsData = [
     {
       iconSrc:
@@ -108,8 +110,10 @@ function Header() {
           transition={{ duration: 0.3 }}
           className="hamberger-menu"
         >
-          <form action="">
-            <input placeholder="Search a product!" type="text" />
+          <form onSubmit={(e) =>{
+          e.preventDefault;navigate(`/products/search/${search}`)}
+          } action="">
+            <input value={search} onChange={(e) => setsearch(e.target.value)} placeholder="Search a product!" type="text" />
             <button type="submit">Go!</button>
           </form>
 

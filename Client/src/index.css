@@ -1183,6 +1183,7 @@ flex-wrap: wrap;
     height: 500px;
     text-align: center;
     overflow: hidden;
+    position:relative;
     border-radius: 5px;
 
     /* border: 2px solid red; */
@@ -1195,6 +1196,28 @@ flex-wrap: wrap;
       &:hover{
         scale: 1.1;
         cursor:pointer;
+      }
+    }
+
+    & i{
+      position: absolute;
+      top:1px;
+      left:1px;
+      font-size: 30px;
+      color: red;
+      background-color: rgba(0, 0, 0, 0.612);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      text-align: center;
+      border-radius: 50px;
+      padding: 3px;
+      transition: .5s;
+
+      &:hover{
+        /* scale: 1.15; */
+        background-color: black;
       }
     }
   }
@@ -1249,13 +1272,17 @@ flex-wrap: wrap;
       /* border: 2px solid red; */
       display: flex;
       margin-top: 10px;
+      flex-wrap: wrap;
+
       border-bottom: 0.4px solid rgba(194, 194, 194, 0.829);
       padding: 10px;
+      padding-left: 0px;
       gap: 10px;
+      /* flex-wrap: wrap; */
       align-items: center;
       & button{
         background-color:transparent;
-        width: 200px;
+        width: 150px;
         height: 40px;
         color: white;
         font-size: 20px;
@@ -1406,6 +1433,8 @@ flex-wrap: wrap;
   background-image: url('https://plus.unsplash.com/premium_photo-1677995700941-100976883af7?q=80&w=1846&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
   background-position:center;
   background-size: cover;
+  
+
 
   & .cart_text{
    
@@ -1413,6 +1442,7 @@ flex-wrap: wrap;
     /* height: 100vh; */
     background-position: center;   
     background-size: cover;
+    
 
     & .wrapper{
       width: 100%;
@@ -1541,12 +1571,23 @@ flex-wrap: wrap;
                 /* padding: 0 10px; */
                 margin-left: 5px;
                 background-color: rgb(0, 114, 0);
+                border-radius: 10px;
                 color: white;
+                transition: .5s all;
 
 
                 &:active{
                   background-color: rgb(4, 40, 2);
                   color: white;
+
+                }
+
+                &:first-child{
+                  background-color: RED;
+                }
+
+                &:hover{
+                  width: 80%;
                 }
               }
             }
@@ -1558,6 +1599,30 @@ flex-wrap: wrap;
     }
   }
 
+
+}
+
+
+.wishlist_remove_btn{
+  background-color: rgba(48, 48, 48, 0);
+  color: white;
+  font-size: 13px;
+  width: 100px;
+  font-weight: bold;
+  position: absolute;
+  bottom: 100px;
+  right: 5px;
+  border: none;
+  border: 2px solid red;
+  border-radius: 10px;
+  padding: 5px 5px;
+  cursor: pointer;
+  transition:.5s all;
+  &:hover{
+    background-color: rgb(255, 0, 0);
+    color: white;
+    
+  }
 
 }
 

@@ -10,7 +10,7 @@ function CartPage() {
     const {user} = useAuth()
     const {userCart,dispatch} = useCart()
 
-    console.log(userCart)
+    console.log(userCart.length)
 
 const navigate= useNavigate()
 
@@ -45,6 +45,8 @@ useEffect(() => {
             <h1>YOUR CART</h1>
             <div className='products'>
 
+                {userCart.length == 0 && <center> <p>No product Here...</p></center> }
+
                 {
                     userCart?.map((item,index) => <div className="product">
                         <div className="product_image">
@@ -52,11 +54,13 @@ useEffect(() => {
                         </div>
                         <div className="product_details">
                             <h1>{item.product.name}</h1>
-                            <p>price : {item.product.price}₹</p>
+                            <p>Price : {item.product.price}₹</p>
+                            <p>TotalPrice : {item.product.price  * item.quantity}₹</p>
+
                             <div className="quantity">
                                 <button  onClick={() => updateCartQuantity(item.product._id,'decrement').then((data) => data.success ? dispatch({type:'DECREASEQUANTITY',payload:item._id}) : toast.error(data.message) )}  >-</button>
                                 <input value={item.quantity} type="text" />
-                                <button onClick={() => updateCartQuantity(item.product._id,'increment').then((data) => data.success ? dispatch({type:'INCREASEQUANTITY',payload:item._id}) : toast.error(data.message) )}>+</button>
+                                <button onClick={() => item.quantity < 10 ? updateCartQuantity(item.product._id,'increment').then((data) => data.success ? dispatch({type:'INCREASEQUANTITY',payload:item._id}) : toast.error(data.message) ) : toast.error('Max quantity is 10')}>+</button>
                             </div>
                          
                             <div className="options">

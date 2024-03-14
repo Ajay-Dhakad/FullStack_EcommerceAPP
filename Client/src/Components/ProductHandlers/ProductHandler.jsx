@@ -1,9 +1,9 @@
 
 import {useAuth} from '../../authContext/AuthContext.jsx'
 
-export const getProducts = async(category=false,filter=false) => {
+export const getProducts = async(category=false,filter=false,search=false) => {
 
-    const product = await fetch(`${import.meta.env.VITE_API_URI}/api/product/getproducts${category ?  '?category='+category : ''}${filter && category ? '&filter='+filter : ''}${filter && !category ? '?filter='+filter : ''}`)
+    const product = await fetch(`${import.meta.env.VITE_API_URI}/api/product/getproducts${search ? `?search=${search }` : ''}${category ?  '?category='+category : ''}${filter && category ? '&filter='+filter : ''}${filter && !category && !search ? '?filter='+filter : ''}${filter && search ? '&filter='+filter : ''}`)
 
     const json = await product.json()
     
@@ -82,3 +82,34 @@ export const deleteFromCart = async(productid) => {
 
 }
 
+
+//Add to Wishlist
+
+export const AddToWishlist = async(productid) => {
+    const product = await fetch(`${import.meta.env.VITE_API_URI}/api/wishlist/addtowishlist/${productid}`,{
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('auth_token')}`
+        },
+       
+    })
+    
+    const json = await product.json()
+    
+    return json;
+}
+
+export const GetWishlistItems = async()=> {
+    const product = await fetch(`${import.meta.env.VITE_API_URI}/api/wishlist/getwishlist`,{
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('auth_token')}`
+        },
+    })
+    
+    const json = await product.json()
+    
+    return json;
+}

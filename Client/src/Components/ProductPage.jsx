@@ -1,5 +1,5 @@
 import React, { useEffect,useState } from 'react'
-import { getProduct } from './ProductHandlers/ProductHandler';
+import { AddToWishlist, getProduct } from './ProductHandlers/ProductHandler';
 import {useParams,Link} from 'react-router-dom'
 import {Toaster,toast} from 'react-hot-toast'
 import { useAuth } from '../authContext/AuthContext';
@@ -26,6 +26,22 @@ function ProductPage() {
             if (product.error){
                  toast.error(product.error)
             }
+    }
+
+
+    const AddToWishlistHandler = async() => {
+
+      const response = await AddToWishlist(productid)
+
+      console.log(response)
+
+      if (response.success){
+        toast.success(response.message)
+      }
+
+       if (!response.success){
+           toast.error(response.message)
+       }
     }
 
     const addToCartHandler = async() => {
@@ -57,8 +73,9 @@ function ProductPage() {
     <div style={{backgroundImage:`url('${Product?.image}')`,backgroundSize:'cover',backgroundPosition:'center',backgroundRepeat:'no-repeat'}} className='product_page'>
     <div className="cover">
      {Product && <><div className="product_image">
-        <img src={Product.image} alt="" />
-      </div>
+        <img src={Product.image} alt="Product Image" />
+        <i onClick={AddToWishlistHandler} className="ri-heart-line"></i>     
+         </div>
       <div className="product_details">
         <h1>{Product.name}</h1>
         <p>{Product.description}</p>

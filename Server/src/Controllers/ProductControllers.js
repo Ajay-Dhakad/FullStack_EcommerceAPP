@@ -1,98 +1,58 @@
 import { Product } from "../models/productModel.js";
 
-
-    export const getProducts = async(req,res) => {
-     
-      try{  const {category,filter} = req.query;
-
-      console.log(filter,category)
+export const getProducts = async (req, res) => {
+  try {
+    const { category, filter,search} = req.query;
 
 
-        if (!category && !filter) {
-        const products = await Product.find().sort({createdAt:-1})
-        return res.status(200).json({success:true,products})}
+    console.log(filter, category, search);
 
+    let query = {};
 
-
-        if (category && !filter){
-          const products = await Product.find({category}).sort({createdAt:-1})
-          
-          return res.status(200).json({success: true , message : 'Product list by category',products })
-
-         }
-
-
-        if (!category && filter){
-          
-          let products;
-
-
-          switch(filter){
-
-
-            case 'prize-high':
-            products = await Product.find().sort({price:-1})
-              return res.status(200).json({success:true,products})
-
-            case 'prize-low':
-            products = await Product.find().sort({price:1})
-              return res.status(200).json({success:true,products})
-
-              case 'rating-high':
-              products = await Product.find().sort({totalRatings:-1})
-                return res.status(200).json({success:true,products})
-              
-                case 'rating-low':
-                products = await Product.find().sort({totalRatings:1})
-                  return res.status(200).json({success:true,products})
-
-                  default:
-                    return res.status(400).json({success:false,message:"Invalid filter"})
-          }
-
-        }
-
-        
-        if (category && filter){
-
-         let products;
-
-          switch(filter){
-
-            case 'prize-high':
-               products = await Product.find({category}).sort({price:-1})
-              return res.status(200).json({success:true,products})
-
-            case 'prize-low':
-               products = await Product.find({category}).sort({price:1})
-              return res.status(200).json({success:true,products})
-
-              case 'rating-high':
-                 products = await Product.find({category}).sort({totalRatings:-1})
-                return res.status(200).json({success:true,products})
-              
-                case 'rating-low':
-                   products = await Product.find({category}).sort({totalRatings:1})
-                  return res.status(200).json({success:true,products})
-
-                  default:
-                    return res.status(400).json({success:false,message:"Invalid filter"})
-
-
-          }
-        }
-            return res.status(404).json({success:false,message:"Products Not Found"})
-       
-
-      }
-
-        catch(e){
-        return res.status(400).json({error: e.message})
-
-        }
-
+    if (category) {
+      query.category = category;
     }
 
+    if (search) {
+      query.$or = [
+        { name: { $regex: new RegExp(search, 'i') } },
+        { description: { $regex: new RegExp(search, 'i') } },
+      ];
+    }
+
+    let products;
+
+    if (!filter) {
+      products = await Product.find(query).sort({ createdAt: -1 });
+      console.log(products);
+    } else {
+      switch (filter) {
+        case 'prize-high':
+          products = await Product.find(query).sort({ price: -1 });
+          break;
+        case 'prize-low':
+          products = await Product.find(query).sort({ price: 1 });
+          break;
+        case 'rating-high':
+          products = await Product.find(query).sort({ totalRatings: -1 });
+          break;
+        case 'rating-low':
+          products = await Product.find(query).sort({ totalRatings: 1 });
+          break;
+        default:
+          return res.status(400).json({ success: false, message: 'Invalid filter' });
+      }
+    }
+
+    if (products.length > 0) {
+      return res.status(200).json({ success: true, products });
+    } else {
+      return res.status(404).json({ success: false, message: 'Products Not Found' });
+    }
+  } catch (e) {
+    return res.status(400).json({ error: e.message });
+  }
+};
 
 
     export const getProduct = async(req,res) => {

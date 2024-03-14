@@ -7,27 +7,30 @@ import { motion } from "framer-motion";
 function ProductPage() {
   const [Products, setproducts] = useState();
 
-  const { filter, category } = useParams();
+  const { filter, category,search } = useParams();
 
-  console.log(filter, category);
+  console.log(filter, category,search);
 
   const navigate = useNavigate();
 
   const GetProducts = async () => {
-    const data = await getProducts(category, filter);
-    // console.log(data)
+    const data = await getProducts(category, filter,search);
+
+    console.log(data)
 
     if (data?.success && data?.products?.length > 0) {
       setproducts([...data.products]);
     }
   };
 
+
   const handleFilterChange = (e) => {
+    const ifsearch = search ? '/search/'+search : "";
     const selectedFilter = e.target.value;
     const currentCategory = category ? `/category/${category}` : "";
     const newFilter = selectedFilter !== "" ? `/filter/${selectedFilter}` : "";
 
-    navigate(`/products${newFilter}${currentCategory}`);
+    navigate(`/products${ifsearch}${newFilter}${currentCategory}`);
   };
 
   const handleCategoryChange = (e) => {
@@ -41,7 +44,7 @@ function ProductPage() {
 
   useEffect(() => {
     GetProducts();
-  }, [filter, category]);
+  }, [filter, category,search]);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -51,8 +54,10 @@ function ProductPage() {
     <div className="productspage">
       <ImageSliderComponent />
 
+      {search &&<> <br /> <center style={{backgroundColor:'gray'}}><h1>Showing results for {search}</h1></center> <br /></> }
+
       <div className="sortings">
-        <div className="sorting">
+        {!search && <div className="sorting">
           <h1>Categories </h1>
           <select
             value={category}
@@ -64,7 +69,7 @@ function ProductPage() {
 
             {/* Add more categories as needed */}
           </select>
-        </div>
+        </div>}
         <div className="sorting">
           <h1>Sort By</h1>
           <select value={filter} onChange={handleFilterChange}>
@@ -76,6 +81,8 @@ function ProductPage() {
           </select>
         </div>
       </div>
+
+      {Products == null && <center><br /><h2>No Products Found For {search} !</h2><br /></center> }
 
       {Products?.length > 0 ? (
         <div className="products">
@@ -120,7 +127,7 @@ function ProductPage() {
             );
           })}
         </div>
-      ) : (
+      ) : ( Products != null &&
         <div className="loaderwrapper">
           <div className="loader loadersm"></div>
         </div>

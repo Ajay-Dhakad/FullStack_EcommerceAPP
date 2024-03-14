@@ -12,6 +12,7 @@ import ProductsPage from './Components/ProductsPage.jsx'
 import ProductPage from './Components/ProductPage.jsx'
 import CartPage from './Components/CartPage.jsx'
 import { CartContextProvider } from './cartContext/CartContext.jsx'
+import WishlistPage from './Components/WishlistPage.jsx'
 
 const router = createBrowserRouter([
   {
@@ -31,7 +32,7 @@ const router = createBrowserRouter([
         path:'/categories',
         element:<Categories/>
       },{
-        path:'/products/filter?/:filter?/category?/:category?',
+        path:'/products/search?/:search?/filter?/:filter?/category?/:category?',
         element:<ProductsPage/>
       },{
         path:'/product/:productid',
@@ -39,6 +40,9 @@ const router = createBrowserRouter([
       },{
         path:'/cart',
         element:<CartPage/>
+      },{
+        path:'/wishlist',
+        element:<WishlistPage/>
       }
     ]
   }

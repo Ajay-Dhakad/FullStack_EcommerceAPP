@@ -13,7 +13,7 @@ export const addToWishlist = async(req,res) => {
         return res.status(404).json({success:false,message:"Product Not Found"})
     }
 
-    const exist = await Wishlist.find({product:productid,user:req.user._id})
+    const exist = await Wishlist.findOne({product:productid,user:req.user._id})
 
     const product = await Product.findById({_id:productid})
 
@@ -31,7 +31,7 @@ export const addToWishlist = async(req,res) => {
         return res.status(404).json({success:false,message:"Product Not Found"})
     }
 
-    return res.status(200).json({success:true,newWishlistItem})
+    return res.status(200).json({success:true,newWishlistItem,message:'Added to wishlist!'})
 }
 
     catch(e){
