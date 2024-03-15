@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import { GetWishlistItems } from './ProductHandlers/ProductHandler'
+import { GetWishlistItems, RemoveFromWishlist } from './ProductHandlers/ProductHandler'
 import {motion} from 'framer-motion'
 import {useNavigate} from 'react-router-dom'
+import { useCart } from '../cartContext/CartContext'
+import {Toaster,toast } from 'react-hot-toast'
 
 function WishlistPage() {
 
-    const [wishlist,setWishlist] = useState(null)
+    const {userWishlist,dispatch} = useCart()
+
+    console.log(userWishlist)
 
     const navigate = useNavigate();
 
@@ -14,25 +18,32 @@ function WishlistPage() {
             const wishlist = await GetWishlistItems()
            
             if (wishlist.success){
-                setWishlist(wishlist.wishlist)
+                dispatch({type:'ADDTOWISHLIST',payload:wishlist.wishlist})
             }
-            if (!wishlist.success){
-                toast.error(wishlist.error)
-            }
+           
         } catch (e) {
             toast.error(e.message)
         }
     }
     
     useEffect(() => {
+
         getWishlist()
+
     },[])
 
   return (
-    <div className='productspage wishlistCover'>
-        <center>Your Wishlist</center>
+    <>
+    <Toaster  position="top-center" />
+    <div className='wishlist-Wrapper'>
+    <div style={{color:'white'}} className='productspage'>
+        <center style={{backgroundColor:'brown'}}><h1>Your Wishlist</h1></center>
        <div className="products">
-          {wishlist?.map((product, index) => {
+        
+        {userWishlist.length <= 0 &&<div  id='wishlist_not_found'> <img src='https://ouch-cdn2.icons8.com/Maghupt7qF3mWeKSBK2OVdjVNQv3E11s-3bnlZnjO9s/rs:fit:368:393/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9zdmcvODM1/LzJkYzVlOTZhLWNl/MTUtNGVlMi04MmZh/LTM0NzVmMmRhZDkw/Ny5zdmc.png'/></div> }
+        {userWishlist.length <= 0 && <h2>No Products Found!</h2>}
+
+          {userWishlist?.map((product, index) => {
             console.log(product.product);
             return (
               <motion.div
@@ -69,13 +80,15 @@ function WishlistPage() {
                     100}
                   %Off
                 </div>
-                <button className='wishlist_remove_btn'>Remove</button>
+                <button onClick={() => RemoveFromWishlist(product._id).then((data) =>data.success ? dispatch({type:'REMOVEFROMWISHLIST',payload:data.wishlist._id}): toast.error(data.message))} className='wishlist_remove_btn'>Remove</button>
               </motion.div>
             );
           })}
         </div>
       
     </div>
+    </div>
+    </>
   )
 }
 

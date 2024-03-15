@@ -7,12 +7,15 @@ const CartReducers = (state,action) => {
 
         case 'ADDTOCART':
             return{
-                userCart: action.payload
+
+                ...state,
+                 userCart: action.payload
             }
 
         case 'INCREASEQUANTITY':
 
             return{
+                ...state,
                 userCart: state.userCart.map((item)=> item._id == action.payload ? {...item,quantity:item.quantity+1} : item )
 
             }
@@ -20,6 +23,7 @@ const CartReducers = (state,action) => {
         case 'DECREASEQUANTITY':
 
         return{
+            ...state,
             userCart: state.userCart.map((item)=> item._id == action.payload ? {...item,quantity:item.quantity-1} : item )
 
         }
@@ -27,7 +31,24 @@ const CartReducers = (state,action) => {
         case 'REMOVEFROMCART':
 
         return{
+            ...state,
             userCart: state.userCart.filter((item)=> item._id != action.payload )
+        }
+
+        case 'ADDTOWISHLIST':
+
+        return{
+
+            
+           ...state,
+              userWishlist: action.payload
+        }
+
+        case 'REMOVEFROMWISHLIST':
+            
+        return{
+            ...state,
+            userWishlist: state.userWishlist.filter((item)=> item._id !== action.payload )
         }
 
         default:
@@ -39,7 +60,8 @@ const CartReducers = (state,action) => {
 
 export const CartContextProvider = ({children}) =>{
     const [state,dispatch] = useReducer(CartReducers,{
-        userCart:[]
+        userCart:[],
+        userWishlist:[]
     })
     return (
         <CartContext.Provider value={{...state,dispatch}}>

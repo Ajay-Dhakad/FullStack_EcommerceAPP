@@ -112,4 +112,19 @@ export const GetWishlistItems = async()=> {
     const json = await product.json()
     
     return json;
+    
+}
+
+export const RemoveFromWishlist = async(id)=> {
+    const product = await fetch(`${import.meta.env.VITE_API_URI}/api/wishlist/removefromwishlist/${id}`,{
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('auth_token')}`
+        },
+    })
+    
+    const json = await product.json()
+    
+    return json;
 }

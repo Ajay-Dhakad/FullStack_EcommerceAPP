@@ -58,3 +58,23 @@ export const getWishlist = async(req,res) => {
     }
 
 }
+
+
+export const RemoveFromWishlist = async(req,res) => {
+    
+    try {
+
+        const {wishlistid} = req.params;
+
+        const wishlist = await Wishlist.findOneAndDelete({_id:wishlistid})
+
+        // console.log(wishlist,'wishlist lkdsjajd')
+        
+        return res.status(201).json({success:true,wishlist,message:'Item deleted Succesfully'})
+        
+    } catch (error) {
+        res.status(400).json({success:false,message:error.message})
+        // console.log(error,'dsajhdjaknjansd')
+    }
+
+}
