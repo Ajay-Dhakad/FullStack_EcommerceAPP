@@ -16,7 +16,7 @@ const navigate= useNavigate()
 
     const Cart = async() => {
         
-        const cart = await getCart(user)
+        const cart = await getCart()
 
         console.log(cart)
 

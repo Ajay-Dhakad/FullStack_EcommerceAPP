@@ -4,16 +4,25 @@ import {useParams,Link} from 'react-router-dom'
 import {Toaster,toast} from 'react-hot-toast'
 import { useAuth } from '../authContext/AuthContext';
 import { AddToCart } from './ProductHandlers/ProductHandler';
+import { useCart } from '../cartContext/CartContext';
 
 function ProductPage() {
 
-    const {productid} = useParams();
+    const {productid} = useParams(null);
 
     const [Product,setproduct] = useState(null)
+
+    const {userWishlist,userCart} = useCart()
 
     const {user} = useAuth()
 
     const [quantity,setquantity] = useState(1)
+
+    const [existingInWishlist,setExistingInWishlist] = useState(false)
+
+    const [existingInCart,setExistingInCart] = useState(false)
+
+   
 
     console.log(user)
 
@@ -37,10 +46,12 @@ function ProductPage() {
 
       if (response.success){
         toast.success(response.message)
+        setExistingInWishlist(true)
       }
 
        if (!response.success){
            toast.error(response.message)
+           setExistingInWishlist(false)
        }
     }
 
@@ -52,20 +63,45 @@ function ProductPage() {
 
        if (!response.success){
            toast.error(response.message)
+           setExistingInCart(false)
        }
        if (response.success){
            toast.success(response.message)
+           setExistingInCart(true)
+
+           
        }
 
     }
+
+
+    //check if product is already added in users cart or wishlist
+
+   
+    
 
     useEffect(() => {
 
         Getproduct()
         window.scrollTo({top:0,behavior:'smooth'});
 
+        const checkExistingWishlist=userWishlist.some(item => item.product._id == productid)
+
+        const checkExistingCart=userCart.some(item => item.product._id == productid)
+
+        console.log(checkExistingCart,checkExistingWishlist)
+    
         
-    },[productid])
+        if (checkExistingWishlist == true){
+            setExistingInWishlist(true)
+        }
+
+        if (checkExistingCart == true){
+            setExistingInCart(true)
+        }
+
+        
+      },[])
 
 
   return (<>
@@ -74,7 +110,7 @@ function ProductPage() {
     <div className="cover">
      {Product && <><div className="product_image">
         <img src={Product.image} alt="Product Image" />
-        <i onClick={AddToWishlistHandler} className="ri-heart-line"></i>     
+        <i onClick={AddToWishlistHandler} className={existingInWishlist ? 'ri-heart-fill' : 'ri-heart-line'}></i>     
          </div>
       <div className="product_details">
         <h1>{Product.name}</h1>
@@ -104,7 +140,7 @@ function ProductPage() {
 
         </div>
         <div className="buying_options">
-        <button onClick={addToCartHandler}>Add To Cart</button>
+        <button onClick={addToCartHandler}>{existingInCart ? 'Added!': 'Add To Cart'}</button>
         <button>Buy Now</button>
         </div>
 

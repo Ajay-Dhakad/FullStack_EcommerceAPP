@@ -36,7 +36,7 @@ function WishlistPage() {
     <>
     <Toaster  position="top-center" />
     <div className='wishlist-Wrapper'>
-    <div style={{color:'white'}} className='productspage'>
+    <div style={{color:'white',backdropFilter:`brightness(.4)`}} className='productspage'>
         <center style={{backgroundColor:'brown'}}><h1>Your Wishlist</h1></center>
        <div className="products">
         

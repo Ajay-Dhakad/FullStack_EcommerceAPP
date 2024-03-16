@@ -3,11 +3,15 @@ import { Outlet, useLocation } from "react-router-dom";
 import Header from "./Components/Header";
 import Footer from "./Components/Footer";
 import { useAuth } from "./authContext/AuthContext";
+import { GetWishlistItems,getCart } from "./Components/ProductHandlers/ProductHandler";
+import { useCart } from "./cartContext/CartContext";
 
 function App() {
   const { pathname } = useLocation();
 
   const { user, dispatch } = useAuth();
+
+  const {dispatch:cartdispatch,userWishlist} = useCart();
 
   const [loader, setloader] = useState(false);
 
@@ -69,6 +73,42 @@ function App() {
       window.document.title = "Home";
     }
   }, [pathname]);
+
+
+  //fetching the users wishlist and cart items on app load --------------------------------
+
+  const getWishlist = async () => {
+    try {
+        const wishlist = await GetWishlistItems()
+        if (wishlist.success){
+            cartdispatch({type:'ADDTOWISHLIST',payload:wishlist.wishlist})
+        }
+    } catch (e) {
+        console.error(e.message)
+    }
+}
+
+const Cart = async() => {
+        
+  const cart = await getCart()
+  console.log(cart)
+  if (!cart.success) {
+    console.error(cart.message)
+}
+if (cart.success) {
+    cartdispatch({type:'ADDTOCART',payload:cart.cart})
+}
+}
+
+useEffect(() => {
+
+    getWishlist()
+    Cart()
+
+},[])
+
+
+
 
   return (
     <>

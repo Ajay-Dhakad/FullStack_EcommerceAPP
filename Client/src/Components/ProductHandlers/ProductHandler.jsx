@@ -36,12 +36,12 @@ export const AddToCart = async (productid,quantity,user) => {
     return json;
 }
 
-export const getCart = async(user) => {
+export const getCart = async() => {
     const product = await fetch(`${import.meta.env.VITE_API_URI}/api/cart/getcart`,{
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${user.token}`
+            'Authorization': `Bearer ${localStorage.getItem('auth_token')}`
         }
     })
     
