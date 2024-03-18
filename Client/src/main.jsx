@@ -13,6 +13,7 @@ import ProductPage from './Components/ProductPage.jsx'
 import CartPage from './Components/CartPage.jsx'
 import { CartContextProvider } from './cartContext/CartContext.jsx'
 import WishlistPage from './Components/WishlistPage.jsx'
+import ProfilePage from './Components/ProfilePage.jsx'
 
 const router = createBrowserRouter([
   {
@@ -43,6 +44,9 @@ const router = createBrowserRouter([
       },{
         path:'/wishlist',
         element:<WishlistPage/>
+      },{
+        path:'/profile',
+        element:<ProfilePage/>
       }
     ]
   }

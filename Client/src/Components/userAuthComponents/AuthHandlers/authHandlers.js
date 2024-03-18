@@ -29,3 +29,18 @@ export const UseRegister = async(name,email,password,address,phoneNumber) => {
     
     return json;
 }
+
+export const UpdateUserProfile = async (editedProfile) => {
+    const data = await fetch(`${import.meta.env.VITE_API_URI}/api/updateprofile`,{
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('auth_token')}`
+        },
+        body: JSON.stringify({...editedProfile})
+    })
+
+    const json = await data.json()
+    
+    return json;
+}

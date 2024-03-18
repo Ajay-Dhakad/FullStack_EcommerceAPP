@@ -237,8 +237,8 @@ header h1 {
 }
 
 .sitelogo img {
-  width: 40px;
-  height: 40px;
+  width: 37px;
+  height: 37px;
 }
 
 header ul li a {
@@ -1509,6 +1509,101 @@ footer ul li a {
   & img {
     width: 200px;
   }
+}
+
+
+
+.profilepage{
+  width: 100%;
+  height: 100%;
+ background-color: #131d2b;
+ padding-top: 70px;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ 
+
+ & .profile-card{
+  width: fit-content;
+  min-height: 500px;
+  background-color: rgba(0, 0, 0, 0.616);
+  border-radius: 10px;
+  display: flex;
+ justify-content: start;
+ backdrop-filter: blur(100px);
+ color: white;
+ flex-direction: column;
+ padding:0px 15px;
+ gap: 15px;
+ align-items: start;
+
+ 
+ & p{
+  text-align: start;
+  font-size: 25px;
+
+ }
+
+ & h2{
+  width: 100%;
+  font-size: 30px;
+ }
+
+ & button{
+  width: 130px;
+  height: 30px;
+  margin-left: 10px;
+  margin-top: 10px;
+  color: white;
+  background-color: green;
+  font-size: 20px;
+  border: none;
+  border-radius: 5px;
+  transition: .5s all;
+
+
+  &:hover{
+    background-color:rgba(0, 0, 0, 0);
+    color: white;
+  }
+  
+ }
+
+
+ & .logout-btn{
+  background-color: red;
+ }
+ 
+
+ & .avatar{
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-top: 20px;
+    padding: 2px;
+
+    & img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      object-position: center;
+      box-shadow: 0px 0px 10px rgb(0, 0, 0);
+      transition: 0.5s all;
+
+      &:hover{
+        box-shadow: 0px 0px 20px rgb(0, 0, 0);
+        scale: 1.1;
+        rotate:  4deg;
+      }
+      
+    }
+    
+ }
+
+  
+ }
 }
 
 @media (max-width: 848px) {

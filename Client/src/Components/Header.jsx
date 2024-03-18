@@ -60,7 +60,7 @@ function Header() {
       <header style={headerstyles}>
         <div className="sitelogo">
           <img
-            src="https://cdn-icons-png.flaticon.com/512/8764/8764182.png"
+            src="https://www.pngitem.com/pimgs/b/105-1055966_google-search-logos-ecommerce-logo-logo-google-a.png"
             alt=""
           />
           <h2>SnapStore</h2>
@@ -157,7 +157,7 @@ function Header() {
           
           {isAuthenticated && <div className="useroptions">
           {optionsData.map((option, index) => (
-        <motion.div onClick={() => navigate(`${option.link}`)} initial={{opacity:0,scale:0}} whileInView={{opacity:1,scale:1}} transition={{delay:0.001*index,duration:.2}} key={index} className="option">
+        <motion.div onClick={() => {navigate(`${option.link}`);setmenu(false)}} initial={{opacity:0,scale:0}} whileInView={{opacity:1,scale:1}} transition={{delay:0.001*index,duration:.2}} key={index} className="option">
           <img src={option.iconSrc} alt="" />
           <h1>{option.title}</h1>
         </motion.div>
