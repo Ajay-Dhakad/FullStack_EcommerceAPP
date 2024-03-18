@@ -5,6 +5,7 @@ import {Toaster,toast} from 'react-hot-toast'
 import { useAuth } from '../authContext/AuthContext';
 import { AddToCart } from './ProductHandlers/ProductHandler';
 import { useCart } from '../cartContext/CartContext';
+import { PaymentHandler } from '../PaymentHandler/PaymentHandler';
 
 function ProductPage() {
 
@@ -141,7 +142,7 @@ function ProductPage() {
         </div>
         <div className="buying_options">
         <button onClick={addToCartHandler}>{existingInCart ? 'Added!': 'Add To Cart'}</button>
-        <button>Buy Now</button>
+        <button onClick={() => PaymentHandler({product:Product,user,quantity})}>Buy Now</button>
         </div>
 
         <div className="product_reviews">

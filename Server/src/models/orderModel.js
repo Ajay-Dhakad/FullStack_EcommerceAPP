@@ -20,6 +20,12 @@ const orderSchema = new Schema({
         type: Number,
         required: true,
     },
+
+    price:{
+        type: Number,
+        required: true,
+    },
+    
     orderDate: {
         type: Date,
         default: Date.now,
@@ -38,6 +44,18 @@ const orderSchema = new Schema({
         type: Boolean,
         required: true,
         default: false,
+    },
+    razorpay_order_id:{
+        type: String,
+        required: true,
+    },
+    razorpay_payment_id:{
+        type: String,
+        required: true,
+    },
+    razorpay_signature:{
+        type: String,
+        required: true,
     }
 
 },{timestamps:true})

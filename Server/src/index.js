@@ -7,8 +7,9 @@ import productRoutes from './Routes/ProductRoutes.js'
 import cartRoutes from './Routes/CartRoutes.js'
 import orderRoutes from './Routes/orderRoutes.js'
 import wishlistRoutes from './Routes/wishlistRoutes.js'
+import checkoutRoutes from './Routes/paymentRoutes.js';
 
-// const express = require('express');
+
 const app = express();
 
 app.use(express.json({
@@ -32,6 +33,8 @@ app.use('/api/cart',cartRoutes)
 app.use('/api/order',orderRoutes)
 
 app.use('/api/wishlist',wishlistRoutes)
+
+app.use('/api/createorder',checkoutRoutes)
 
 const Port = process.env.APP_PORT || 5000
 
