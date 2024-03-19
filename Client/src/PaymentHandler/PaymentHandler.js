@@ -1,5 +1,4 @@
 export const PaymentHandler = async ({ product, quantity, user }) => {
-  console.log(product);
 
   const data = await fetch(
     `${import.meta.env.VITE_API_URI}/api/createorder/getkey`,
@@ -13,8 +12,6 @@ export const PaymentHandler = async ({ product, quantity, user }) => {
   );
 
   const { key } = await data.json();
-
-  console.log(key);
 
   const amountData = await fetch(
     `${import.meta.env.VITE_API_URI}/api/createorder/checkout`,
@@ -30,8 +27,6 @@ export const PaymentHandler = async ({ product, quantity, user }) => {
 
   const { order } = await amountData.json();
 
-  console.log(order);
-
   const options = {
     key: key,
     amount: order.amount,
@@ -43,7 +38,7 @@ export const PaymentHandler = async ({ product, quantity, user }) => {
     order_id: order.id,
 
     handler: async (response) => {
-      console.log(response);
+
       const data = await fetch(
         `${import.meta.env.VITE_API_URI}/api/createorder/payment`,
         {
@@ -65,14 +60,15 @@ export const PaymentHandler = async ({ product, quantity, user }) => {
           }),
         }
       );
+
     },
     prefill: {
-      name: "ajay",
-      email: "email@email.com",
-      contact: "0101010101",
+      name: user.name,
+      email: user.email,
+      contact: user.phoneNumber,
     },
     notes: {
-      address: "my address",
+      address: user.address,
     },
     theme: {
       color: "#005BF2",
@@ -82,4 +78,5 @@ export const PaymentHandler = async ({ product, quantity, user }) => {
   const razor = new window.Razorpay(options);
 
   razor.open();
+  
 };
