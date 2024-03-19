@@ -1,4 +1,5 @@
-export const PaymentHandler = async ({ product, quantity, user }) => {
+
+export const PaymentHandler = async ({ product, quantity, user,handlePaymentStatus}) => {
 
   const data = await fetch(
     `${import.meta.env.VITE_API_URI}/api/createorder/getkey`,
@@ -60,6 +61,17 @@ export const PaymentHandler = async ({ product, quantity, user }) => {
           }),
         }
       );
+
+    const receipt = await data.json()
+    
+   if (!receipt.success) {
+    handlePaymentStatus({status:false})
+   }
+
+   if (receipt.success) {
+    handlePaymentStatus({status:true,order:receipt.order})
+   }
+
 
     },
     prefill: {

@@ -52,7 +52,7 @@ export const CreateOrder = async(req,res) => {
     if (!isValid){
         return res.status(404).json({success: false, message : 'Failed to add the order'});}
     
-    const order = Order.create({
+    const order =await Order.create({
         product:product_id,
         quantity:quantity,
         totalPrice:totalPrice,

@@ -5,7 +5,6 @@ import { Toaster, toast } from "react-hot-toast";
 import { useAuth } from "../authContext/AuthContext";
 import { AddToCart } from "./ProductHandlers/ProductHandler";
 import { useCart } from "../cartContext/CartContext";
-import { PaymentHandler } from "../PaymentHandler/PaymentHandler";
 import OrderConfirmation from "./OrderConfirmation";
 
 function ProductPage() {
@@ -95,7 +94,7 @@ function ProductPage() {
     <>
       <Toaster position="top-center" reverseOrder={false} />
 
-      {Buy && <OrderConfirmation setbuying={setBuying} PaymentHandler={PaymentHandler} user={user} Product={Product} quantity={quantity}/>}
+      {Buy && <OrderConfirmation setbuying={setBuying} user={user} Product={Product} quantity={quantity}/>}
       <div
         style={{
           backgroundImage: `url('${Product?.image}')`,

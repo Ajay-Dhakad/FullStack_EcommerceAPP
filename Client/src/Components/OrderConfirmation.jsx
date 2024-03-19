@@ -1,11 +1,29 @@
 import React, { useState } from 'react';
 import {motion} from 'framer-motion'
 import { PaymentHandler } from '../PaymentHandler/PaymentHandler';
+import {useNavigate} from 'react-router-dom'
 
 const OrderConfirmation = ({ Product, quantity, user,setbuying }) => {
 
   const [address, setAddress] = useState(user?.address);
   const [editingAddress, setEditingAddress] = useState(false);
+  const navigate = useNavigate()
+
+  const handlePaymentStatus = (paymentStatus) => {
+      if (paymentStatus.status){
+
+
+        setbuying(false);
+        navigate(`/order/${paymentStatus.order._id}`)
+        
+      }
+
+      if (!paymentStatus.status){
+        window.alert('Payment Failed')
+        setbuying(false);
+      }
+
+  }
 
   const handleAddressChange = (event) => {
     setAddress(event.target.value);
@@ -57,7 +75,7 @@ const OrderConfirmation = ({ Product, quantity, user,setbuying }) => {
           )}
         </div>
         <button onClick={() => setbuying(false)} className='cancel_btn'>x</button>
-        <button onClick={ () => PaymentHandler({ product: Product, user:{...user,address:address}, quantity })} className="confirm-order-btn">Confirm Order!</button>
+        <button onClick={ () => PaymentHandler({ product: Product, user:{...user,address:address}, quantity,handlePaymentStatus })} className="confirm-order-btn">Confirm Order!</button>
       </motion.div>
     </div>
   );
