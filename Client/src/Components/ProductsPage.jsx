@@ -9,14 +9,11 @@ function ProductPage() {
 
   const { filter, category,search } = useParams();
 
-  console.log(filter, category,search);
-
   const navigate = useNavigate();
 
   const GetProducts = async () => {
     const data = await getProducts(category, filter,search);
 
-    console.log(data)
 
     if (data?.success && data?.products?.length > 0) {
       setproducts([...data.products]);
@@ -46,6 +43,7 @@ function ProductPage() {
     GetProducts();
   }, [filter, category,search]);
 
+  //automatically scroll to top when page is loaded
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
