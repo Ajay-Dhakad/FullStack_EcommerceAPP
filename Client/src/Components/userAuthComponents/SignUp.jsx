@@ -33,7 +33,7 @@ function SignUp() {
         if (response.success){
             localStorage.setItem('auth_token', response.token)
             setloader(false)
-            navigate('/')
+            navigate('/homepage')
 
 
         }

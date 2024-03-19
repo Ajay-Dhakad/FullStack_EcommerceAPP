@@ -3,6 +3,7 @@ import { Outlet, useLocation } from "react-router-dom";
 import Header from "./Components/Header";
 import Footer from "./Components/Footer";
 import { useAuth } from "./authContext/AuthContext";
+import {useParams} from 'react-router-dom'
 import {
   GetWishlistItems,
   getCart,
@@ -10,7 +11,7 @@ import {
 import { useCart } from "./cartContext/CartContext";
 
 function App() {
-  const { pathname } = useLocation();
+  const { pathname} = useLocation();
 
   const { user, dispatch } = useAuth();
 
@@ -70,7 +71,11 @@ function App() {
   };
 
   useEffect(() => {
-    const token = localStorage.getItem("auth_token");
+
+    
+
+    if (!user){
+      const token = localStorage.getItem("auth_token");
 
     const userData = async () => {
       {
@@ -98,9 +103,11 @@ function App() {
         }
       }
     };
+      userData();
+      console.log("User")
+    }
 
-    userData();
-  }, []);
+  }, [pathname]);
 
   return (
     <>
