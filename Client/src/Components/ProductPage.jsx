@@ -6,6 +6,7 @@ import { useAuth } from "../authContext/AuthContext";
 import { AddToCart } from "./ProductHandlers/ProductHandler";
 import { useCart } from "../cartContext/CartContext";
 import { PaymentHandler } from "../PaymentHandler/PaymentHandler";
+import OrderConfirmation from "./OrderConfirmation";
 
 function ProductPage() {
   const { productid } = useParams(null);
@@ -13,6 +14,8 @@ function ProductPage() {
   const [Product, setproduct] = useState(null);
 
   const { userWishlist, userCart } = useCart();
+
+  const [Buy,setBuying] = useState(false)
 
   const { user } = useAuth();
 
@@ -91,6 +94,8 @@ function ProductPage() {
   return (
     <>
       <Toaster position="top-center" reverseOrder={false} />
+
+      {Buy && <OrderConfirmation setbuying={setBuying} PaymentHandler={PaymentHandler} user={user} Product={Product} quantity={quantity}/>}
       <div
         style={{
           backgroundImage: `url('${Product?.image}')`,
@@ -183,7 +188,7 @@ function ProductPage() {
                   </button>
                   <button
                     onClick={() =>
-                      PaymentHandler({ product: Product, user, quantity })
+                      setBuying(true)
                     }
                   >
                     Buy Now

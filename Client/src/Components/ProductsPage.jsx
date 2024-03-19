@@ -7,22 +7,20 @@ import { motion } from "framer-motion";
 function ProductPage() {
   const [Products, setproducts] = useState();
 
-  const { filter, category,search } = useParams();
+  const { filter, category, search } = useParams();
 
   const navigate = useNavigate();
 
   const GetProducts = async () => {
-    const data = await getProducts(category, filter,search);
-
+    const data = await getProducts(category, filter, search);
 
     if (data?.success && data?.products?.length > 0) {
       setproducts([...data.products]);
     }
   };
 
-
   const handleFilterChange = (e) => {
-    const ifsearch = search ? '/search/'+search : "";
+    const ifsearch = search ? "/search/" + search : "";
     const selectedFilter = e.target.value;
     const currentCategory = category ? `/category/${category}` : "";
     const newFilter = selectedFilter !== "" ? `/filter/${selectedFilter}` : "";
@@ -41,7 +39,7 @@ function ProductPage() {
 
   useEffect(() => {
     GetProducts();
-  }, [filter, category,search]);
+  }, [filter, category, search]);
 
   //automatically scroll to top when page is loaded
   useEffect(() => {
@@ -52,22 +50,33 @@ function ProductPage() {
     <div className="productspage">
       <ImageSliderComponent />
 
-      {search &&<> <br /> <center style={{backgroundColor:'gray'}}><h1>Showing results for {search}</h1></center> <br /></> }
+      {search && (
+        <>
+          {" "}
+          <br />{" "}
+          <center style={{ backgroundColor: "gray" }}>
+            <h1>Showing results for {search}</h1>
+          </center>{" "}
+          <br />
+        </>
+      )}
 
       <div className="sortings">
-        {!search && <div className="sorting">
-          <h1>Categories </h1>
-          <select
-            value={category}
-            onChange={handleCategoryChange}
-            className="custom-select"
-          >
-            <option value="">All Categories</option>
-            <option value="mens clothings">Mens Clothing</option>
+        {!search && (
+          <div className="sorting">
+            <h1>Categories </h1>
+            <select
+              value={category}
+              onChange={handleCategoryChange}
+              className="custom-select"
+            >
+              <option value="">All Categories</option>
+              <option value="mens clothings">Mens Clothing</option>
 
-            {/* Add more categories as needed */}
-          </select>
-        </div>}
+              {/* Add more categories as needed */}
+            </select>
+          </div>
+        )}
         <div className="sorting">
           <h1>Sort By</h1>
           <select value={filter} onChange={handleFilterChange}>
@@ -80,7 +89,13 @@ function ProductPage() {
         </div>
       </div>
 
-      {Products == null && search && <center><br /><h2>No Products Found For {search} !</h2><br /></center> }
+      {Products == null && search && (
+        <center>
+          <br />
+          <h2>No Products Found For {search} !</h2>
+          <br />
+        </center>
+      )}
 
       {Products?.length > 0 ? (
         <div className="products">
@@ -125,10 +140,13 @@ function ProductPage() {
             );
           })}
         </div>
-      ) : ( Products == null && !search &&
-        <div className="loaderwrapper">
-          <div className="loader loadersm"></div>
-        </div>
+      ) : (
+        Products == null &&
+        !search && (
+          <div className="loaderwrapper">
+            <div className="loader loadersm"></div>
+          </div>
+        )
       )}
     </div>
   );
