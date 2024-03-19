@@ -24,7 +24,7 @@ const OrderConfirmation = ({ Product, quantity, user,setbuying }) => {
 
   return (
     <div className='product_confirmation'>
-      <motion.div className="card">
+      <motion.div initial={{opacity:0,translateX:-100}} whileInView={{opacity:1,translateX:0}} transition={{duration:.5}} className="card">
         <h2 className='header'>Confirmation!</h2>
         <br />
         <div className="productdetails">
@@ -37,7 +37,7 @@ const OrderConfirmation = ({ Product, quantity, user,setbuying }) => {
         <div className="productamount">
           <h2>Product Price: {Product?.price}₹</h2>
           <h2>Quantity: {quantity} units</h2>
-          <h1>Total Bill: {Product?.price * quantity}₹</h1>
+          <h2>Total Bill: {Product?.price * quantity}₹</h2>
         </div>
         <div className="address-section">
           <h2>Delivery Address:</h2>

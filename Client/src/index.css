@@ -1606,65 +1606,51 @@ footer ul li a {
  }
 }
 
-
 .product_confirmation {
   display: flex;
   justify-content: center;
-  align-items: center;
   position: fixed;
-  top: 70px;
-  z-index: 999;
-  width: 100%;
-  display: flex;
-  backdrop-filter: brightness(.2);
   align-items: center;
-  justify-content: center;
+  z-index: 999;
   height: 90%;
+  top: 70px;
+  width: 100%;
+  background-color: #000000e4;
 }
 
 .card {
-  background-color: #fffefe;
-  padding: 5px;
+  width: 400px;
+  background-color: #272727;
+  padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   position: relative;
-  max-width: 400px;
-  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.card .header{
-  color: rgb(252, 252, 252);
-  background-color: #000000;
+.header {
+  text-align: center;
+  color: #ffffff;
 }
 
 .productdetails {
   display: flex;
-  justify-content:start;
   align-items: center;
-  text-align: start;
   margin-bottom: 20px;
 }
 
 .productdetails img {
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-  border-radius: 5px;
+  width: 80px;
+  height: 80px;
   margin-right: 20px;
+  border-radius: 5px;
 }
 
 .productdescription h2 {
   margin: 0;
-  color: #333333;
-}
-
-.productamount {
-  margin-bottom: 20px;
 }
 
 .productamount h2, .productamount h1 {
   margin: 5px 0;
-  color: #555555;
 }
 
 .address-section {
@@ -1673,74 +1659,84 @@ footer ul li a {
 
 .address-section h2 {
   margin-bottom: 10px;
-  color: #333333;
 }
 
-.address-section p {
-  margin: 0;
-  color: #555555;
-}
-
-.address-section input {
+.address-section input[type="text"] {
   width: 100%;
   padding: 8px;
+  border: 1px solid #ccc;
   border-radius: 5px;
-  border: 1px solid #cccccc;
 }
 
 .address-section button {
-  background-color: #298026;
-  color: white;
-  padding: 8px 20px;
-  border: none;
+  display: block;
+  width: 100%;
+  padding: 10px;
+  font-size: 20px;
+
   margin-top: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
   border-radius: 5px;
-  font-size: 15px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s ease;
 }
 
 .address-section button:hover {
-  background-color: #066001;
+  background-color: #0056b3;
 }
 
-.card .cancel_btn{
+.cancel_btn {
   position: absolute;
-  top: -10px;
-  right: -20px;
-  border-radius: 100%;
- width: 30px;
- height: 30px;
-  font-weight: bold;
-  color: white;
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: rgb(253, 45, 45);
+  top: 10px;
+  right: 10px;
+  background-color: transparent;
   border: none;
-  transition: .5s;
-  font-size: 20px;
-
-
+  outline: none;
+  font-weight: 500;
+  font-size: 30px;
+  color: #ffffff;
+  cursor: pointer;
 }
 
-.card .cancel_btn:hover{
-  background-color: rgb(76, 0, 0);
+.cancel_btn:hover{
+  color: #ff0000;
+  transition: 0.3s ease;
+  
 }
-
 
 .confirm-order-btn {
-  background-color: #43a432;
-  color: white;
-  padding: 10px 20px;
-  font-size: 20px;
-  transition: .5s;
+  width: 100%;
+  padding: 10px;
+  background-color: #28a745;
+  color: #fff;
   border: none;
+  font-size: 20px;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s ease;
 }
 
 .confirm-order-btn:hover {
-  background-color: #00a408cb;
+  background-color: #218838;
+}
+
+
+/* Media Query for Smaller Devices */
+@media only screen and (max-width: 600px) {
+  .card {
+    width: 90%;
+  }
+
+  .productdetails img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .address-section input[type="text"] {
+    width: calc(100% - 20px); /* Adjusting for padding */
+  }
 }
 
 
