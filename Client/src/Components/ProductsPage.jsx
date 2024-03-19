@@ -82,7 +82,7 @@ function ProductPage() {
         </div>
       </div>
 
-      {Products == null && <center><br /><h2>No Products Found For {search} !</h2><br /></center> }
+      {Products == null && search && <center><br /><h2>No Products Found For {search} !</h2><br /></center> }
 
       {Products?.length > 0 ? (
         <div className="products">
@@ -127,7 +127,7 @@ function ProductPage() {
             );
           })}
         </div>
-      ) : ( Products != null &&
+      ) : ( Products == null && !search &&
         <div className="loaderwrapper">
           <div className="loader loadersm"></div>
         </div>
