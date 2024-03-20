@@ -1723,6 +1723,159 @@ footer ul li a {
 }
 
 
+.orderspage{
+  width: 100%;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  position: relative;
+  flex-direction: column;
+  margin-top: 70px;
+  min-height: 100%;
+  background-color: #111e2f;
+  backdrop-filter: brightness(.5);
+}
+
+.orderspage .title{
+  text-align: center;
+  background-color: rgb(165, 45, 45);
+  width: 100%;
+}
+
+.orderspage .orders{
+  width: 100%;
+  display: flex;
+  justify-content:start;
+  position: relative;
+  align-items: center;
+  overflow: scroll;
+  flex-direction: column;
+  padding-top: 50px;
+}
+
+.orderspage .orders .order{
+  width: 600px;
+  min-height: 70px;
+  background-color: #0a0a0ab0;
+  border-radius: 10px;
+  text-align: center;
+  transition: .5s all;
+  cursor: pointer;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  font-size: 17px;
+  letter-spacing: -1px;
+  gap: 10px;
+  font-weight: bold;
+  padding: 5px 5px;
+  color: rgb(255, 255, 255);
+
+  &:hover{
+    box-shadow: 0px 0px 10px rgb(0, 0, 0);
+    margin-left: 15px;
+  }
+}
+
+.orders .productimage{
+  height:60px ;
+}
+
+.orders .details{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  font-size: 17px;
+  flex-wrap: wrap;
+  text-align: center;
+  letter-spacing: -1px;
+  gap: 10px;
+  font-weight: bold;
+  color: rgb(255, 255, 255);
+}
+
+.orderdetails{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  position:fixed;
+  top: 0;
+  padding: 50px 5px;
+  background-color: rgb(12, 12, 19);
+
+}
+
+.orderdetails .ordercard{
+  width: 400px;
+  position: sticky;
+  border-radius: 10px;
+  height: fit-content;
+  display: flex;
+  justify-content: start;
+  padding: 10px 5px;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+
+  top: 100px;
+  
+  background-color: #000000;
+}
+
+.ordercard img{
+  width: 130px;
+  height: 130px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.ordercard .productdetails{
+  flex-direction: column;
+  display: flex;
+  justify-content: start;
+  align-items:center;
+  gap: 10px;
+  font-size: 20px;
+  text-align: start;
+
+  & h3{
+    width: 100%;
+    text-align: center;
+  }
+}
+
+.ordercard #cancelbtn{
+  position: absolute;
+  top: 0px;
+  right: 10px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  font-weight: 500;
+  font-size: 30px;
+  color: #ffffff;
+  cursor: pointer;
+  transition: .5s all;
+
+  &:hover{
+    color: red;
+  }
+}
+
+
+@media (max-width: 620px) {
+
+  .orderspage .orders .order{
+    width: 90%;
+  }
+
+  .orderspage .orders{
+    padding: 50px 0px;
+  }
+  
+}
+
 /* Media Query for Smaller Devices */
 @media only screen and (max-width: 600px) {
   .card {

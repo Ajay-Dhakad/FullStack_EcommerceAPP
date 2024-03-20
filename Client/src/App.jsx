@@ -3,10 +3,10 @@ import { Outlet, useLocation } from "react-router-dom";
 import Header from "./Components/Header";
 import Footer from "./Components/Footer";
 import { useAuth } from "./authContext/AuthContext";
-import {useParams} from 'react-router-dom'
 import {
   GetWishlistItems,
   getCart,
+  getOrders,
 } from "./Components/ProductHandlers/ProductHandler";
 import { useCart } from "./cartContext/CartContext";
 
@@ -15,7 +15,9 @@ function App() {
 
   const { user, dispatch } = useAuth();
 
-  const { dispatch: cartdispatch, userWishlist } = useCart();
+  const { dispatch: cartdispatch, userOrders } = useCart();
+
+  console.log(userOrders)
 
   const [loader, setloader] = useState(false);
 
@@ -48,6 +50,17 @@ function App() {
   };
 
   //fetching the users wishlist and cart items on app load --------------------------------
+
+  const getUsersOrders = async () => {
+
+    const data = await getOrders();
+
+    if (data.success) {
+      cartdispatch({ type: "SETORDERS", payload: data.orders });
+    }
+
+
+  }
 
   const getWishlist = async () => {
     try {
@@ -98,13 +111,13 @@ function App() {
 
             await getWishlist();
             await Cart();
+            await getUsersOrders();
             setloader(false);
           }
         }
       }
     };
       userData();
-      console.log("User")
     }
 
   }, [pathname]);

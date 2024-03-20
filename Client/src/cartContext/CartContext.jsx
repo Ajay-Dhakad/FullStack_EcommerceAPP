@@ -51,6 +51,13 @@ const CartReducers = (state,action) => {
             userWishlist: state.userWishlist.filter((item)=> item._id !== action.payload )
         }
 
+        case 'SETORDERS':
+            
+        return{
+            ...state,
+             userOrders: action.payload
+        }
+
         default:
             return state;
     
@@ -61,7 +68,8 @@ const CartReducers = (state,action) => {
 export const CartContextProvider = ({children}) =>{
     const [state,dispatch] = useReducer(CartReducers,{
         userCart:[],
-        userWishlist:[]
+        userWishlist:[],
+        userOrders:[],
     })
     return (
         <CartContext.Provider value={{...state,dispatch}}>

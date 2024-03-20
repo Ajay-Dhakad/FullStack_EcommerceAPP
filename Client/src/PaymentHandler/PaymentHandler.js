@@ -63,7 +63,7 @@ export const PaymentHandler = async ({ product, quantity, user,handlePaymentStat
       );
 
     const receipt = await data.json()
-    
+
    if (!receipt.success) {
     handlePaymentStatus({status:false})
    }

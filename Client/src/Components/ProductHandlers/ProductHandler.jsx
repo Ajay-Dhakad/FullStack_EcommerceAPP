@@ -128,3 +128,32 @@ export const RemoveFromWishlist = async(id)=> {
     
     return json;
 }
+
+export const getOrders = async() => {
+    
+    const product = await fetch(`${import.meta.env.VITE_API_URI}/api/order/getorders`,{
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('auth_token')}`
+        },
+    })
+    
+    const json = await product.json()
+    
+    return json;
+}
+
+export const getOrder = async(orderid) => {
+    const product = await fetch(`${import.meta.env.VITE_API_URI}/api/order/getorder/${orderid}`,{
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('auth_token')}`
+        },
+    })
+    
+    const json = await product.json()
+    
+    return json;
+}

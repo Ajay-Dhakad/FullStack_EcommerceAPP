@@ -14,7 +14,7 @@ const OrderConfirmation = ({ Product, quantity, user,setbuying }) => {
 
 
         setbuying(false);
-        navigate(`/order/${paymentStatus.order._id}`)
+        navigate(`/orders/${paymentStatus.order._id}`)
         
       }
 
