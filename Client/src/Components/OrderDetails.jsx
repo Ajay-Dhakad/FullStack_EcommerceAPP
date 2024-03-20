@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react'
+import React, { useEffect,useState } from 'react'
 import {useNavigate} from 'react-router-dom'
 
 function OrderDetails({order,setorderclick,setorderid,orderID}) {
- const Order = order[0]
+ const [Order,setorder] = useState()
  const navigate = useNavigate();
 
  const beautifyDate = (dateString) => {
@@ -20,11 +20,12 @@ function OrderDetails({order,setorderclick,setorderid,orderID}) {
 
   useEffect(() => {
 
+    setorder(order[0])
     window.scrollTo({top: 0, left: 0, behavior: "smooth"});
 
-  },[])
+  },[order,orderID])
 
-  return (
+   return Order && (
     <div className='orderdetails'>
 
         <div className="ordercard">

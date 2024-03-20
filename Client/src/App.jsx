@@ -90,6 +90,10 @@ function App() {
     if (!user || pathname == '/profile') {
       const token = localStorage.getItem("auth_token");
 
+      if (!token) {
+        return;
+      }
+
     const userData = async () => {
       {
         if (token) {

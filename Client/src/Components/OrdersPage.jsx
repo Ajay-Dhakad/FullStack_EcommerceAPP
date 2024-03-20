@@ -25,14 +25,18 @@ function OrdersPage() {
 
   useEffect(() => {
 
-    getUsersOrders();
-    
-    if (orderID){
-      setorderclick(true)
-      setorderid(orderID)
-    }
+    getUsersOrders()
 
-  },[])
+      if (orderID){
+        setorderclick(true)
+        setorderid(orderID)
+      }
+      else{
+        setorderclick(false)
+        setorderid(null)
+      }
+
+  },[orderID])
 
   return (
 
