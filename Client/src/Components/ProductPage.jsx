@@ -12,7 +12,8 @@ function ProductPage() {
 
   const [Product, setproduct] = useState(null);
 
-  const { userWishlist, userCart } = useCart();
+  const { userWishlist, userCart , userOrders } = useCart();
+
 
   const [Buy,setBuying] = useState(false)
 
@@ -23,6 +24,8 @@ function ProductPage() {
   const [existingInWishlist, setExistingInWishlist] = useState(false);
 
   const [existingInCart, setExistingInCart] = useState(false);
+
+  const [existingOrder,setExistingInOrder] = useState(false);
 
   const Getproduct = async () => {
     const product = await getProduct(productid);
@@ -79,7 +82,10 @@ function ProductPage() {
       (item) => item.product._id == productid
     );
 
-    console.log(checkExistingCart, checkExistingWishlist);
+    const checkExistingOrder = userOrders?.some((item) => item.product._id == productid && item.orderStatus == 'Pending') // TODO : remove pending order and add Delivered
+ 
+
+    console.log(checkExistingCart, checkExistingWishlist,checkExistingOrder);
 
     if (checkExistingWishlist == true) {
       setExistingInWishlist(true);
@@ -87,6 +93,9 @@ function ProductPage() {
 
     if (checkExistingCart == true) {
       setExistingInCart(true);
+    }
+    if (checkExistingOrder == true) {
+      setExistingInOrder(true);
     }
   }, [productid]);
 
@@ -196,6 +205,21 @@ function ProductPage() {
 
                 <div className="product_reviews">
                   <h2>Product Reviews</h2>
+
+                  {existingOrder &&  <div className="addReview_btn"><form>
+                    <p>Leave your review:</p>
+                    <select defaultValue={"Select Rtaijd"} name="rating" id="" required >
+                      <option>Select Ratings</option>
+                      <option value="5">⭐⭐⭐⭐⭐</option>
+                      <option value="4">⭐⭐⭐⭐</option>
+                      <option value="3">⭐⭐⭐</option>
+                      <option value="2">⭐⭐</option>
+                      <option value="1">⭐</option>
+                    </select>
+                    <input defaultValue={'Nice Product !'} maxLength={50} placeholder="Enter Your Review" name="message" type="text"  required />
+                    <button>Submit Review</button>
+                    </form></div> }
+
 
                   {Product.productReviews.length > 0 ? (
                     Product.productReviews.map((review, index) => (

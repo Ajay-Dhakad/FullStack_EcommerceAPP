@@ -157,3 +157,18 @@ export const getOrder = async(orderid) => {
     
     return json;
 }
+
+export const ProductReview =  async(productid,text,rating) => {
+    const product = await fetch(`${import.meta.env.VITE_API_URI}/api/product/review/${productid}`,{
+        method: 'POST',
+        headers: {  
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('auth_token')}`
+        },
+        body: JSON.stringify({text,rating})
+    })
+    
+    const json = await product.json()
+    
+    return json;
+}

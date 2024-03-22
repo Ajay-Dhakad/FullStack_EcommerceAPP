@@ -176,8 +176,12 @@ export const getProducts = async (req, res) => {
             const {text, rating } = req.body;
             const productId = req.params.productid;
 
-            if (!text ||!rating ||!productId) {
+            if (!text || !rating || !productId) {
               return res.status(400).json({ error: 'All fields are required' });
+            }
+
+            if (rating > 5 && rating < 1 ){
+              return res.status(400).json({ error: 'Invalid rating' });
             }
           
             try {
