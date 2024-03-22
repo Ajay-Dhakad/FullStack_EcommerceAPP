@@ -48,6 +48,7 @@ const router = createBrowserRouter([
       },{
         path:'/profile',
         element:<ProfilePage/>
+        
       },{
         path:'/orders/:orderID?',
         element:<OrdersPage/>

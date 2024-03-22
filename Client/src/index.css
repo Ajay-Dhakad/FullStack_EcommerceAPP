@@ -1873,6 +1873,20 @@ footer ul li a {
   .orderspage .orders{
     padding: 50px 0px;
   }
+
+  .orderdetails{
+    margin: 0;
+    padding: 0;
+  }
+
+  .orderdetails .ordercard{
+    width: 99%;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 15px;
+  }
   
 }
 
