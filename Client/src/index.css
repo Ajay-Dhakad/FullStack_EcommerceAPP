@@ -1269,6 +1269,7 @@ footer ul li a {
   }
 
   & .product_reviews {
+    padding: 10px 5px;
     & h2 {
       font-size: 25px;
       width: 100%;
@@ -1291,8 +1292,24 @@ footer ul li a {
       padding: 5px 10px;
       margin-top: 5px;
       width: 100%;
+      position:relative;
       gap: 5px;
       flex-direction: column;
+
+      & .delete_review{
+        position: absolute;
+        top: 0px;
+        background-color: transparent;
+        border: none;
+        right: 5px;
+        color: white;
+        font-size: 25px;
+        transition: .5s all;
+
+        &:hover {
+          color: rgb(255, 0, 0);
+        }
+      }
 
       & p {
         font-size: 18px;
@@ -1866,6 +1883,7 @@ footer ul li a {
 .addReview_btn{
   width: 100%;
   margin: 10px 0px;
+  text-align: center;
 }
 
 .addReview_btn form{

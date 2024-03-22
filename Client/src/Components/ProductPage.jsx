@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { AddToWishlist, getProduct } from "./ProductHandlers/ProductHandler";
+import { AddToWishlist, getProduct, ProductReview } from "./ProductHandlers/ProductHandler";
 import { useParams, Link } from "react-router-dom";
 import { Toaster, toast } from "react-hot-toast";
 import { useAuth } from "../authContext/AuthContext";
@@ -12,10 +12,11 @@ function ProductPage() {
 
   const [Product, setproduct] = useState(null);
 
-  const { userWishlist, userCart , userOrders } = useCart();
+  const { userWishlist, userCart, userOrders } = useCart();
 
-
-  const [Buy,setBuying] = useState(false)
+  const [Buy, setBuying] = useState(false);
+  
+  const [isSubmittingReview,setIsSubmittingReview] = useState(false);
 
   const { user } = useAuth();
 
@@ -25,7 +26,9 @@ function ProductPage() {
 
   const [existingInCart, setExistingInCart] = useState(false);
 
-  const [existingOrder,setExistingInOrder] = useState(false);
+  const [existingOrder, setExistingInOrder] = useState(false);
+
+  const [review, setReview] = useState({});
 
   const Getproduct = async () => {
     const product = await getProduct(productid);
@@ -52,6 +55,7 @@ function ProductPage() {
       setExistingInWishlist(false);
     }
   };
+  
 
   const addToCartHandler = async () => {
     const response = await AddToCart(productid, quantity, user);
@@ -68,6 +72,33 @@ function ProductPage() {
     }
   };
 
+
+  const reviewHandler = async (e) => {
+
+    e.preventDefault();
+    
+    if (review.text != '' && review.rating > 0 && review.rating <= 5) {
+
+      const response = await ProductReview(productid, review);
+      console.log(response);
+      if (response.success) {
+        toast.success(response.message);
+       setproduct({...Product,productReviews: response.product.productReviews})
+        setIsSubmittingReview(false);
+      }
+      if (!response.success) {
+        console.log(response);
+        toast.error(response.message);
+        setIsSubmittingReview(false);
+      }
+    }
+
+    setIsSubmittingReview(false);
+    setReview({text:'',rating:''})
+
+
+  }
+
   //check if product is already added in users cart or wishlist
 
   useEffect(() => {
@@ -82,10 +113,13 @@ function ProductPage() {
       (item) => item.product._id == productid
     );
 
-    const checkExistingOrder = userOrders?.some((item) => item.product._id == productid && item.orderStatus == 'Pending') // TODO : remove pending order and add Delivered
- 
+    const checkExistingOrder = userOrders?.some(
+      (item) => item.product._id == productid && item.orderStatus == "Pending"
+    ); // TODO : remove pending order and add Delivered
 
-    console.log(checkExistingCart, checkExistingWishlist,checkExistingOrder);
+   
+
+    console.log(checkExistingCart, checkExistingWishlist, checkExistingOrder);
 
     if (checkExistingWishlist == true) {
       setExistingInWishlist(true);
@@ -97,13 +131,23 @@ function ProductPage() {
     if (checkExistingOrder == true) {
       setExistingInOrder(true);
     }
+    else{
+      setExistingInOrder(false);
+    }
   }, [productid]);
 
   return (
     <>
       <Toaster position="top-center" reverseOrder={false} />
 
-      {Buy && <OrderConfirmation setbuying={setBuying} user={user} Product={Product} quantity={quantity}/>}
+      {Buy && (
+        <OrderConfirmation
+          setbuying={setBuying}
+          user={user}
+          Product={Product}
+          quantity={quantity}
+        />
+      )}
       <div
         style={{
           backgroundImage: `url('${Product?.image}')`,
@@ -119,7 +163,11 @@ function ProductPage() {
               <div className="product_image">
                 <img src={Product.image} alt="Product Image" />
                 <i
-                  onClick={()=>existingInWishlist ? toast.error('Already In Wishlist!') : AddToWishlistHandler()}
+                  onClick={() =>
+                    existingInWishlist
+                      ? toast.error("Already In Wishlist!")
+                      : AddToWishlistHandler()
+                  }
                   className={
                     existingInWishlist ? "ri-heart-fill" : "ri-heart-line"
                   }
@@ -191,40 +239,61 @@ function ProductPage() {
                   </button>
                 </div>
                 <div className="buying_options">
-                  <button onClick={()=>existingInCart ? toast.error('Already In Cart') : addToCartHandler()}>
-                    {existingInCart ? "Added!" : "Add To Cart"}
-                  </button>
                   <button
                     onClick={() =>
-                      setBuying(true)
+                      existingInCart
+                        ? toast.error("Already In Cart")
+                        : addToCartHandler()
                     }
                   >
-                    Buy Now
+                    {existingInCart ? "Added!" : "Add To Cart"}
                   </button>
+                  <button onClick={() => setBuying(true)}>Buy Now</button>
                 </div>
 
                 <div className="product_reviews">
                   <h2>Product Reviews</h2>
+                  
 
-                  {existingOrder &&  <div className="addReview_btn"><form>
-                    <p>Leave your review:</p>
-                    <select defaultValue={"Select Rtaijd"} name="rating" id="" required >
-                      <option>Select Ratings</option>
-                      <option value="5">⭐⭐⭐⭐⭐</option>
-                      <option value="4">⭐⭐⭐⭐</option>
-                      <option value="3">⭐⭐⭐</option>
-                      <option value="2">⭐⭐</option>
-                      <option value="1">⭐</option>
-                    </select>
-                    <input defaultValue={'Nice Product !'} maxLength={50} placeholder="Enter Your Review" name="message" type="text"  required />
-                    <button>Submit Review</button>
-                    </form></div> }
-
+                  {existingOrder && (
+                    <div className="addReview_btn">
+                     {!isSubmittingReview && <button onClick={() => setIsSubmittingReview(true)}>Submit Review</button>}
+                     {isSubmittingReview && 
+                     <form onSubmit={reviewHandler}>
+                        <p>Leave your review:</p>
+                        <select
+                        onChange={(e) => setReview({...review, rating: e.target.value})}
+                        value={review.rating}
+                          name="rating"
+                          id=""
+                          required
+                        >
+                          <option value=''>Select Ratings</option>
+                          <option value="5">⭐⭐⭐⭐⭐</option>
+                          <option value="4">⭐⭐⭐⭐</option>
+                          <option value="3">⭐⭐⭐</option>
+                          <option value="2">⭐⭐</option>
+                          <option value="1">⭐</option>
+                        </select>
+                        <input
+                          defaultValue={"Nice Product !"}
+                          maxLength={50}
+                          placeholder="Enter Your Review"
+                          name="message"
+                          value={review.text}
+                          onChange={(e) => setReview({...review, text: e.target.value})}
+                          type="text"
+                          required
+                        />
+                        <button>Submit Review</button>
+                      </form>}
+                    </div>
+                  )}
 
                   {Product.productReviews.length > 0 ? (
                     Product.productReviews.map((review, index) => (
                       <div className="review" key={index}>
-                        <h4>user : {review.user}</h4>
+                        <h4>user : {review.user == user._id ? user.name+' (Me)' : review.user}</h4>
                         <div className="star-rating">
                           {Array.from({ length: 5 }).map((_, index) =>
                             index < review.rating ? (
@@ -239,6 +308,7 @@ function ProductPage() {
                           )}
                         </div>
                         <p>{review.text}</p>
+                        {review.user == user._id && <button className="delete_review">x</button>}
                       </div>
                     ))
                   ) : (
