@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { AddToWishlist, getProduct, ProductReview } from "./ProductHandlers/ProductHandler";
+import {
+  AddToWishlist,
+  deleteProductReview,
+  getProduct,
+  ProductReview,
+} from "./ProductHandlers/ProductHandler";
 import { useParams, Link } from "react-router-dom";
 import { Toaster, toast } from "react-hot-toast";
 import { useAuth } from "../authContext/AuthContext";
@@ -14,9 +19,11 @@ function ProductPage() {
 
   const { userWishlist, userCart, userOrders } = useCart();
 
+  console.log(Product);
+
   const [Buy, setBuying] = useState(false);
-  
-  const [isSubmittingReview,setIsSubmittingReview] = useState(false);
+
+  const [isSubmittingReview, setIsSubmittingReview] = useState(false);
 
   const { user } = useAuth();
 
@@ -55,7 +62,6 @@ function ProductPage() {
       setExistingInWishlist(false);
     }
   };
-  
 
   const addToCartHandler = async () => {
     const response = await AddToCart(productid, quantity, user);
@@ -72,32 +78,45 @@ function ProductPage() {
     }
   };
 
-
   const reviewHandler = async (e) => {
-
     e.preventDefault();
-    
-    if (review.text != '' && review.rating > 0 && review.rating <= 5) {
 
+    if (review.text != "" && review.rating > 0 && review.rating <= 5) {
       const response = await ProductReview(productid, review);
       console.log(response);
       if (response.success) {
         toast.success(response.message);
-       setproduct({...Product,productReviews: response.product.productReviews})
+        setproduct({
+          ...Product,
+          productReviews: response.product.productReviews,
+        });
         setIsSubmittingReview(false);
       }
       if (!response.success) {
         console.log(response);
-        toast.error(response.message);
+        toast.error(response.error);
         setIsSubmittingReview(false);
       }
     }
 
     setIsSubmittingReview(false);
-    setReview({text:'',rating:''})
+    setReview({ text: "", rating: "" });
+  };
 
-
-  }
+  const deleteReviewHandler = async (reviewid) => {
+    const response = await deleteProductReview(productid, reviewid);
+    console.log(response);
+    if (response.success) {
+      toast.success(response.message);
+      setproduct({
+        ...Product,
+        productReviews: response.product.productReviews,
+      });
+    }
+    if (!response.success) {
+      toast.error(response.message);
+    }
+  };
 
   //check if product is already added in users cart or wishlist
 
@@ -117,8 +136,6 @@ function ProductPage() {
       (item) => item.product._id == productid && item.orderStatus == "Pending"
     ); // TODO : remove pending order and add Delivered
 
-   
-
     console.log(checkExistingCart, checkExistingWishlist, checkExistingOrder);
 
     if (checkExistingWishlist == true) {
@@ -130,8 +147,7 @@ function ProductPage() {
     }
     if (checkExistingOrder == true) {
       setExistingInOrder(true);
-    }
-    else{
+    } else {
       setExistingInOrder(false);
     }
   }, [productid]);
@@ -253,47 +269,59 @@ function ProductPage() {
 
                 <div className="product_reviews">
                   <h2>Product Reviews</h2>
-                  
 
                   {existingOrder && (
                     <div className="addReview_btn">
-                     {!isSubmittingReview && <button onClick={() => setIsSubmittingReview(true)}>Submit Review</button>}
-                     {isSubmittingReview && 
-                     <form onSubmit={reviewHandler}>
-                        <p>Leave your review:</p>
-                        <select
-                        onChange={(e) => setReview({...review, rating: e.target.value})}
-                        value={review.rating}
-                          name="rating"
-                          id=""
-                          required
-                        >
-                          <option value=''>Select Ratings</option>
-                          <option value="5">⭐⭐⭐⭐⭐</option>
-                          <option value="4">⭐⭐⭐⭐</option>
-                          <option value="3">⭐⭐⭐</option>
-                          <option value="2">⭐⭐</option>
-                          <option value="1">⭐</option>
-                        </select>
-                        <input
-                          defaultValue={"Nice Product !"}
-                          maxLength={50}
-                          placeholder="Enter Your Review"
-                          name="message"
-                          value={review.text}
-                          onChange={(e) => setReview({...review, text: e.target.value})}
-                          type="text"
-                          required
-                        />
-                        <button>Submit Review</button>
-                      </form>}
+                      {!isSubmittingReview && (
+                        <button onClick={() => setIsSubmittingReview(true)}>
+                          Submit Review
+                        </button>
+                      )}
+                      {isSubmittingReview && (
+                        <form onSubmit={reviewHandler}>
+                          <p>Leave your review:</p>
+                          <select
+                            onChange={(e) =>
+                              setReview({ ...review, rating: e.target.value })
+                            }
+                            value={review.rating}
+                            name="rating"
+                            id=""
+                            required
+                          >
+                            <option value="">Select Ratings</option>
+                            <option value="5">⭐⭐⭐⭐⭐</option>
+                            <option value="4">⭐⭐⭐⭐</option>
+                            <option value="3">⭐⭐⭐</option>
+                            <option value="2">⭐⭐</option>
+                            <option value="1">⭐</option>
+                          </select>
+                          <input
+                            maxLength={50}
+                            placeholder="Enter Your Review"
+                            name="message"
+                            value={review.text}
+                            onChange={(e) =>
+                              setReview({ ...review, text: e.target.value })
+                            }
+                            type="text"
+                            required
+                          />
+                          <button>Submit Review</button>
+                        </form>
+                      )}
                     </div>
                   )}
 
                   {Product.productReviews.length > 0 ? (
                     Product.productReviews.map((review, index) => (
                       <div className="review" key={index}>
-                        <h4>user : {review.user == user._id ? user.name+' (Me)' : review.user}</h4>
+                        <h4>
+                          user :{" "}
+                          {review.user == user._id
+                            ? user.name + " (Me)"
+                            : review.user}
+                        </h4>
                         <div className="star-rating">
                           {Array.from({ length: 5 }).map((_, index) =>
                             index < review.rating ? (
@@ -308,7 +336,14 @@ function ProductPage() {
                           )}
                         </div>
                         <p>{review.text}</p>
-                        {review.user == user._id && <button className="delete_review">x</button>}
+                        {review.user == user._id && (
+                          <button
+                            onClick={() => deleteReviewHandler(review._id)}
+                            className="delete_review"
+                          >
+                            x
+                          </button>
+                        )}
                       </div>
                     ))
                   ) : (

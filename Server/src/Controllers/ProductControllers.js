@@ -217,35 +217,34 @@ export const getProducts = async (req, res) => {
     
 
 
-export const deleteReview = async(req, res) => {
-  try {
-    const reviewId = req.params.reviewid;
-    const productId = req.params.productid;
+          export const deleteReview = async (req, res) => {
+            try {
+              const reviewId = req.params.reviewid;
+              const productId = req.params.productid;
 
-    if (!reviewId ||!productId) {
-      return res.status(400).json({ error: 'All fields are required' });
-    }
-
-    const product = await Product.findById(productId)
-
-    if (!product) {
-      return res.status(404).json({ error: 'Product not found' });
-    }
-
-      product.productReviews.filter((review) => review._id !== reviewId)
-
-          const updatedProduct = await product.save();
+              console.log(reviewId,productId , 'daljjjf')
           
-          res.status(201).json({ success: true, product: updatedProduct, message:'Review Deleted SuccessFully!' });
-  
-    
-}
-
-  catch (error) {
-    console.error(error);
-    res.status(500).json({success:false,message:error.message});
-  }
-}
-
-     
+              if (!reviewId || !productId) {
+                return res.status(400).json({ success:false,message: 'All fields are required' });
+              }
+          
+              const product = await Product.findById(productId);
+          
+              if (!product) {
+                return res.status(404).json({ error: 'Product not found' });
+              }
+          
+              product.productReviews = product.productReviews.filter(
+                (review) => review._id.toString() !== reviewId
+              );
+          
+              const updatedProduct = await product.save();
+          
+              res.status(201).json({ success: true, product: updatedProduct, message: 'Review Deleted Successfully!' });
+            } catch (error) {
+              console.error(error);
+              res.status(500).json({ success: false, message: error.message });
+            }
+          };
+          
         

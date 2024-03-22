@@ -172,3 +172,17 @@ export const ProductReview =  async(productid,review) => {
     
     return json;
 }
+
+export const deleteProductReview = async(productid,reviewid) => {
+    const product = await fetch(`${import.meta.env.VITE_API_URI}/api/product/deletereview/${productid}/${reviewid}`,{
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('auth_token')}`
+        },
+    })
+    
+    const json = await product.json()
+    
+    return json;
+}

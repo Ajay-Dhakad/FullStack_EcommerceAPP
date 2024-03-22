@@ -989,7 +989,7 @@ footer ul li a {
     /* border: 2px solid red ; */
 
     & .product {
-      width: 300px;
+      width: 280px;
       /* border: 2px solid rgb(255, 255, 255); */
       min-height: 470px;
       justify-content: start;
