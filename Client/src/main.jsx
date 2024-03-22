@@ -51,6 +51,9 @@ const router = createBrowserRouter([
       },{
         path:'/orders/:orderID?',
         element:<OrdersPage/>
+      },{
+        path:'*',
+        element:<Homepage/>
       }
     ]
   }

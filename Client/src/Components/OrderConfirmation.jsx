@@ -11,8 +11,6 @@ const OrderConfirmation = ({ Product, quantity, user,setbuying }) => {
 
   const handlePaymentStatus = (paymentStatus) => {
       if (paymentStatus.status){
-
-
         setbuying(false);
         navigate(`/orders`)
         
