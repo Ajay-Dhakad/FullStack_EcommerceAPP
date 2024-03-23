@@ -39,7 +39,7 @@ function OrderDetails({order,setorderclick,setorderid,orderID}) {
             <p>Price : {Order.product.price}₹</p>
             <p>Quantity: {Order.quantity} pcs</p>
             <b>TotalPrice : {Order.product.price}x{Order.quantity} = {Order.product.price  * Order.quantity}₹</b>
-            <p>Delivery Address: {Order.deliveryAddress}</p>
+            <p>Address: {Order.deliveryAddress}</p>
             <p>OrderDate : {beautifyDate(Order.createdAt)} </p>
             <p>PaymentId : {Order.razorpay_payment_id}</p>
             <p >OrderStatus : <b style={{color:Order.orderStatus == 'Pending' ? 'orange' : Order.orderStatus == 'Delivered' ? 'green' : 'red'}}> {Order.orderStatus}</b></p>

@@ -1949,14 +1949,20 @@ footer ul li a {
   .orderdetails{
     margin: 0;
     padding: 0;
+    
+  }
+
+  .ordercard .productdetails{
+    font-size: 18px;
   }
 
   .orderdetails .ordercard{
     width: 99%;
     height: 100vh;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     text-align: center;
+    padding-top: 30px;
     font-size: 15px;
   }
   
