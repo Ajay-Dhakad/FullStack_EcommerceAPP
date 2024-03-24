@@ -16,6 +16,7 @@ import WishlistPage from './Components/WishlistPage.jsx'
 import ProfilePage from './Components/ProfilePage.jsx'
 import OrdersPage from './Components/OrdersPage.jsx'
 import PageNotFound from './Components/PageNotFound.jsx'
+import AdminDashboard from './Components/AdminDashboard.jsx'
 
 const router = createBrowserRouter([
   {
@@ -54,6 +55,10 @@ const router = createBrowserRouter([
         path:'/orders/:orderID?',
         element:<OrdersPage/>
       },{
+        path:'/admin/dashboard/:option?',
+        element:<AdminDashboard/>
+      }
+      ,{
         path:'*',
         element:<PageNotFound/>
       }

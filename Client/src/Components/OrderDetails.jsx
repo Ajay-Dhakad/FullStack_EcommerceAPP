@@ -29,7 +29,7 @@ function OrderDetails({order,setorderclick,setorderid,orderID}) {
     <div className='orderdetails'>
 
         <div className="ordercard">
-        <button onClick={() => {setorderclick(false);setorderid(null);orderID && navigate('/orders')}} id='cancelbtn'>x</button>
+        <button onClick={() => {setorderclick(false);setorderid(null)}} id='cancelbtn'>x</button>
         <h1>Order Details</h1>
         <img onClick={() => navigate(`/product/${Order.product._id}`)} src={Order.product.image} alt="" />
          

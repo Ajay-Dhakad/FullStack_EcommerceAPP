@@ -3,7 +3,12 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useLocation } from "react-router-dom";
 import { useAuth } from "../authContext/AuthContext.jsx";
+import { useCart } from "../cartContext/CartContext.jsx";
 function Header() {
+
+
+  // const {userWishlist,userCart,userOrders} = useCart()
+
   const navItems = [
     { name: "Home", link: "/" },
     {name:'Shop',link:'/products'},
@@ -38,12 +43,15 @@ function Header() {
         "https://threedio-cdn.icons8.com/L3r1XjtbhA5IbNmmonDtRL4K24WexXp2zVc4t4fap64/rs:fit:256:256/czM6Ly90aHJlZWRp/by1wcm9kL3ByZXZp/ZXdzLzEyNS80ZTVj/NjJlMy1lNTgyLTRl/NDAtYjFmMi1mNTZh/ZjljNzY2M2QucG5n.png",
       title: "MyOrders",
       link:'/orders'
-    },
+    },{
+      iconSrc:'https://threedio-cdn.icons8.com/an5rAAyZeUgtqe3VJnqwOTlcyP90aFALCSGKs9VczWw/rs:fit:1024:1024/czM6Ly90aHJlZWRp/by1wcm9kL3ByZXZp/ZXdzLzU2Mi9kNzk3/NzU4ZS0xYjc2LTRm/YmQtOGRiNy0zMTRl/MDQ2NWVmMWUucG5n.png',
+      title: "DashBoard",
+      link:'/admin/dashboard'
+    }
   ];
 
   const { isAuthenticated,user, dispatch } = useAuth();
 
-  console.log(user)
   const [menu, setmenu] = useState(false);
   const navigate = useNavigate();
   const headerstyles = { top: 0, position: "fixed" };
@@ -157,11 +165,14 @@ function Header() {
           
           {isAuthenticated && <div className="useroptions">
           {optionsData.map((option, index) => (
-        <motion.div onClick={() => {navigate(`${option.link}`);setmenu(false)}} initial={{opacity:0,scale:0}} whileInView={{opacity:1,scale:1}} transition={{delay:0.001*index,duration:.2}} key={index} className="option">
+           option.title == 'DashBoard' && user.role != 'admin' ? null : 
+        <motion.div onClick={() => {navigate(`${option.link}`);setmenu(false)}} initial={{opacity:0,scale:0}} whileInView={{opacity:1,scale:1}} transition={{delay:0.02*index,duration:.05*index}} key={index} className="option">
           <img src={option.iconSrc} alt="" />
           <h1>{option.title}</h1>
         </motion.div>
       ))}
+
+            
           </div>}
         </motion.div>
       )}

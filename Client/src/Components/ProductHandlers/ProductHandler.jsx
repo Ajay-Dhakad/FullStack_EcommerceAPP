@@ -20,6 +20,20 @@ export const getProduct = async (productid) => {
     return json;
 }
 
+export const deleteProduct = async(productid) => {
+    const product = await fetch(`${import.meta.env.VITE_API_URI}/api/product/deleteproduct/${productid}`,{
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('auth_token')}`
+        },
+    })
+    
+    const json = await product.json()
+    
+    return json;
+}
+
 
 export const AddToCart = async (productid,quantity,user) => {
     const product = await fetch(`${import.meta.env.VITE_API_URI}/api/cart/addtocart`,{
