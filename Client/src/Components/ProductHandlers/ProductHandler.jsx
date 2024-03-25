@@ -34,6 +34,34 @@ export const deleteProduct = async(productid) => {
     return json;
 }
 
+export const NewProduct = async(formData) => {
+    const product = await fetch(`${import.meta.env.VITE_API_URI}/api/product/addproduct`,{
+        method: 'POST',
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('auth_token')}`
+        },
+        body:formData
+    })
+    
+    const json = await product.json()
+    
+    return json;
+}
+
+export const UpdateProduct = async(formData,productid) => {
+    const product = await fetch(`${import.meta.env.VITE_API_URI}/api/product/updateproduct/${productid}`,{
+        method: 'PATCH',
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('auth_token')}`
+        },
+        body:formData
+    })
+    
+    const json = await product.json()
+    
+    return json;
+}
+
 
 export const AddToCart = async (productid,quantity,user) => {
     const product = await fetch(`${import.meta.env.VITE_API_URI}/api/cart/addtocart`,{

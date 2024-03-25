@@ -1,4 +1,6 @@
 import { Product } from "../models/productModel.js";
+import {v2 as cloudinary} from 'cloudinary'
+import fs from 'fs';
 
 export const getProducts = async (req, res) => {
   try {
@@ -80,32 +82,68 @@ export const getProducts = async (req, res) => {
 
     export const createProduct = async(req,res) => {    
 
-        const {_id,role} = req.user;
+      try{  const {_id,role} = req.user;
 
         if (role !== "admin" || !_id){
             return res.status(401).json({success:false,message:"You are not authorized to perform this action"})
         }
+        
 
-        const {name,description,price,stock,category} = req.body;
+        const {name,description,price,actualprize,stock,category} = req.body;
 
-        if (!name ||!description ||!price ||!stock ||!category){
+        if (!name || !description || !price || !stock || !category || !actualprize){
             return res.status(400).json({success:false,message:"All fields are required"})
         }
 
-        const newProduct = {name,description,price,stock,category,addedBy:_id,image:'https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg'}
+        if (!req.file.path){
+          return res.status(400).json({success:false,message:"Error while Uploading file"})
+        }
+
+        const file = await cloudinary.uploader.upload(req.file.path); 
+        
+
+        if (!file){
+          return res.status(400).json({success:false,message:"Image not uploaded"})
+        }
+
+        fs.unlinkSync(req.file.path)
+
+        const newProduct = {name,description,price,actualprize,stock,category,addedBy:_id,image:file.secure_url}
      
         const product = await Product.create(newProduct)
-        return res.status(200).json({success:true,product})
+
+        if (!product){
+          return res.status(404).json({success:false,message:"Product Not Created"})
+        }
+
+        return res.status(200).json({success:true,product,message:"Product Created Successfully !"})}
+
+        catch(e){
+            return res.status(400).json({success:false,message:e.message})
+        }
       
     }
 
     export const updateProduct = async(req,res) => {
 
-        const {_id,role} = req.user;
+      try{  const {_id,role} = req.user;
 
         if (role!== "admin" ||!_id){
             return res.status(401).json({success:false,message:"You are not authorized to perform this action"})
         }
+
+        if (req?.file?.path){
+          const file = await cloudinary.uploader.upload(req.file.path); 
+          
+          req.body.image = file.secure_url
+
+          fs.unlinkSync(req.file.path)
+          if (!file){
+            return res.status(400).json({success:false,message:"Image not uploaded"})
+          }
+        }
+
+        console.log(req.body)
       
         const {productid} = req.params;
     
@@ -115,7 +153,11 @@ export const getProducts = async (req, res) => {
             return res.status(404).json({success:false,message:"Product Not Found"})
         }
 
-        return res.status(200).json({success:true,product})
+        return res.status(200).json({success:true,product,message:'Product Updated Successfully!'})}
+        
+        catch(e){
+            return res.status(400).json({success:false,message:e.message})
+        }
 
     }
 

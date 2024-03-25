@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { deleteProduct, getProducts } from '../ProductHandlers/ProductHandler'
 import {Toaster,toast} from 'react-hot-toast'
+import AddProductForm from './AddProductForm'
+import {motion} from 'framer-motion'
 
 function ProductsAdminPage({classname}) {
 
   const [products,setproducts] = useState(null)
 
-  console.log(products)
+  const [newProduct,setnewProduct] = useState(false)
+
+  const [producttoedit,setproducttoedit] = useState(null)
+
 
   const getproducts = async () => {
     const data = await getProducts();
@@ -38,9 +43,9 @@ const productDeleteHandler = async(productid) => {
     <>
     <Toaster position='top-center' />
     <div className={classname}>
-        <h1 className='title'>Products <button className='new_productbtn'>+</button></h1>
-    
-        <table border="0">
+        <h1 className='title'>{!newProduct ? "All Products" : 'New Product'} <button style={{backgroundColor:newProduct && 'red',content:newProduct && 'Cancel'}} onClick={() => {setnewProduct((prev) => !prev);setproducttoedit(null)}} className='new_productbtn'>{newProduct ? 'x' : '+'}</button></h1>
+    {!newProduct &&
+        <motion.table initial={{opacity:0}} whileInView={{opacity:1,translateX:0}} transition={{duration:.5}}  border="0">
   <thead>
     <tr>
       <th>Product ID</th>
@@ -54,18 +59,29 @@ const productDeleteHandler = async(productid) => {
     </tr>
   </thead>
   <tbody>
-   { products?.map((product,index) =>  <tr>
+   { products?.map((product,index) =>  <motion.tr initial={{opacity:0}} whileInView={{opacity:1,translateX:0}} transition={{duration:.2,delay:index*0.1}}>
       <td>{product._id}</td>
       <td><img src={product.image} alt={product.name}/></td>
       <td>{product.name}</td>
       <td>{product.category}</td>
       <td>{product.price}₹</td>
       <td>{product.description}</td>
-      <td><i class="ri-file-edit-fill"></i></td>
+      <td onClick={() => {setproducttoedit(product);setnewProduct(true)}}><i class="ri-file-edit-fill"></i></td>
       <td><i onClick={() => productDeleteHandler(product._id)} class="ri-delete-bin-6-line"></i></td>
-    </tr>)}
+    </motion.tr>)}
   </tbody>
-</table>
+</motion.table>}
+
+{
+  newProduct && <AddProductForm toast={toast} producttoedit={producttoedit} setproducts={setproducts} setnewProduct={setnewProduct}/>
+}
+
+{
+  products == null && <div className="loaderwrapper">
+  <div className="loader"></div>
+</div>
+}
+
     </div>
     </>
   )
