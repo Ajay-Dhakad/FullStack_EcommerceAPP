@@ -2032,6 +2032,24 @@ footer ul li a {
   font-size: 18px;
 }
 
+.mainsection .new_productbtn{
+  padding: 5px 15px;
+  background-color: green;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 10px;
+  border: none;
+  
+}
+.mainsection .title{
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
 table {
   border-collapse: collapse;
   width: 100%;

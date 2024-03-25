@@ -4,7 +4,6 @@ import {User} from '../models/userModel.js'
 export default async function userAuthVerification(req,res,next) {
 
     const token = req.headers?.authorization?.split(' ')[1]
-    // console.log(token)
     
     if (!token) {
        return res.status(401).json({ error: "Access token is required to get the access" })}
@@ -20,8 +19,6 @@ export default async function userAuthVerification(req,res,next) {
     if (!user){
         return res.status(401).json({ error: "You are not authorized to view this resource." })
     }
-
-    console.log(user)
 
     req.user = user
 

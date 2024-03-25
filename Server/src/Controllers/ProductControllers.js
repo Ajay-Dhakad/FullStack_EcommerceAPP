@@ -86,7 +86,7 @@ export const getProducts = async (req, res) => {
             return res.status(401).json({success:false,message:"You are not authorized to perform this action"})
         }
 
-        const {name,description,price,stock,category,addedBy} = req.body;
+        const {name,description,price,stock,category} = req.body;
 
         if (!name ||!description ||!price ||!stock ||!category){
             return res.status(400).json({success:false,message:"All fields are required"})
@@ -140,7 +140,7 @@ export const getProducts = async (req, res) => {
             return res.status(404).json({success:false,message:"Product Not Found"})
         }
 
-        return res.status(200).json({success:true,deletedProduct:product._id})}
+        return res.status(200).json({success:true,deletedProduct:product._id,message:'Product Deleted!'})}
 
         catch(e){
             return res.status(400).json({success:false,message:e.message})

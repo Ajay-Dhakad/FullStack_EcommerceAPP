@@ -38,7 +38,7 @@ const productDeleteHandler = async(productid) => {
     <>
     <Toaster position='top-center' />
     <div className={classname}>
-        <h1>Products</h1>
+        <h1 className='title'>Products <button className='new_productbtn'>+</button></h1>
     
         <table border="0">
   <thead>
@@ -46,6 +46,7 @@ const productDeleteHandler = async(productid) => {
       <th>Product ID</th>
       <th>Image</th>
       <th>Product Name</th>
+      <th>Category</th>
       <th>Price (INR)</th>
       <th>Description</th>
       <th>Edit</th>
@@ -57,6 +58,7 @@ const productDeleteHandler = async(productid) => {
       <td>{product._id}</td>
       <td><img src={product.image} alt={product.name}/></td>
       <td>{product.name}</td>
+      <td>{product.category}</td>
       <td>{product.price}₹</td>
       <td>{product.description}</td>
       <td><i class="ri-file-edit-fill"></i></td>
