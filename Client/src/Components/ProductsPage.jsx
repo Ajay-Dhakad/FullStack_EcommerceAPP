@@ -131,10 +131,10 @@ function ProductPage() {
                 </div>
                 {/* <p className="ratings">Ratings : {product.totalRatings && product.productReviews.length !==0 ? product.totalRatings/product.productReviews.length : '0'}/5⭐</p> */}
                 <div className="discount">
-                  {((product.actualprize - product.price) /
+                  {parseInt(((product.actualprize - product.price) /
                     product.actualprize) *
-                    100}
-                  %Off
+                    100)+'% Off'}
+                  
                 </div>
               </motion.div>
             );

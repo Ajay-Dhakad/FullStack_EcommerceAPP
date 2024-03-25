@@ -18,7 +18,7 @@ router.patch('/updateproduct/:productid',upload.single('image'),userVerification
 router.delete('/deleteproduct/:productid',userVerification,deleteProduct);
 
 router.get('/search/:searchquery?',searchProduct)
-
+    
 router.post('/review/:productid',userVerification,ProductReview)
 
 router.get('/deletereview/:productid/:reviewid',userVerification,deleteReview)

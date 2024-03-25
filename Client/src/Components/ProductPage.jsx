@@ -225,7 +225,9 @@ function ProductPage() {
                   {" "}
                   ₹{Product.price}{" "}
                   <del style={{ opacity: 0.8 }}>₹{Product.actualprize}</del>{" "}
-                  <b>50% Off</b>
+                  <b>{parseInt(((Product.actualprize - Product.price) /
+                    Product.actualprize) *
+                    100)+'% Off'}</b>
                 </h2>
 
                 <div className="quantity">
