@@ -1,14 +1,16 @@
-
-import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
-import { getAllOrders, updateOrderStatus } from '../ProductHandlers/ProductHandler';
-import { Toaster, toast } from 'react-hot-toast';
-import { beautifyDate } from '../Utils/BeutifyDate';
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import {
+  getAllOrders,
+  updateOrderStatus,
+} from "../ProductHandlers/ProductHandler";
+import { Toaster, toast } from "react-hot-toast";
+import { beautifyDate } from "../Utils/BeutifyDate";
 
 function OrdersAdminPage({ classname }) {
   const [orders, setOrders] = useState(null);
   const [filteredOrders, setFilteredOrders] = useState(null);
-  const [filterStatus, setFilterStatus] = useState('All');
+  const [filterStatus, setFilterStatus] = useState("All");
 
   const getOrders = async () => {
     const data = await getAllOrders();
@@ -37,7 +39,7 @@ function OrdersAdminPage({ classname }) {
   };
 
   const filterOrders = (status) => {
-    if (status === 'All') {
+    if (status === "All") {
       setFilteredOrders(orders); // Show all orders
     } else {
       const filtered = orders.filter((order) => order.orderStatus === status);
@@ -56,21 +58,21 @@ function OrdersAdminPage({ classname }) {
 
   return (
     <>
-      <Toaster position='top-center' />
+      <Toaster position="top-center" />
       <div className={classname}>
-        <h1 className='title'>Orders({filteredOrders?.length || 0})</h1>
+        <h1 className="title">Orders({filteredOrders?.length || 0})</h1>
 
-        <div style={{ marginBottom: '20px' }}>
-          <label htmlFor='filterStatus'>Filter by Status: </label>
+        <div style={{ marginBottom: "20px" }}>
+          <label htmlFor="filterStatus">Filter by Status: </label>
           <select
-            id='filterStatus'
+            id="filterStatus"
             value={filterStatus}
             onChange={(e) => filterOrders(e.target.value)}
           >
-            <option value='All'>All</option>
-            <option value='Pending'>Pending</option>
-            <option value='Delivered'>Delivered</option>
-            <option value='Cancelled'>Cancelled</option>
+            <option value="All">All</option>
+            <option value="Pending">Pending</option>
+            <option value="Delivered">Delivered</option>
+            <option value="Cancelled">Cancelled</option>
           </select>
         </div>
 
@@ -79,7 +81,7 @@ function OrdersAdminPage({ classname }) {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1, translateX: 0 }}
             transition={{ duration: 0.5 }}
-            border='0'
+            border="0"
           >
             <thead>
               <tr>
@@ -104,11 +106,14 @@ function OrdersAdminPage({ classname }) {
                   whileInView={{ opacity: 1, translateY: 0 }}
                   transition={{ duration: 0.2, delay: index * 0.01 }}
                 >
-                  <td>{index+1}</td>
+                  <td>{index + 1}</td>
                   <td>{order.razorpay_order_id}</td>
                   <td>{order.user}</td>
                   <td>
-                    <img src={order?.product?.image} alt={order?.product?.name} />
+                    <img
+                      src={order?.product?.image}
+                      alt={order?.product?.name}
+                    />
                   </td>
                   <td>{order?.product?.name}</td>
                   <td>{order.price}₹</td>
@@ -122,21 +127,21 @@ function OrdersAdminPage({ classname }) {
                     <select
                       style={{
                         backgroundColor:
-                          order.orderStatus === 'Pending'
-                            ? 'orange'
-                            : order.orderStatus === 'Delivered'
-                            ? 'green'
-                            : 'red',
+                          order.orderStatus === "Pending"
+                            ? "orange"
+                            : order.orderStatus === "Delivered"
+                            ? "green"
+                            : "red",
                       }}
-                      className='select_orderstatus'
+                      className="select_orderstatus"
                       value={order.orderStatus}
                       onChange={(e) => handleOrderStatusChange(e, order._id)}
-                      name='delivery status'
-                      id=''
+                      name="delivery status"
+                      id=""
                     >
-                      <option value='Pending'>Pending</option>
-                      <option value='Delivered'>Delivered</option>
-                      <option value='Cancelled'>Cancelled</option>
+                      <option value="Pending">Pending</option>
+                      <option value="Delivered">Delivered</option>
+                      <option value="Cancelled">Cancelled</option>
                     </select>
                   </td>
                 </motion.tr>
@@ -146,12 +151,12 @@ function OrdersAdminPage({ classname }) {
         )}
 
         {filteredOrders === null && (
-          <div style={{ textAlign: 'center' }} className='loaderwrapper'>
+          <div style={{ textAlign: "center" }} className="loaderwrapper">
             <br />
             <br />
             <br />
             <br />
-            <div className='loader'></div>
+            <div className="loader"></div>
           </div>
         )}
       </div>
@@ -160,5 +165,3 @@ function OrdersAdminPage({ classname }) {
 }
 
 export default OrdersAdminPage;
-
-

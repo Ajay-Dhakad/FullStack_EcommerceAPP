@@ -6,9 +6,6 @@ export const getProducts = async (req, res) => {
   try {
     const { category, filter,search} = req.query;
 
-
-    console.log(filter, category, search);
-
     let query = {};
 
     if (category) {
@@ -19,6 +16,7 @@ export const getProducts = async (req, res) => {
       query.$or = [
         { name: { $regex: new RegExp(search, 'i') } },
         { description: { $regex: new RegExp(search, 'i') } },
+        { category: { $regex: new RegExp(search, 'i') } },
       ];
     }
 
@@ -26,7 +24,6 @@ export const getProducts = async (req, res) => {
 
     if (!filter) {
       products = await Product.find(query).sort({ createdAt: -1 });
-      console.log(products);
     } else {
       switch (filter) {
         case 'prize-high':
@@ -143,8 +140,6 @@ export const getProducts = async (req, res) => {
           }
         }
 
-        console.log(req.body)
-      
         const {productid} = req.params;
     
         const product = await Product.findByIdAndUpdate(productid,{...req.body},{new:true})
@@ -240,13 +235,14 @@ export const getProducts = async (req, res) => {
               }
           
               const newReview = {
+                name:req.user.name,
                 user: req.user._id, 
                 text: text,
                 rating: rating,
               };
           
               product.productReviews.push(newReview);
-              product.totalRatings += newReview.rating;
+              product.totalRatings = Number(product.totalRatings + newReview.rating)
           
               const updatedProduct = await product.save();
           

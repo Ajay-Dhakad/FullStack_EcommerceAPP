@@ -10,6 +10,11 @@ const productReviewSchema = new Schema({
         required: false,
     },
 
+    name:{
+        type: String,
+        required: false,
+    },
+
     text:{
         type: String,
         required: false,

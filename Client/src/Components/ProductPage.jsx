@@ -322,7 +322,7 @@ function ProductPage() {
                           user :{" "}
                           {review.user == user._id
                             ? user.name + " (Me)"
-                            : review.user}
+                            : review.name || review.user}
                         </h4>
                         <div className="star-rating">
                           {Array.from({ length: 5 }).map((_, index) =>
