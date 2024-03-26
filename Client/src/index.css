@@ -8,7 +8,7 @@
   font-style: normal;
 }
 
-::-webkit-scrollbar {
+::-webkit-scrollbar{
   display: none;
 }
 
@@ -2205,6 +2205,24 @@ table img {
 .form button:hover {
   background-color: #388e3c;
 }
+
+.dashboard_page .mainsection .orders{
+  width: 100%;
+  font-size: 18px;
+}
+
+.select_orderstatus{
+  height: fit-content;
+  font-weight: 100;
+  font-size: 18px;
+  color: white;
+}
+
+.select_orderstatus option{
+  background-color: white;
+  color: black;
+}
+
 
 
 @media (max-width: 620px) {

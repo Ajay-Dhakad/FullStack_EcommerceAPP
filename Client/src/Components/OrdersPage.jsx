@@ -53,10 +53,10 @@ function OrdersPage() {
       {
         userOrders.length > 0 && ! orderclick && userOrders.map((order) => 
           <div onClick={() => {setorderclick(true);setorderid(order._id)}} key={order._id} className="order">
-            <img src={order.product.image} alt="" className="productimage" />
+            <img src={order?.product?.image} alt="" className="productimage" />
           <div className="details">  <p>{order.razorpay_order_id}</p>
             <p>Quantity : {order.quantity}</p>
-            <p>Price : {order.product.price}₹</p>
+            <p>Price : {order?.product?.price}₹</p>
             <h3>Total : {order.totalPrice}</h3>
             <p >Status : <b style={{color:order.orderStatus == 'Pending' ? 'orange' : order.orderStatus == 'Delivered' ? 'green' : 'red'}}> {order.orderStatus}</b></p></div>
           

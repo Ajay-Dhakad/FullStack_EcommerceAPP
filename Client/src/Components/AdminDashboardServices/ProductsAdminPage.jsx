@@ -78,6 +78,7 @@ const productDeleteHandler = async(productid) => {
 
 {
   products == null && <div className="loaderwrapper">
+     <br /><br /><br /><br />
   <div className="loader"></div>
 </div>
 }

@@ -92,6 +92,8 @@ function App() {
 
       if (!token) {
         return;
+        setloader(false);
+
       }
 
     const userData = async () => {

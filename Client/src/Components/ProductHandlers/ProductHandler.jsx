@@ -200,6 +200,38 @@ export const getOrder = async(orderid) => {
     return json;
 }
 
+export const getAllOrders = async() => {
+    const product = await fetch(`${import.meta.env.VITE_API_URI}/api/order/getallorders`,{
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('auth_token')}`
+        },
+    })
+    
+    const json = await product.json()
+    
+    return json;
+}
+
+export const updateOrderStatus = async(orderid,status) => {
+    
+    const product = await fetch(`${import.meta.env.VITE_API_URI}/api/order/orderstatus`,{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('auth_token')}`
+        },
+        body: JSON.stringify({orderid,status})
+
+    })
+    
+    const json = await product.json()
+    
+    return json;
+
+}
+
 export const ProductReview =  async(productid,review) => {
     const product = await fetch(`${import.meta.env.VITE_API_URI}/api/product/review/${productid}`,{
         method: 'POST',
