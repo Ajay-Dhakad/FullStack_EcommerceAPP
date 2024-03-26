@@ -71,7 +71,14 @@ function ProductPage() {
               className="custom-select"
             >
               <option value="">All Categories</option>
-              <option value="mens clothings">Mens Clothing</option>
+              <option value="mens fashion">Mens fashion</option>
+              <option value="womens fashion">Womens Fashion</option>
+              <option value="accessories">Accessories</option>
+              <option value="phones">Phones</option>
+              <option value="laptops">Laptops</option>
+              <option value="bags">Bags</option>
+              <option value="shoes">Shoes</option>
+              <option value="jewellery">Jewellery</option>
 
               {/* Add more categories as needed */}
             </select>
@@ -83,8 +90,9 @@ function ProductPage() {
             <option value="">All</option>
             <option value="prize-low">Price: Low to High</option>
             <option value="prize-high">Price: High to Low</option>
-            <option value="rating-high">Rating: High to Low</option>
             <option value="rating-low">Rating: Low to High</option>
+            <option value="rating-high">Rating: High to Low</option>
+
           </select>
         </div>
       </div>
@@ -131,10 +139,11 @@ function ProductPage() {
                 </div>
                 {/* <p className="ratings">Ratings : {product.totalRatings && product.productReviews.length !==0 ? product.totalRatings/product.productReviews.length : '0'}/5⭐</p> */}
                 <div className="discount">
-                  {parseInt(((product.actualprize - product.price) /
-                    product.actualprize) *
-                    100)+'% Off'}
-                  
+                  {parseInt(
+                    ((product.actualprize - product.price) /
+                      product.actualprize) *
+                      100
+                  ) + "% Off"}
                 </div>
               </motion.div>
             );

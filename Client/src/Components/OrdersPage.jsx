@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { useCart } from '../cartContext/CartContext'
 import OrderDetails from './OrderDetails'
 import {useParams} from 'react-router-dom'
+import { getOrders } from './ProductHandlers/ProductHandler'
 
 function OrdersPage() {
 
-  const {userOrders} = useCart()
-  console.log(userOrders)
+  const {userOrders,dispatch:cartdispatch} = useCart()
   const [orderclick,setorderclick] = useState(false)
   const [orderid,setorderid] = useState(null)
   const {orderID} = useParams()

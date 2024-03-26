@@ -1,105 +1,164 @@
-import React, { useEffect, useState } from 'react'
-import {motion} from 'framer-motion'
-import { getAllOrders, updateOrderStatus } from '../ProductHandlers/ProductHandler'
-import {Toaster,toast} from 'react-hot-toast'
-import { beautifyDate } from '../Utils/BeutifyDate'
 
+import React, { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+import { getAllOrders, updateOrderStatus } from '../ProductHandlers/ProductHandler';
+import { Toaster, toast } from 'react-hot-toast';
+import { beautifyDate } from '../Utils/BeutifyDate';
 
-function OrdersAdminPage({classname}) {
-  const [orders,setorders] = useState(null)
+function OrdersAdminPage({ classname }) {
+  const [orders, setOrders] = useState(null);
+  const [filteredOrders, setFilteredOrders] = useState(null);
+  const [filterStatus, setFilterStatus] = useState('All');
 
-  const getOrders = async() => {
-    const data  = await getAllOrders()
+  const getOrders = async () => {
+    const data = await getAllOrders();
     if (data?.success && data?.orders?.length > 0) {
-      setorders(data.orders)
-    } 
-    if (!data.success){
-      toast.error(data.message)
+      setOrders(data.orders);
+      setFilteredOrders(data.orders); // Initially set filteredOrders to all orders
     }
-  }
+    if (!data.success) {
+      toast.error(data.message);
+    }
+  };
 
-  const handleOrderStatusChange = async(e,orderid) => {
-
-    console.log(e.target.value)
-
-    const data = await updateOrderStatus(orderid,e.target.value);
+  const handleOrderStatusChange = async (e, orderId) => {
+    const newStatus = e.target.value;
+    const data = await updateOrderStatus(orderId, newStatus);
     if (data.success) {
-      toast.success(data.message)
-      console.log(data)
-    setorders((prev) => prev.map((item) => item._id == orderid ? data.order : item));
+      toast.success(data.message);
+      const updatedOrder = data.order;
+      setOrders((prevOrders) =>
+        prevOrders.map((item) => (item._id === orderId ? updatedOrder : item))
+      );
+      filterOrders(filterStatus);
+    } else {
+      toast.error(data.message);
     }
+  };
 
-    if (!data.success){
-      toast.error(data.message)
+  const filterOrders = (status) => {
+    if (status === 'All') {
+      setFilteredOrders(orders); // Show all orders
+    } else {
+      const filtered = orders.filter((order) => order.orderStatus === status);
+      setFilteredOrders(filtered); // Show orders with selected status
     }
-  }
+    setFilterStatus(status);
+  };
 
-  
-  
   useEffect(() => {
-  getOrders()
-  },[])
-  console.log(orders)
+    getOrders();
+  }, []);
 
-
+  useEffect(() => {
+    filterOrders(filterStatus);
+  }, [orders]); // Reapply filter when orders change
 
   return (
-
     <>
-    <Toaster position='top-center'/>
-    <div className={classname}>
-      <h1 className='title'>Orders</h1>
+      <Toaster position='top-center' />
+      <div className={classname}>
+        <h1 className='title'>Orders({filteredOrders?.length || 0})</h1>
 
-      {
-        <motion.table initial={{opacity:0}} whileInView={{opacity:1,translateX:0}} transition={{duration:.5}}  border="0">
-        <thead>
-          <tr>
-            <th>Order ID</th>
-            <th>CustomerId</th>
-            <th>Image</th>
-            <th>Product Name</th>
-            <th>Price (INR)</th>
-            <th>Quantity</th>
-            <th>TotalPrice</th>
-            <th>Delivery Address</th>
-            <th>OrderDate</th>
-            <th>Status</th>
-         
-          </tr>
-        </thead>
-        <tbody>
-         {orders !== null && orders?.length > 0 && orders.map((order,index) => 
-          <motion.tr key={order._id} initial={{opacity:0,translateY:-20}} whileInView={{opacity:1,translateY:0}} transition={{duration:.2,delay:index*0.01}}>
-            <td>{order.razorpay_order_id}</td>
-            <td>{order.user}</td>
-            <td><img src={order?.product?.image} alt={order?.product?.name}/></td>
-            <td>{order?.product?.name}</td>
-            <td>{order.price}₹</td>
-            <td>{order.quantity} Units</td>
-            <td>{order.totalPrice}₹</td>
-            <td>{order.deliveryAddress}</td>
-            <td><small>{beautifyDate(order.orderDate)}</small></td>
-            <td><select style={{backgroundColor:order.orderStatus == 'Pending' ? 'orange' : order.orderStatus == 'Delivered' ? 'green' : 'red' }} className='select_orderstatus' value={order.orderStatus} onChange={(e) => handleOrderStatusChange(e,order._id,order.orderStatus)}  name="delievery status" id="">
-              <option value="Pending">Pending</option>
-              <option value="Delivered">Delivered</option>
-              <option value="Cancelled">Cancelled</option>
-              </select></td>
-            
-          </motion.tr>)}
-        </tbody>
-      </motion.table>}
+        <div style={{ marginBottom: '20px' }}>
+          <label htmlFor='filterStatus'>Filter by Status: </label>
+          <select
+            id='filterStatus'
+            value={filterStatus}
+            onChange={(e) => filterOrders(e.target.value)}
+          >
+            <option value='All'>All</option>
+            <option value='Pending'>Pending</option>
+            <option value='Delivered'>Delivered</option>
+            <option value='Cancelled'>Cancelled</option>
+          </select>
+        </div>
 
-      {
-          orders == null && <div style={{textAlign:'center'}} className="loaderwrapper">
-            <br /><br /><br /><br />
-  <div className="loader"></div>
-</div>
-}
-      
+        {filteredOrders !== null && filteredOrders.length > 0 && (
+          <motion.table
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1, translateX: 0 }}
+            transition={{ duration: 0.5 }}
+            border='0'
+          >
+            <thead>
+              <tr>
+                <th>Sno.</th>
+                <th>Order ID</th>
+                <th>CustomerId</th>
+                <th>Image</th>
+                <th>Product Name</th>
+                <th>Price (INR)</th>
+                <th>Quantity</th>
+                <th>TotalPrice</th>
+                <th>Delivery Address</th>
+                <th>OrderDate</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredOrders.map((order, index) => (
+                <motion.tr
+                  key={order._id}
+                  initial={{ opacity: 0, translateY: -20 }}
+                  whileInView={{ opacity: 1, translateY: 0 }}
+                  transition={{ duration: 0.2, delay: index * 0.01 }}
+                >
+                  <td>{index+1}</td>
+                  <td>{order.razorpay_order_id}</td>
+                  <td>{order.user}</td>
+                  <td>
+                    <img src={order?.product?.image} alt={order?.product?.name} />
+                  </td>
+                  <td>{order?.product?.name}</td>
+                  <td>{order.price}₹</td>
+                  <td>{order.quantity} Units</td>
+                  <td>{order.totalPrice}₹</td>
+                  <td>{order.deliveryAddress}</td>
+                  <td>
+                    <small>{beautifyDate(order.orderDate)}</small>
+                  </td>
+                  <td>
+                    <select
+                      style={{
+                        backgroundColor:
+                          order.orderStatus === 'Pending'
+                            ? 'orange'
+                            : order.orderStatus === 'Delivered'
+                            ? 'green'
+                            : 'red',
+                      }}
+                      className='select_orderstatus'
+                      value={order.orderStatus}
+                      onChange={(e) => handleOrderStatusChange(e, order._id)}
+                      name='delivery status'
+                      id=''
+                    >
+                      <option value='Pending'>Pending</option>
+                      <option value='Delivered'>Delivered</option>
+                      <option value='Cancelled'>Cancelled</option>
+                    </select>
+                  </td>
+                </motion.tr>
+              ))}
+            </tbody>
+          </motion.table>
+        )}
 
-    </div>  
+        {filteredOrders === null && (
+          <div style={{ textAlign: 'center' }} className='loaderwrapper'>
+            <br />
+            <br />
+            <br />
+            <br />
+            <div className='loader'></div>
+          </div>
+        )}
+      </div>
     </>
-  )
+  );
 }
 
 export default OrdersAdminPage;
+
+

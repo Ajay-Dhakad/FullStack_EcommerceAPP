@@ -1964,7 +1964,7 @@ footer ul li a {
 }
 
 .dashboard_page .sidesection{
-  width: 20%;
+  width: 15%;
   min-height: 100vh;
   background-color: rgba(25, 25, 25, 0.82);
   border-radius: 10px;
@@ -1973,8 +1973,8 @@ footer ul li a {
 
 .dashboard_page .mainsection{
 
-  width: 80%;
-  min-height: 100vh;
+  width: 85%;
+  height: 100vh;
   border-radius: 10px;
   background-color: rgba(25, 25, 25, 0.82);
   overflow: scroll;
@@ -2082,6 +2082,8 @@ th, td {
   padding: 10px;
   text-align: left;
   border-bottom: 1px solid #ddd;
+  font-size: 17px;
+  letter-spacing: -.5px;
 }
 
 th {
