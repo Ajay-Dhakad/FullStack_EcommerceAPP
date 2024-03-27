@@ -77,6 +77,8 @@ function Header() {
         {/* hamberger Buttons |>> */}
 
         <div className="useractions">
+        <i className="ri-shopping-cart-2-line"><div className="count">2</div></i>
+        <i class="ri-heart-3-fill"><div className="count">5</div></i>
           {!menu && (
             <motion.img
               style={{ cursor: "pointer" }}
@@ -92,6 +94,7 @@ function Header() {
               alt="menu-squared-2"
             />
           )}
+
 
           {menu && (
             <motion.img

@@ -60,7 +60,7 @@ function OrdersAdminPage({ classname }) {
     <>
       <Toaster position="top-center" />
       <div className={classname}>
-        <h1 className="title">Orders({filteredOrders?.length || 0})</h1>
+        <h1 className="title">{filterStatus} Orders({filteredOrders?.length || 0})</h1>
 
         <div style={{ marginBottom: "20px" }}>
           <label htmlFor="filterStatus">Filter by Status: </label>
@@ -71,6 +71,7 @@ function OrdersAdminPage({ classname }) {
           >
             <option value="All">All</option>
             <option value="Pending">Pending</option>
+            <option value="Processed">Processed</option>
             <option value="Delivered">Delivered</option>
             <option value="Cancelled">Cancelled</option>
           </select>
@@ -131,7 +132,7 @@ function OrdersAdminPage({ classname }) {
                             ? "orange"
                             : order.orderStatus === "Delivered"
                             ? "green"
-                            : "red",
+                            :order.orderStatus == "Processed"  ? 'rgb(3, 120, 75)'  :"red",
                       }}
                       className="select_orderstatus"
                       value={order.orderStatus}
@@ -140,6 +141,7 @@ function OrdersAdminPage({ classname }) {
                       id=""
                     >
                       <option value="Pending">Pending</option>
+                      <option value="Processed">Processed</option>
                       <option value="Delivered">Delivered</option>
                       <option value="Cancelled">Cancelled</option>
                     </select>

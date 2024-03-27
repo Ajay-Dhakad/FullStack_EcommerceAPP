@@ -59,7 +59,7 @@ header {
   position: absolute;
   width: 100%;
   font-weight: bold;
-  background-color: #e4000000;
+  background-color: #00000098;
   backdrop-filter: blur(100px);
   font-size: larger;
   /* border: 2px solid red; */
@@ -71,6 +71,36 @@ header {
 
 header h1 {
   font-family: cursive;
+}
+
+.useractions{
+  display: flex;
+  gap: 15px;
+}
+
+.useractions i{
+
+  background-color: transparent;
+  color: rgb(228, 54, 54);
+  font-size: 28px;
+  height: 100%;
+  width: 50px;
+  display: flex;
+  position: relative;
+  justify-content: center;
+
+
+
+}
+
+
+
+.useractions .count{
+  position: absolute;
+  top: 0px;
+  right: 0;
+  font-size: 15px;
+
 }
 
 .hamberger-menu {
@@ -2225,6 +2255,17 @@ table img {
 .select_orderstatus option{
   background-color: white;
   color: black;
+}
+
+#filterStatus{
+  height: fit-content;
+  font-weight: 100;
+  font-size: 18px;
+  margin: 5px;
+  color: rgb(0, 0, 0);
+  outline: none;
+  border: none;
+  border-radius: 10px;
 }
 
 

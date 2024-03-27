@@ -74,7 +74,6 @@ export const OrderStatusUpdate = async (req, res) => {
   try {
     const { _id, role } = req.user;
     const { orderid, status } = req.body;
-    console.log(orderid, status, "jhadhdha");
     if (role !== "admin" || !_id) {
       return res
         .status(401)

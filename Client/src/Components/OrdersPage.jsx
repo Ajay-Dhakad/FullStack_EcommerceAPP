@@ -58,7 +58,7 @@ function OrdersPage() {
             <p>Quantity : {order.quantity}</p>
             <p>Price : {order?.product?.price}₹</p>
             <h3>Total : {order.totalPrice}</h3>
-            <p >Status : <b style={{color:order.orderStatus == 'Pending' ? 'orange' : order.orderStatus == 'Delivered' ? 'green' : 'red'}}> {order.orderStatus}</b></p></div>
+            <p >Status : <b style={{color:order.orderStatus == 'Pending' ? 'orange' : order.orderStatus == 'Delivered' ? 'green' :order.orderStatus == "Processed"  ? 'rgb(3, 100, 75)' : 'red'}}> {order.orderStatus}</b></p></div>
           
           </div>
           
