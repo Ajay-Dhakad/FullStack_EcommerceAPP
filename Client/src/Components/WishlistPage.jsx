@@ -66,7 +66,7 @@ function WishlistPage() {
                   <del style={{ color: "red" }}>{product.product.actualprize}₹ </del>
                   {product.product.price}₹{" "}
                 </p>
-                <h1>{product.product.name}</h1>
+                <h3>{product.product.name.slice(0,50)}</h3>
                 <div class="star-rating-productspage">
                   {Array.from({ length: 5 }).map((_, index) =>
                     index <
@@ -79,10 +79,10 @@ function WishlistPage() {
                 </div>
                 {/* <p className="ratings">Ratings : {product.totalRatings && product.productReviews.length !==0 ? product.totalRatings/product.productReviews.length : '0'}/5⭐</p> */}
                 <div className="discount">
-                  {((product.product.actualprize - product.product.price) /
+                  {parseInt(((product.product.actualprize - product.product.price) /
                     product.product.actualprize) *
-                    100}
-                  %Off
+                    100)}{'% '}
+                  Off
                 </div>
                 <button onClick={() => RemoveFromWishlist(product._id).then((data) =>data.success ? dispatch({type:'REMOVEFROMWISHLIST',payload:data.wishlist._id}): toast.error(data.message))} className='wishlist_remove_btn'>Remove</button>
               </motion.div>

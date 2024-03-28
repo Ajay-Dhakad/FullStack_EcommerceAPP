@@ -129,7 +129,7 @@ function ProductPage() {
                   <del style={{ color: "red" }}>{product.actualprize}₹ </del>
                   {product.price}₹{" "}
                 </p>
-                <h1>{product.name}</h1>
+                <h3>{product.name.slice(0,50)+'...'}</h3>
                 <div class="star-rating-productspage">
                   {Array.from({ length: 5 }).map((_, index) =>
                     index <

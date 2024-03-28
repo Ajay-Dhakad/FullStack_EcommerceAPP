@@ -95,8 +95,6 @@ function App() {
     const userData = async () => {
       {
         if (token) {
-          setloader(true);
-
           const data = await getUser(token);
 
           if (!data) {
@@ -113,10 +111,12 @@ function App() {
 
             });
 
+            setloader(false);
+
+
             await getWishlist();
             await Cart();
             await getUsersOrders();
-            setloader(false);
           }
         }
       }

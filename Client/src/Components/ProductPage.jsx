@@ -202,8 +202,8 @@ function ProductPage() {
                 ></i>
               </div>
               <div className="product_details">
-                <h1>{Product.name}</h1>
-                <p>{Product.description}</p>
+                <h1 className="productsName">{Product.name.slice(0,80)}</h1>
+                <p>{Product.description.slice(0,150)}</p>
                 <div className="star-rating">
                   {Product?.productReviews.length != 0 &&
                     Array.from({ length: 5 }).map((_, index) =>

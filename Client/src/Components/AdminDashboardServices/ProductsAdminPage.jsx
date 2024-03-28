@@ -62,10 +62,10 @@ const productDeleteHandler = async(productid) => {
    { products?.map((product,index) =>  <motion.tr key={product._id} initial={{opacity:0}} whileInView={{opacity:1,translateX:0}} transition={{duration:.2,delay:index*0.1}}>
       <td>{product._id}</td>
       <td><img src={product.image} alt={product.name}/></td>
-      <td>{product.name}</td>
+      <td>{product.name.slice(0,50)}</td>
       <td>{product.category}</td>
       <td>{product.price}₹</td>
-      <td>{product.description}</td>
+      <td>{product.description.slice(0,100)}</td>
       <td onClick={() => {setproducttoedit(product);setnewProduct(true)}}><i class="ri-file-edit-fill"></i></td>
       <td><i onClick={() => productDeleteHandler(product._id)} class="ri-delete-bin-6-line"></i></td>
     </motion.tr>)}

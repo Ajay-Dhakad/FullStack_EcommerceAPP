@@ -10,7 +10,6 @@ function CartPage() {
     const {user} = useAuth()
     const {userCart,dispatch} = useCart()
 
-    console.log(userCart.length)
 
 const navigate= useNavigate()
 
@@ -49,12 +48,12 @@ useEffect(() => {
 
 
                 {
-                    userCart?.map((item,index) => <div className="product">
+                    userCart !== null && userCart.map((item,index) => <div className="product">
                         <div className="product_image">
                             <img onClick={() => navigate(`/product/${item.product._id}`)} src={item.product.image} alt="" />
                         </div>
                         <div className="product_details">
-                            <h1>{item.product.name}</h1>
+                            <p>{item.product.name.slice(0,40)}...</p>
                             <p>Price : {item.product.price}₹</p>
                             <p>TotalPrice : {item.product.price  * item.quantity}₹</p>
 
