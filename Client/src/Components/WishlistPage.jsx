@@ -29,8 +29,12 @@ function WishlistPage() {
     useEffect(() => {
 
         getWishlist()
+        window.scrollTo({ top: 0, behavior: "smooth" });
+
 
     },[])
+
+
 
   return (
     <>

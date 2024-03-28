@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link,useNavigate } from 'react-router-dom'
 import { UseLogin } from './AuthHandlers/authHandlers'
 import {Toaster,toast }from 'react-hot-toast'
@@ -29,7 +29,7 @@ function Login() {
             if (response.success){
                 localStorage.setItem('auth_token', response.token)
                 setloader(false)
-                navigate('/homepage')
+                navigate('/')
 
 
 
@@ -41,6 +41,10 @@ function Login() {
         }
        
     }
+
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    },[])
 
   return (
 

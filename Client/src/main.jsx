@@ -17,6 +17,7 @@ import ProfilePage from './Components/ProfilePage.jsx'
 import OrdersPage from './Components/OrdersPage.jsx'
 import PageNotFound from './Components/PageNotFound.jsx'
 import AdminDashboard from './Components/AdminDashboard.jsx'
+import AuthProtector from './Components/routeProtection/AuthProtector.jsx'
 
 const router = createBrowserRouter([
   {
@@ -28,10 +29,10 @@ const router = createBrowserRouter([
         element:<Homepage/>
       },{
         path:'/login',
-        element:<Login/>
+        element:<AuthProtector><Login/></AuthProtector>
       },{
         path:'/signup',
-        element:<SignUp/>
+        element:<AuthProtector><SignUp/></AuthProtector>
       },{
         path:'/categories',
         element:<Categories/>
@@ -43,20 +44,20 @@ const router = createBrowserRouter([
         element: <ProductPage/>
       },{
         path:'/cart',
-        element:<CartPage/>
+        element:<AuthProtector authentication><CartPage/></AuthProtector>
       },{
         path:'/wishlist',
-        element:<WishlistPage/>
+        element:<AuthProtector authentication><WishlistPage/></AuthProtector>
       },{
         path:'/profile',
-        element:<ProfilePage/>
+        element:<AuthProtector authentication><ProfilePage/></AuthProtector>
         
       },{
         path:'/orders/:orderID?',
-        element:<OrdersPage/>
+        element:<AuthProtector authentication><OrdersPage/></AuthProtector>
       },{
         path:'/admin/dashboard/:option?',
-        element:<AdminDashboard/>
+        element:<AuthProtector authentication><AdminDashboard/></AuthProtector>
       }
       ,{
         path:'*',

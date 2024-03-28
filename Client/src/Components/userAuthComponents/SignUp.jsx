@@ -33,7 +33,7 @@ function SignUp() {
         if (response.success){
             localStorage.setItem('auth_token', response.token)
             setloader(false)
-            navigate('/homepage')
+            navigate('/')
 
 
         }
@@ -43,6 +43,10 @@ function SignUp() {
     }
 
     }
+
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    },[])
 
   return (
     <>

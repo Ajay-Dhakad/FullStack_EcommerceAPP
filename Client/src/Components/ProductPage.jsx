@@ -5,7 +5,7 @@ import {
   getProduct,
   ProductReview,
 } from "./ProductHandlers/ProductHandler";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link,useNavigate } from "react-router-dom";
 import { Toaster, toast } from "react-hot-toast";
 import { useAuth } from "../authContext/AuthContext";
 import { AddToCart } from "./ProductHandlers/ProductHandler";
@@ -14,6 +14,8 @@ import OrderConfirmation from "./OrderConfirmation";
 
 function ProductPage() {
   const { productid } = useParams(null);
+
+  const navigate = useNavigate()
 
   const [Product, setproduct] = useState(null);
 
@@ -47,7 +49,12 @@ function ProductPage() {
     }
   };
 
+
   const AddToWishlistHandler = async () => {
+    if (!user){
+      toast.error('Please login to add to Wishlist');
+      return
+    }
     const response = await AddToWishlist(productid);
 
     if (response.success) {
@@ -64,6 +71,12 @@ function ProductPage() {
   };
 
   const addToCartHandler = async () => {
+
+    if (!user){
+      toast.error('Please login to add to cart')
+      return
+    }
+
     const response = await AddToCart(productid, quantity, user);
 
     console.log(response);
@@ -125,19 +138,17 @@ function ProductPage() {
     Getproduct();
     window.scrollTo({ top: 0, behavior: "smooth" });
 
-    const checkExistingWishlist = userWishlist?.some(
-      (item) => item.product._id == productid
-    );
+    const checkExistingWishlist = userWishlist.length > 0 ? userWishlist.some(
+      (item) => item?.product?._id == productid
+    ) : false;
 
-    const checkExistingCart = userCart?.some(
-      (item) => item.product._id == productid
-    );
+    const checkExistingCart = userCart.length > 0 ? userCart.some(
+      (item) => item?.product?._id == productid
+    ): false;
 
-    const checkExistingOrder = userOrders?.some(
-      (item) => item.product._id == productid && item.orderStatus == "Pending"
-    ); // TODO : remove pending order and add Delivered
-
-    console.log(checkExistingCart, checkExistingWishlist, checkExistingOrder);
+    const checkExistingOrder = userOrders.length > 0 ? userOrders.some(
+      (item) => item?.product?._id == productid && item.orderStatus == "Delivered"
+    ) : false; // TODO : remove pending order and add Delivered
 
     if (checkExistingWishlist == true) {
       setExistingInWishlist(true);
@@ -175,7 +186,7 @@ function ProductPage() {
         className="product_page"
       >
         <div className="cover">
-          {Product && (
+          {  Product != null && (
             <>
               <div className="product_image">
                 <img src={Product.image} alt="Product Image" />
@@ -194,7 +205,7 @@ function ProductPage() {
                 <h1>{Product.name}</h1>
                 <p>{Product.description}</p>
                 <div className="star-rating">
-                  {Product.productReviews.length != 0 &&
+                  {Product?.productReviews.length != 0 &&
                     Array.from({ length: 5 }).map((_, index) =>
                       index <
                       Product.totalRatings / Product.productReviews.length ? (
@@ -267,7 +278,7 @@ function ProductPage() {
                   >
                     {existingInCart ? "Added!" : "Add To Cart"}
                   </button>
-                  <button onClick={() => setBuying(true)}>Buy Now</button>
+                  <button onClick={() =>user ? setBuying(true) : navigate('/login')}>Buy Now</button>
                 </div>
 
                 <div className="product_reviews">
@@ -316,13 +327,13 @@ function ProductPage() {
                     </div>
                   )}
 
-                  {Product.productReviews.length > 0 ? (
+                  {Product?.productReviews?.length > 0 ? (
                     Product.productReviews.map((review, index) => (
                       <div className="review" key={index}>
                         <h4>
                           user :{" "}
-                          {review.user == user._id
-                            ? user.name + " (Me)"
+                          {review.user == user?._id
+                            ? user?.name + " (Me)"
                             : review.name || review.user}
                         </h4>
                         <div className="star-rating">
@@ -339,7 +350,7 @@ function ProductPage() {
                           )}
                         </div>
                         <p>{review.text}</p>
-                        {review.user == user._id && (
+                        {review.user == user?._id && (
                           <button
                             onClick={() => deleteReviewHandler(review._id)}
                             className="delete_review"

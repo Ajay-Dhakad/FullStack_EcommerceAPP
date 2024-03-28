@@ -9,19 +9,23 @@ function Homepage() {
     {
       title: "Men's Fashion",
       videourl:
-      "https://videos.pexels.com/video-files/8346468/8346468-hd_720_1366_25fps.mp4",
+      "https://videos.pexels.com/video-files/7764127/7764127-hd_720_1366_25fps.mp4",
      link: "/category/men",
+     poster:''
     },
     {
+      
       title: "Women's Fashion",
       videourl:
         "https://videos.pexels.com/video-files/3894706/3894706-hd_720_1366_50fps.mp4",
       link: "/category/women",
+      poster:''
     },
     {
       title: "Accessories",
       videourl:'https://videos.pexels.com/video-files/3946211/3946211-hd_1080_2048_25fps.mp4',
       link: "/category/accessories",
+      poster:''
     },
   ];
 
@@ -51,6 +55,10 @@ function Homepage() {
         "Celebrate worry-free shopping with our hassle-free returns – because we're here to make your shopping experience as smooth as possible",
     },
   ];
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+},[])
 
   return (
     <div className="containerhome">

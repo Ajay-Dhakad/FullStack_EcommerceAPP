@@ -17,6 +17,10 @@ function AdminDashboard() {
 
   },[option])
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+},[])
+
 
   const adminControls = [
     {
