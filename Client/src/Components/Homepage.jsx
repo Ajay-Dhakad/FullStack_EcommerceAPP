@@ -166,7 +166,7 @@ function Homepage() {
                   className="product"
                 >
                   <div className="img">
-                    <video onLoad={() => console.log('loaded')} autoPlay={true} loop={true} src={product.videourl}></video>
+                    <video onMouseOver={(e) => e.target.play()} onMouseLeave={(e) => e.target.pause()} loop={true} src={product.videourl}></video>
                   </div>
                   <h1>{product.title}</h1>
                 </motion.div>
