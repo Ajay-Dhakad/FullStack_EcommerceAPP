@@ -20,6 +20,7 @@ function OrdersAdminPage({ classname }) {
     }
     if (!data.success) {
       toast.error(data.message);
+      setFilteredOrders([]);
     }
   };
 
@@ -60,7 +61,9 @@ function OrdersAdminPage({ classname }) {
     <>
       <Toaster position="top-center" />
       <div className={classname}>
-        <h1 className="title">{filterStatus} Orders({filteredOrders?.length || 0})</h1>
+        <h1 className="title">
+          {filterStatus} Orders({filteredOrders?.length || 0})
+        </h1>
 
         <div style={{ marginBottom: "20px" }}>
           <label htmlFor="filterStatus">Filter by Status: </label>
@@ -132,7 +135,9 @@ function OrdersAdminPage({ classname }) {
                             ? "orange"
                             : order.orderStatus === "Delivered"
                             ? "green"
-                            :order.orderStatus == "Processed"  ? 'rgb(3, 120, 75)'  :"red",
+                            : order.orderStatus == "Processed"
+                            ? "rgb(3, 120, 75)"
+                            : "red",
                       }}
                       className="select_orderstatus"
                       value={order.orderStatus}
@@ -152,7 +157,7 @@ function OrdersAdminPage({ classname }) {
           </motion.table>
         )}
 
-        {filteredOrders === null && (
+        {filteredOrders == null && (
           <div style={{ textAlign: "center" }} className="loaderwrapper">
             <br />
             <br />
@@ -161,6 +166,8 @@ function OrdersAdminPage({ classname }) {
             <div className="loader"></div>
           </div>
         )}
+
+        {filteredOrders?.length == 0 && <h2>No Orders Found!</h2>}
       </div>
     </>
   );

@@ -46,9 +46,14 @@ function OrdersPage() {
 
     <div style={{backdropFilter:'brightness(.5)'}} className='orderspage'>
       
+      
     <h1 className='title'>Your orders <b>{`(${userOrders.length})`}</b></h1>
 
     <div  className="orders">
+
+    {  userOrders.length == 0 &&  <div  id='wishlist_not_found'> <img src='https://ouch-cdn2.icons8.com/Maghupt7qF3mWeKSBK2OVdjVNQv3E11s-3bnlZnjO9s/rs:fit:368:393/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9zdmcvODM1/LzJkYzVlOTZhLWNl/MTUtNGVlMi04MmZh/LTM0NzVmMmRhZDkw/Ny5zdmc.png'/></div>}
+    {userOrders.length == 0 && <center><h2>No Orders Found!</h2></center>}
+
    {orderclick && orderid && <OrderDetails orderID={orderID} setorderclick={setorderclick} setorderid={setorderid} order={userOrders.filter((order) => order._id == orderid)}/>}
       
 
@@ -70,11 +75,10 @@ function OrdersPage() {
     </div>
      
 
-    {  userOrders.length < 1 &&  <div  id='wishlist_not_found'> <img src='https://ouch-cdn2.icons8.com/Maghupt7qF3mWeKSBK2OVdjVNQv3E11s-3bnlZnjO9s/rs:fit:368:393/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9zdmcvODM1/LzJkYzVlOTZhLWNl/MTUtNGVlMi04MmZh/LTM0NzVmMmRhZDkw/Ny5zdmc.png'/></div>}
-    {userOrders.length < 1 && <center><h2>No Orders Found!</h2></center>}
+   
 
     
-    </div>
+    </div>  
   )
 }
 

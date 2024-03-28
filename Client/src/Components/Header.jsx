@@ -114,7 +114,7 @@ function Header() {
           e.preventDefault;navigate(`/products/search/${search}`)}
           } action="">
             <input value={search} onChange={(e) => setsearch(e.target.value)} placeholder="Search a product!" type="text" />
-            <button type="submit">Go!</button>
+            <button type="submit"><i className="ri-search-line"></i></button>
           </form>
 
           <ul>
@@ -150,8 +150,10 @@ function Header() {
             </button>
           </ul>
 
-          <br />
-          <h2>{isAuthenticated ? `WelCome - ${user.name}` : 'Hey User! Please Login To Continue.'}</h2>
+          {/* <br />
+          <h2>{isAuthenticated ? `WELCOME - ${user.name}` : 'Hey User! Please Login To Continue.'}</h2>
+          <br /> */}
+
           <br />
           
           

@@ -8,7 +8,7 @@ const OrderConfirmation = ({ Product, quantity, user,setbuying }) => {
   const [address, setAddress] = useState(user?.address);
   const [editingAddress, setEditingAddress] = useState(false);
   const navigate = useNavigate()
-
+  
   const handlePaymentStatus = (paymentStatus) => {
       if (paymentStatus.status){
         setbuying(false);
@@ -46,8 +46,7 @@ const OrderConfirmation = ({ Product, quantity, user,setbuying }) => {
         <div className="productdetails">
           <img src={Product?.image} alt="Product Image" />
           <div className="productdescription">
-            <h2>{Product?.name}</h2>
-            <h2>{Product?.description}</h2>
+            <h2>{Product?.name.slice(0,35)}...</h2>
           </div>
         </div>
         <div className="productamount">

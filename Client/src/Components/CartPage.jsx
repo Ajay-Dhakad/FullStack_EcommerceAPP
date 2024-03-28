@@ -4,11 +4,14 @@ import {Toaster,toast} from 'react-hot-toast'
 import { getCart } from './ProductHandlers/ProductHandler'
 import {useNavigate} from 'react-router-dom'
 import { useCart } from '../cartContext/CartContext'
+import OrderConfirmation from './OrderConfirmation'
 import { updateCartQuantity,deleteFromCart } from "../Components/ProductHandlers/ProductHandler";
 
 function CartPage() {
     const {user} = useAuth()
     const {userCart,dispatch} = useCart()
+    const [buying,setbuying] = useState(false)
+    const [Product,setproduct]  = useState(null)
 
 
 const navigate= useNavigate()
@@ -17,15 +20,14 @@ const navigate= useNavigate()
         
         const cart = await getCart()
 
-        console.log(cart)
-
         if (!cart.success) {
 
-            toast.message(cart.message)
+            toast.error(cart.message)
     }
 
     if (cart.success) {
       dispatch({type:'ADDTOCART',payload:cart.cart})
+    //   toast.success(`Found ${cart.cart.length} items !`)
     }
 }
 
@@ -34,10 +36,20 @@ useEffect(() => {
     window.scrollTo({top:0,behavior:'smooth'})
 },[])
 
+useEffect(() => {
+    if (!buying){
+        setproduct(null)
+    }
+},[buying])
+
   return (
     <>
     <Toaster position='top-center' reverseOrder={false}/>
     <div className='cart_page'>
+
+        {
+            buying && <OrderConfirmation quantity={Product.quantity} Product={Product} user={user} setbuying={setbuying}></OrderConfirmation>
+        }
     
     <div className="cart_text">
         <div className="wrapper">
@@ -53,10 +65,10 @@ useEffect(() => {
                             <img onClick={() => navigate(`/product/${item.product._id}`)} src={item.product.image} alt="" />
                         </div>
                         <div className="product_details">
-                            <p>{item.product.name.slice(0,40)}...</p>
+                            <p onClick={() => navigate(`/product/${item.product._id}`)}>{item.product.name?.slice(0,40)}...</p>
                             <p>Price : {item.product.price}₹</p>
                             <p>TotalPrice : {item.product.price  * item.quantity}₹</p>
-
+                            
                             <div className="quantity">
                                 <button  onClick={() => updateCartQuantity(item.product._id,'decrement').then((data) => data.success ? dispatch({type:'DECREASEQUANTITY',payload:item._id}) : toast.error(data.message) )}  >-</button>
                                 <input value={item.quantity} type="text" />
@@ -64,9 +76,9 @@ useEffect(() => {
                             </div>
                          
                             <div className="options">
-                            <button  onClick={() => deleteFromCart(item.product._id).then((data) => data.success? dispatch({type:'REMOVEFROMCART',payload:item._id}) : toast.error(data.message) )}>Remove Item</button>
+                            <button id='deletefromcart' onClick={() => deleteFromCart(item.product._id).then((data) => data.success? dispatch({type:'REMOVEFROMCART',payload:item._id}) : toast.error(data.message) )}>x</button>
 
-                                <button>Buy Now</button>
+                                <button onClick={() => {setbuying(true);setproduct({...item.product,quantity:item.quantity})}}>Buy Now</button>
 
                             </div>
 

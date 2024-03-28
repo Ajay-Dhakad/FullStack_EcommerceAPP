@@ -1497,9 +1497,11 @@ footer ul li a {
 .cart_page {
   width: 100%;
   min-height: 100%;
-  background-image: url("https://websitedemos.net/black-friday-04/wp-content/uploads/sites/1419/2023/11/bg-01-b.jpg");
+  /* background-image: url("https://websitedemos.net/black-friday-04/wp-content/uploads/sites/1419/2023/11/bg-01-b.jpg"); */
   background-position: center;
   background-size: cover;
+  background-color:#243b55;
+  position: relative;
 
   & .cart_text {
     width: 100%;
@@ -1598,8 +1600,10 @@ footer ul li a {
               height: 30px;
               font-size: 20px;
               font-weight: bold;
+              padding: 0px 5px;
+              border-radius: 5px;
               text-align: center;
-              background-color: #ffffffda;
+              background-color: #ff2f2f;
               border: none;
 
               &:active {
@@ -1612,7 +1616,7 @@ footer ul li a {
               width: 30px;
               text-align: center;
               font-size: 20px;
-              border: 2px solid rgb(155, 155, 155);
+              border: 2px solid rgb(0, 0, 0);
               background-color: transparent;
               outline: none;
               color: white;
@@ -1628,13 +1632,17 @@ footer ul li a {
               gap: 10px;
               flex-direction: column;
 
+
               & button {
                 width: 70%;
                 /* padding: 0 10px; */
                 margin-left: 5px;
-                background-color: rgb(0, 114, 0);
+                background-color: rgba(0, 0, 0, 0.795);
                 border-radius: 10px;
+                height: 40px;
+                margin-top: 10px;
                 color: white;
+                border: 2px solid rgb(255, 0, 0);
                 transition: 0.5s all;
 
                 &:active {
@@ -1642,12 +1650,29 @@ footer ul li a {
                   color: white;
                 }
 
-                &:first-child {
-                  background-color: RED;
-                }
-
+             
                 &:hover {
                   width: 80%;
+                  background-color: green;
+                  border: none;
+                }
+              }
+
+              
+              & #deletefromcart{
+                position: absolute;
+                top: 0;
+                width: auto;
+                padding: 0;
+                right: 10px;
+                margin: 0;
+                transition: .5s all;
+                border: none;
+                font-size:25px;
+                background-color: rgba(0, 0, 0, 0);
+                
+                &:hover {
+                  color: red;
                 }
               }
             }
@@ -1683,9 +1708,10 @@ footer ul li a {
 .wishlist-Wrapper {
   width: 100%;
   height: 100%;
-  background-image: url("https://websitedemos.net/black-friday-04/wp-content/uploads/sites/1419/2023/11/bg-01-b.jpg");
+  /* background-image: url("https://websitedemos.net/black-friday-04/wp-content/uploads/sites/1419/2023/11/bg-01-b.jpg"); */
   background-repeat: no-repeat;
   background-size: cover;
+  background-color: #243b55;
 }
 
 #wishlist_not_found {
@@ -1723,7 +1749,7 @@ footer ul li a {
 
     & p {
       text-align: start;
-      font-size: 25px;
+      font-size: 20px;
     }
 
     & h2 {
