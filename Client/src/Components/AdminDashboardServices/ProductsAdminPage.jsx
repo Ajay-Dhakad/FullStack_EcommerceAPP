@@ -59,7 +59,7 @@ const productDeleteHandler = async(productid) => {
     </tr>
   </thead>
   <tbody>
-   { products?.map((product,index) =>  <motion.tr initial={{opacity:0}} whileInView={{opacity:1,translateX:0}} transition={{duration:.2,delay:index*0.1}}>
+   { products?.map((product,index) =>  <motion.tr key={product._id} initial={{opacity:0}} whileInView={{opacity:1,translateX:0}} transition={{duration:.2,delay:index*0.1}}>
       <td>{product._id}</td>
       <td><img src={product.image} alt={product.name}/></td>
       <td>{product.name}</td>

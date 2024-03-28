@@ -8,20 +8,19 @@ function Homepage() {
   const products = [
     {
       title: "Men's Fashion",
-      imageUrl:
-        "https://images.unsplash.com/photo-1617113930975-f9c7243ae527?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fG1lbnMlMjBmYXNoaW9ufGVufDB8fDB8fHww",
-      link: "/category/men",
+      videourl:
+      "https://videos.pexels.com/video-files/8346468/8346468-hd_720_1366_25fps.mp4",
+     link: "/category/men",
     },
     {
       title: "Women's Fashion",
-      imageUrl:
-        "https://images.unsplash.com/photo-1617922001439-4a2e6562f328?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8d29tZW5zJTIwZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D",
+      videourl:
+        "https://videos.pexels.com/video-files/3894706/3894706-hd_720_1366_50fps.mp4",
       link: "/category/women",
     },
     {
       title: "Accessories",
-      imageUrl:
-        "https://images.unsplash.com/photo-1511556820780-d912e42b4980?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      videourl:'https://videos.pexels.com/video-files/3946211/3946211-hd_1080_2048_25fps.mp4',
       link: "/category/accessories",
     },
   ];
@@ -57,6 +56,13 @@ function Homepage() {
     <div className="containerhome">
       <div className="homepage">
         <div className="intro">
+          <video
+            autoPlay
+            loop
+            src="https://videos.pexels.com/video-files/5889058/5889058-hd_1920_1080_25fps.mp4"
+            className="video"
+          ></video>
+
           <motion.p
             initial={{ opacity: 0, translateY: -20 }}
             whileInView={{ opacity: 1, translateY: 0 }}
@@ -80,7 +86,7 @@ function Homepage() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.6 }}
             onClick={() => {
-              navigate('/products')
+              navigate("/products");
             }}
           >
             ShopNow
@@ -123,7 +129,7 @@ function Homepage() {
                 transition={{ duration: 0.8, delay: 0.8 }}
                 viewport={{ once: true }}
                 onClick={() => {
-                  navigate('/categories')
+                  navigate("/categories");
                 }}
               >
                 EXPLORE CATEGORIES
@@ -150,7 +156,7 @@ function Homepage() {
               return (
                 <motion.div
                   onClick={() => {
-                    navigate(product.link);
+                    navigate(product.link); 
                   }}
                   initial={{ opacity: 0, translateY: -100 }}
                   whileInView={{ opacity: 1, translateY: 0 }}
@@ -160,7 +166,7 @@ function Homepage() {
                   className="product"
                 >
                   <div className="img">
-                    <img src={product.imageUrl} alt="" />
+                    <video onLoad={() => console.log('loaded')} autoPlay={true} loop={true} src={product.videourl}></video>
                   </div>
                   <h1>{product.title}</h1>
                 </motion.div>

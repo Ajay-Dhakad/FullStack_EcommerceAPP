@@ -17,7 +17,7 @@ function ProductPage() {
 
   const [Product, setproduct] = useState(null);
 
-  const { userWishlist, userCart, userOrders } = useCart();
+  const { userWishlist, userCart, userOrders , dispatch } = useCart();
 
   console.log(Product);
 
@@ -50,11 +50,11 @@ function ProductPage() {
   const AddToWishlistHandler = async () => {
     const response = await AddToWishlist(productid);
 
-    console.log(response);
-
     if (response.success) {
       toast.success(response.message);
       setExistingInWishlist(true);
+      dispatch({type:'ADDWISHLISTITEM',payload:response.newWishlistItem})
+
     }
 
     if (!response.success) {
@@ -75,6 +75,7 @@ function ProductPage() {
     if (response.success) {
       toast.success(response.message);
       setExistingInCart(true);
+      dispatch({type:'ADDITEMTOCART',payload:response.cart})
     }
   };
 

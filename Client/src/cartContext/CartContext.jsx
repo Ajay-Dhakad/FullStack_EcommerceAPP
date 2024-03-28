@@ -12,6 +12,19 @@ const CartReducers = (state,action) => {
                  userCart: action.payload
             }
 
+        case 'ADDITEMTOCART':
+            return{
+                ...state,
+                userCart:[ action.payload,...state.userCart]  
+            };
+            
+
+        case 'REMOVEITEMFROMCART':
+            return{
+                ...state,
+                userCart: state.userCart.filter(item => item._id!== action.payload)
+            }
+
         case 'INCREASEQUANTITY':
 
             return{
@@ -50,6 +63,12 @@ const CartReducers = (state,action) => {
             ...state,
             userWishlist: state.userWishlist.filter((item)=> item._id !== action.payload )
         }
+
+        case 'ADDWISHLISTITEM':
+            return{
+                ...state,
+                 userWishlist: [action.payload,...state.userWishlist]
+            }
 
         case 'SETORDERS':
             

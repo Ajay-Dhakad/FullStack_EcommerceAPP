@@ -12,7 +12,7 @@ function AdminDashboard() {
   useEffect(() => {
 
     if(option === undefined){
-        navigate('/admin/dashboard/analytics');
+        navigate('/admin/dashboard/products');
     }
 
   },[option])
@@ -46,7 +46,7 @@ function AdminDashboard() {
         <ul className="admin_controls">
           {adminControls.map((control, index) => {
             return (
-              <li className={control.name.toLowerCase() == option && 'selected' } key={index}>
+              <li className={control.name.toLowerCase() == option ? 'selected' : ''} key={index}>
                 <Link to={control.link}>{control.name}</Link>
               </li>
             );

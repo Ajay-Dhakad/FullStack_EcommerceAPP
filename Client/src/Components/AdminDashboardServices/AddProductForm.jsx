@@ -75,7 +75,7 @@ const AddProductForm = ({setnewProduct,setproducts,toast,producttoedit}) => {
       <div className="image-preview">
         {<img src={imagePreview ? imagePreview : 'https://www.indivillagefoundation.org/wp-content/themes/charitian/assets/img/no_image.jpg'} alt="Preview" />}
       </div>
-      <form Content-Type='multipart/form-data' onSubmit={handleSubmit} className="form">
+      <form  onSubmit={handleSubmit} className="form">
         <input  disabled={loader} type="file" accept="image/*" onChange={handleImageChange} />
         <input  disabled={loader} type="text" value={name} onChange={((e) => setName(e.target.value))} placeholder="Name" />
         <textarea disabled={loader} value={description} onChange={((e) => setdescription(e.target.value))}  placeholder="Description"></textarea>

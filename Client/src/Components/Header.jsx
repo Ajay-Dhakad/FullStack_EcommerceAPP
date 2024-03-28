@@ -13,8 +13,8 @@ function Header() {
     { name: "Home", link: "/" },
     {name:'Shop',link:'/products'},
     { name: "Categories", link: "/categories" },
-    { name: "About", link: "/about" },
-    { name: "Contact", link: "/contact" },
+    // { name: "About", link: "/about" },
+    // { name: "Contact", link: "/contact" },
   ];
 
   const [search,setsearch] = useState('')
@@ -53,6 +53,8 @@ function Header() {
   const { isAuthenticated,user, dispatch } = useAuth();
 
   const [menu, setmenu] = useState(false);
+  const {userCart,userWishlist} = useCart()
+
   const navigate = useNavigate();
   const headerstyles = { top: 0, position: "fixed" };
   const { pathname } = useLocation();
@@ -77,42 +79,29 @@ function Header() {
         {/* hamberger Buttons |>> */}
 
         <div className="useractions">
-        <i className="ri-shopping-cart-2-line"><div className="count">2</div></i>
-        <i class="ri-heart-3-fill"><div className="count">5</div></i>
+
+        <form 
+        className="searchbarPC"
+
+        onSubmit={(e) =>{
+          e.preventDefault;search.trim() !== '' ? navigate(`/products/search/${search}`) && setsearch(''): null}
+          } action="">
+            <input value={search} onChange={(e) => setsearch(e.target.value)} placeholder="Search a product!" type="text" />
+            <button type="submit"><i className="ri-search-line"></i></button>
+          </form>
+
           {!menu && (
-            <motion.img
-              style={{ cursor: "pointer" }}
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.2 }}
-              onClick={() => {
-                setmenu(true);
-              }}
-              width="39"
-              height="39"
-              src="https://img.icons8.com/ios/50/FA5252/menu-squared-2.png"
-              alt="menu-squared-2"
-            />
+            <i  onClick={(() => {
+                  setmenu(true);
+                })} className="ri-menu-fill"></i>
           )}
 
 
           {menu && (
-            <motion.img
-              style={{ cursor: "pointer" }}
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.2 }}
-              onClick={() => setmenu(false)}
-              width="39"
-              height="39"
-              src="https://img.icons8.com/ios/50/FA5252/multiply-2.png"
-              alt="multiply-2"
-            />
+            <i onClick={(() => setmenu(false))} className="ri-close-fill"></i>
           )}
         </div>
       </header>
-
-      {/* hamberger div |>> */}
 
       {menu && (
         <motion.div
@@ -179,6 +168,14 @@ function Header() {
           </div>}
         </motion.div>
       )}
+
+      <div className="useractionsphone">
+      <i onClick={(() => navigate('/cart'))} className="ri-shopping-cart-2-line"><div className="count">{userCart?.length}</div></i>
+        <i onClick={(() => navigate('/wishlist') )} className="ri-heart-3-line"><div className="count">{userWishlist?.length}</div></i>
+        <i onClick={(() => user ? navigate('/profile') : navigate('/login') )} className="ri-user-fill"></i>
+        <i className="ri-store-3-line"></i>  
+      </div>
+
     </>
   );
 }
