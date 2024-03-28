@@ -6,17 +6,14 @@ function AuthProtector({children,authentication=false}) {
     const navigate = useNavigate()
 
     const {user} = useAuth()
-    console.log(user)
     
    useEffect(() =>{ 
-    
-    if(!user && authentication){
-        navigate('/login')
-    }
-
-    if(user && !authentication){
-        navigate('/')
-    }},[user,authentication])
+  
+      if (authentication && !user) {
+        navigate('/login');
+      } else if (!authentication && user) {
+        navigate('/');
+      }},[user,authentication,navigate])
 
   return (
     <>{children}</>

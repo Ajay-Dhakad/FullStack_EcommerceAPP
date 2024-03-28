@@ -17,6 +17,9 @@ function ProductPage() {
     if (data?.success && data?.products?.length > 0) {
       setproducts([...data.products]);
     }
+    else{
+      setproducts([])
+    }
   };
 
   const handleFilterChange = (e) => {
@@ -52,9 +55,9 @@ function ProductPage() {
 
       {search && (
         <>
-          {" "}
+          {" "} 
           <br />{" "}
-          <center style={{ backgroundColor: "gray" }}>
+          <center style={{ backgroundColor: "white",color:'black' }}>
             <h1>Showing results for {search}</h1>
           </center>{" "}
           <br />
@@ -97,10 +100,10 @@ function ProductPage() {
         </div>
       </div>
 
-      {Products == null && search && (
+      {Products?.length == 0  && (
         <center>
           <br />
-          <h2>No Products Found For {search} !</h2>
+          <h2>No Products Found For {search || category} !</h2>
           <br />
         </center>
       )}

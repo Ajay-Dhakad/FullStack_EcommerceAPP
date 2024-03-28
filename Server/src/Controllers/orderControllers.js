@@ -13,7 +13,7 @@ export const getOrders = async (req, res) => {
         .json({ success: false, message: "No orders found !" });
     }
 
-    return res.status(200).json({ success: true, orders });
+    return res.status(200).json({ success: true,orders,message:'orders fetched!' });
   } catch (e) {
     return res.status(404).json({ success: false, message: e.message });
   }

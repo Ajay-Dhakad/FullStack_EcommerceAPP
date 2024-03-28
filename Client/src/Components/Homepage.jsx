@@ -67,6 +67,8 @@ function Homepage() {
           <video
             autoPlay
             loop
+            preload="metadata"
+            onLoad={(e) => console.log(e.target)}
             src="https://videos.pexels.com/video-files/5889058/5889058-hd_1920_1080_25fps.mp4"
             className="video"
           ></video>

@@ -16,6 +16,8 @@ function OrdersPage() {
 
     const data = await getOrders();
 
+    console.log(data)
+
     if (data.success) {
       cartdispatch({ type: "SETORDERS", payload: data.orders });
     }

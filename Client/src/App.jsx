@@ -17,9 +17,7 @@ function App() {
 
   const { dispatch: cartdispatch, userOrders } = useCart();
 
-  console.log(userOrders)
-
-  const [loader, setloader] = useState(false);
+  const [loader, setloader] = useState(true);
 
   window.document.title = pathname.replace(/\/|\-/g, " ");
   if (pathname == "/") {
@@ -27,8 +25,7 @@ function App() {
   }
 
   const getUser = async (token) => {
-    setloader(true);
-
+    
     const response = await fetch(
       `${import.meta.env.VITE_API_URI}/api/getuser`,
       {
@@ -85,14 +82,13 @@ function App() {
 
   useEffect(() => {
 
-    
 
     if (!user || pathname == '/profile') {
       const token = localStorage.getItem("auth_token");
 
       if (!token) {
-        return;
         setloader(false);
+        return;
 
       }
 
@@ -107,12 +103,14 @@ function App() {
             localStorage.removeItem("auth_token");
             dispatch({ type: "LOGOUT" });
             setloader(false);
+            return;
           }
 
           if (data.success) {
             dispatch({
               type: "LOGIN",
               payload: { ...data.user, token: token },
+
             });
 
             await getWishlist();
@@ -131,13 +129,15 @@ function App() {
   return (
     <>
       <Header />
-      {!loader ? (
-        <Outlet />
-      ) : (
-        <div className="loaderwrapper">
-          <div className="loader"></div>
-        </div>
-      )}
+      {loader  ? 
+       <div className="loaderwrapper">
+       <div className="loader"></div>
+     </div>
+        
+       : 
+       <Outlet />
+       
+      }
       <Footer />
     </>
   );
