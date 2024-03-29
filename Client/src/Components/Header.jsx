@@ -70,7 +70,7 @@ function Header() {
       <header style={headerstyles}>
         <div className="sitelogo">
           <img
-            src="https://www.pngitem.com/pimgs/b/105-1055966_google-search-logos-ecommerce-logo-logo-google-a.png"
+            src="https://s3.amazonaws.com/ionic-marketplace/ecommerce-smart-shop-theme/icon.png"
             alt=""
           />
           <h2><Link to='/'>SnapStore</Link></h2>
