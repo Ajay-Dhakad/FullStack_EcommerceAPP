@@ -1,6 +1,8 @@
 
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
+
 
 function Homepage() {
   const navigate = useNavigate();
@@ -60,6 +62,22 @@ function Homepage() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
+  
+  const textVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.5, // Adjust the stagger delay as needed
+      },
+    },
+  };
+
+  const textChildVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 },
+  };
+
   return (
     <div className="containerhome">
       <div className="homepage">
@@ -67,7 +85,7 @@ function Homepage() {
           <video
             autoPlay
             loop
-            preload="metadata"
+            preload="auto"
             src="https://videos.pexels.com/video-files/5889058/5889058-hd_1920_1080_25fps.mp4"
             className="video"
           ></video>
@@ -83,23 +101,36 @@ function Homepage() {
 
         <div className="advertise">
           <div className="content">
-            <div className="text">
-              <h3>Up To 25% Off</h3>
-              <h1>
+          <motion.div
+              className="text"
+              initial="hidden"
+              animate="visible"
+              variants={textVariants}
+            >
+              <motion.h3 variants={textChildVariants}>Up To 25% Off</motion.h3>
+              <motion.h1 variants={textChildVariants}>
                 GRAB YOUR FAVORITES <br /> BEFORE THEY'RE GONE
-              </h1>
-              <p>
+              </motion.h1>
+              <motion.p variants={textChildVariants}>
                 Discover unparalleled quality at SnapStore. With meticulous
                 attention to detail and stringent quality control, we promise a
                 shopping experience where excellence is not just a commitment
                 but our brand's foundation
-              </p>
-              <button onClick={() => navigate("/categories")}>
+              </motion.p>
+              <motion.button
+                variants={textChildVariants}
+                onClick={() => navigate("/categories")}
+              >
                 EXPLORE CATEGORIES
-              </button>
-            </div>
+              </motion.button>
+            </motion.div>
             <div className="product">
-              <img
+              <motion.img
+               initial={{ opacity: 0,translateX:-20 }}
+               whileInView={{opacity:1,translateX:0}}
+               transition={{duration:1}}
+              //  onClick={() => navigate(product.link)}
+               viewport={{once:true}}
                 src="https://websitedemos.net/black-friday-04/wp-content/uploads/sites/1419/2023/11/headphone-01.png"
                 alt=""
               />
@@ -113,18 +144,20 @@ function Homepage() {
           <div className="products">
             {products.map((product, index) => {
               return (
-                <div
-                  onClick={() => {
-                    navigate(product.link);
-                  }}
-                  key={product.title}
-                  className="product"
-                >
-                  <div className="img">
-                    <video loop autoPlay src={product.videourl} type='video/mp4'></video>
-                  </div>
-                  <h1>{product.title}</h1>
+                <motion.div
+                key={product.title}
+                className="product"
+                initial={{ opacity: 0,translateX:-20 }}
+                whileInView={{opacity:1,translateX:0}}
+                transition={{duration:index*0.3,delay:index*0.3}}
+                onClick={() => navigate(product.link)}
+                viewport={{once:true}}
+              >
+                <div className="img">
+                  <video loop autoPlay src={product.videourl} type="video/mp4"></video>
                 </div>
+                <h1>{product.title}</h1>
+              </motion.div>
               );
             })}
           </div>
