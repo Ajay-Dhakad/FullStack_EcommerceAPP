@@ -53,7 +53,7 @@ useEffect(() => {
     
     <div className="cart_text">
         <div className="wrapper">
-            <h1 style={{backgroundColor:'brown'}}>Your Cart</h1>
+            <h1 style={{backgroundColor:'brown'}}>Your Cart <f>{`(${userCart.length || 0})`}</f> </h1>
             <div className='products'>
             {userCart.length == 0 &&<div  id='wishlist_not_found'> <img src='https://ouch-cdn2.icons8.com/Maghupt7qF3mWeKSBK2OVdjVNQv3E11s-3bnlZnjO9s/rs:fit:368:393/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9zdmcvODM1/LzJkYzVlOTZhLWNl/MTUtNGVlMi04MmZh/LTM0NzVmMmRhZDkw/Ny5zdmc.png'/></div> }
         {userCart.length == 0 &&<> <h2>No Products Found!</h2></>}

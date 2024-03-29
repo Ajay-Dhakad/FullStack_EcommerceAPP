@@ -45,7 +45,7 @@ function WishlistPage() {
     <Toaster  position="top-center" />
     <div className='wishlist-Wrapper'>
     <div style={{color:'white',backdropFilter:`brightness(.4)`}} className='productspage'>
-        <center style={{backgroundColor:'brown'}}><h1>Your Wishlist</h1></center>
+        <center style={{backgroundColor:'brown'}}><h1>Your Wishlist {`(${userWishlist.length || 0})`}</h1></center>
        <div className="products">
         
         {userWishlist.length == 0 && <div  id='wishlist_not_found'> <img src='https://ouch-cdn2.icons8.com/Maghupt7qF3mWeKSBK2OVdjVNQv3E11s-3bnlZnjO9s/rs:fit:368:393/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9zdmcvODM1/LzJkYzVlOTZhLWNl/MTUtNGVlMi04MmZh/LTM0NzVmMmRhZDkw/Ny5zdmc.png'/></div> }
