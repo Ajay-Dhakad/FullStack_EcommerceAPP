@@ -2,30 +2,34 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-
-
+import headPhoneImage from '../assets/headphone.png'
+import homepagebackground from '../assets/homepagebackground.jpg'
+import easyreturnspng from '../assets/easyreturns.png'
+import ordertrackingpng from '../assets/ordertracking.png'
+import securepaymentspng from '../assets/securepayments.png'
+import freeshippingpng from '../assets/freeshipping.png'
 function Homepage() {
   const navigate = useNavigate();
 
   const products = [
     {
       title: "Men's Fashion",
-      videourl:
-        "https://videos.pexels.com/video-files/7764127/7764127-hd_720_1366_25fps.mp4",
+      imageurl:
+        "https://i.pinimg.com/736x/86/4c/be/864cbe2c99d71f4040087c50fcb37144.jpg",
       link: "/category/men",
       poster: ''
     },
     {
       title: "Women's Fashion",
-      videourl:
-        "https://videos.pexels.com/video-files/3894706/3894706-hd_720_1366_50fps.mp4",
+      imageurl:
+        "https://thumbs.dreamstime.com/b/portrait-two-sexy-pretty-beautiful-women-fashion-style-clothes-sisters-long-curly-hair-perfect-make-up-people-lifestyle-113021487.jpg",
       link: "/category/women",
       poster: ''
     },
     {
       title: "Accessories",
-      videourl:
-        "https://videos.pexels.com/video-files/3946211/3946211-hd_1080_2048_25fps.mp4",
+      imageurl:
+        "https://images.unsplash.com/photo-1492707892479-7bc8d5a4ee93?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8YWNjZXNzb3J5fGVufDB8fDB8fHww",
       link: "/category/accessories",
       poster: ''
     },
@@ -33,25 +37,25 @@ function Homepage() {
 
   const servicesData = [
     {
-      iconSrc: "https://www.iconsdb.com/icons/preview/white/truck-xxl.png",
+      iconSrc: freeshippingpng,
       title: "FREE SHIPPING",
       description:
         "Delight in seamless free shipping, enhancing your shopping experience. Navigate our diverse collection, where cost savings meet product joy",
     },
     {
-      iconSrc: "https://www.iconsdb.com/icons/preview/white/padlock-3-xxl.png",
+      iconSrc: securepaymentspng,
       title: "SECURE PAYMENTS",
       description:
         "Shop with confidence using our secure payment methods. Your transactions are protected, providing peace of mind for a worry-free shopping",
     },
     {
-      iconSrc: "https://www.iconsdb.com/icons/preview/white/pin-8-xxl.png",
+      iconSrc: ordertrackingpng,
       title: "ORDER TRACKING",
       description:
         "Track your order effortlessly with our streamlined system. Stay informed and in control as your purchase makes its way to your doorstep",
     },
     {
-      iconSrc: "https://www.iconsdb.com/icons/preview/white/return-xxl.png",
+      iconSrc: easyreturnspng,
       title: "EASY RETURNS",
       description:
         "Celebrate worry-free shopping with our hassle-free returns – because we're here to make your shopping experience as smooth as possible",
@@ -62,33 +66,18 @@ function Homepage() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
-  
-  const textVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.5, // Adjust the stagger delay as needed
-      },
-    },
-  };
-
-  const textChildVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 },
-  };
-
   return (
     <div className="containerhome">
-      <div className="homepage">
+      <div style={{backgroundImage:`url(${homepagebackground})`}} className="homepage">
         <div className="intro">
-          <video
+          {/* <video
             autoPlay
             loop
             preload="auto"
             src="https://videos.pexels.com/video-files/5889058/5889058-hd_1920_1080_25fps.mp4"
             className="video"
-          ></video>
+          ></video> */}
+
           <p>
             Biggest <b>SALE</b> is Almost Here!
           </p>
@@ -101,38 +90,25 @@ function Homepage() {
 
         <div className="advertise">
           <div className="content">
-          <motion.div
-              className="text"
-              initial="hidden"
-              animate="visible"
-              variants={textVariants}
-            >
-              <motion.h3 variants={textChildVariants}>Up To 25% Off</motion.h3>
-              <motion.h1 variants={textChildVariants}>
+            <div className="text">
+              <h3>Up To 25% Off</h3>
+              <h1>
                 GRAB YOUR FAVORITES <br /> BEFORE THEY'RE GONE
-              </motion.h1>
-              <motion.p variants={textChildVariants}>
+              </h1>
+              <p>
                 Discover unparalleled quality at SnapStore. With meticulous
                 attention to detail and stringent quality control, we promise a
                 shopping experience where excellence is not just a commitment
                 but our brand's foundation
-              </motion.p>
-              <motion.button
-                variants={textChildVariants}
-                onClick={() => navigate("/categories")}
-              >
+              </p>
+              <button onClick={() => navigate("/categories")}>
                 EXPLORE CATEGORIES
-              </motion.button>
-            </motion.div>
+              </button>
+            </div>
             <div className="product">
-              <motion.img
-               initial={{ opacity: 0,translateX:-20 }}
-               whileInView={{opacity:1,translateX:0}}
-               transition={{duration:1}}
-              //  onClick={() => navigate(product.link)}
-               viewport={{once:true}}
-                src="https://websitedemos.net/black-friday-04/wp-content/uploads/sites/1419/2023/11/headphone-01.png"
-                alt=""
+              <img
+                src={headPhoneImage}
+                alt="Product Image"
               />
             </div>
           </div>
@@ -154,7 +130,8 @@ function Homepage() {
                 viewport={{once:true}}
               >
                 <div className="img">
-                  <video loop autoPlay src={product.videourl} type="video/mp4"></video>
+                  {/* <video loop autoPlay src={product.videourl} type="video/mp4"></video> */}
+                  <img src={product.imageurl} alt="" />
                 </div>
                 <h1>{product.title}</h1>
               </motion.div>

@@ -91,7 +91,6 @@ function App() {
 
     if (user){
       setloader(false)
-      console.log("Loading")
     }
 
   },[user])

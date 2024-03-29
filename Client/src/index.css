@@ -41,9 +41,10 @@ body {
   width: 100%;
   /* background-image: url("https://websitedemos.net/black-friday-04/wp-content/uploads/sites/1419/2023/11/bg-01-b.jpg"); */
   background-size: contain;
+  /* background-image: url('https://images.unsplash.com/photo-1631477076114-9123f721b9dc?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); */
   /* background-position: start; */
   background-repeat: no-repeat;
-  height: 100%;
+  min-height: 100vh;
 }
 
 .intro {
@@ -606,11 +607,20 @@ header ul li a {
 .products .product .img {
   width: 100%;
   height: 400px;
+  transition: .5s;
 }
 
 .products .product .img img {
   width: 100%;
   height: 100%;
+  cursor: pointer;
+  transition: .5s;
+
+  object-fit: cover;
+
+  &:hover{
+    transform: scale(1.1);
+  }
 }
 
 .products .product h1 {
