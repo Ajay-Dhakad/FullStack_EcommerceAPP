@@ -15,14 +15,10 @@ function App() {
 
   const { user, dispatch } = useAuth();
 
-  const { dispatch: cartdispatch, userOrders } = useCart();
+  const { dispatch: cartdispatch} = useCart();
 
   const [loader, setloader] = useState(true);
 
-  window.document.title = pathname.replace(/\/|\-/g, " ");
-  if (pathname == "/") {
-    window.document.title = "Home";
-  }
 
   const getUser = async (token) => {
     
@@ -42,6 +38,9 @@ function App() {
     if (!data.success) {
       return false;
     }
+    if (data.success) {
+      setloader(false)
+    }
 
     return data;
   };
@@ -55,6 +54,9 @@ function App() {
     if (data.success) {
       cartdispatch({ type: "SETORDERS", payload: data.orders });
     }
+    else{
+      return
+    }
 
 
   }
@@ -66,9 +68,11 @@ function App() {
         cartdispatch({ type: "ADDTOWISHLIST", payload: wishlist.wishlist });
       }else{
         cartdispatch({ type: "ADDTOWISHLIST", payload: [] })
+        return
       }
     } catch (e) {
       console.error(e.message);
+      return
     }
   };
 
@@ -76,6 +80,7 @@ function App() {
     const cart = await getCart();
     if (!cart.success) {
       console.error(cart.message);
+      return
     }
     if (cart.success) {
       cartdispatch({ type: "ADDTOCART", payload: cart.cart });
@@ -84,6 +89,14 @@ function App() {
 
   useEffect(() => {
 
+    if (user){
+      setloader(false)
+      console.log("Loading")
+    }
+
+  },[user])
+
+  useEffect(() => {
 
     if (!user || pathname == '/profile') {
       const token = localStorage.getItem("auth_token");
@@ -112,9 +125,6 @@ function App() {
               payload: { ...data.user, token: token },
 
             });
-
-            setloader(false);
-
 
             await getWishlist();
             await Cart();
