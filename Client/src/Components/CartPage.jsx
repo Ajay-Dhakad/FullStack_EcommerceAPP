@@ -22,7 +22,7 @@ const navigate= useNavigate()
 
         if (!cart.success) {
 
-            toast.error(cart.message)
+                dispatch({type:"ADDTOCART",payload:[]})
     }
 
     if (cart.success) {
@@ -55,17 +55,17 @@ useEffect(() => {
         <div className="wrapper">
             <h1 style={{backgroundColor:'brown'}}>Your Cart</h1>
             <div className='products'>
-            {userCart.length <= 0 &&<div  id='wishlist_not_found'> <img src='https://ouch-cdn2.icons8.com/Maghupt7qF3mWeKSBK2OVdjVNQv3E11s-3bnlZnjO9s/rs:fit:368:393/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9zdmcvODM1/LzJkYzVlOTZhLWNl/MTUtNGVlMi04MmZh/LTM0NzVmMmRhZDkw/Ny5zdmc.png'/></div> }
-        {userCart.length <= 0 &&<> <h2>No Products Found!</h2></>}
+            {userCart.length == 0 &&<div  id='wishlist_not_found'> <img src='https://ouch-cdn2.icons8.com/Maghupt7qF3mWeKSBK2OVdjVNQv3E11s-3bnlZnjO9s/rs:fit:368:393/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9zdmcvODM1/LzJkYzVlOTZhLWNl/MTUtNGVlMi04MmZh/LTM0NzVmMmRhZDkw/Ny5zdmc.png'/></div> }
+        {userCart.length == 0 &&<> <h2>No Products Found!</h2></>}
 
 
                 {
-                    userCart !== null && userCart.map((item,index) => <div className="product">
+                    userCart !== null && userCart?.length > 0 && userCart?.map((item,index) => <div className="product">
                         <div className="product_image">
                             <img onClick={() => navigate(`/product/${item.product._id}`)} src={item.product.image} alt="" />
                         </div>
                         <div className="product_details">
-                            <p onClick={() => navigate(`/product/${item.product._id}`)}>{item.product.name?.slice(0,40)}...</p>
+                            <p onClick={() => navigate(`/product/${item.product._id}`)}>{item?.product?.name?.slice(0,40)}...</p>
                             <p>Price : {item.product.price}₹</p>
                             <p>TotalPrice : {item.product.price  * item.quantity}₹</p>
                             

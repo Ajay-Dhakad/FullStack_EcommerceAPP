@@ -64,6 +64,8 @@ function App() {
       const wishlist = await GetWishlistItems();
       if (wishlist.success) {
         cartdispatch({ type: "ADDTOWISHLIST", payload: wishlist.wishlist });
+      }else{
+        cartdispatch({ type: "ADDTOWISHLIST", payload: [] })
       }
     } catch (e) {
       console.error(e.message);

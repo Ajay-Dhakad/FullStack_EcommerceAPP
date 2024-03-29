@@ -1676,12 +1676,13 @@ footer ul li a {
                 position: absolute;
                 top: 0;
                 width: auto;
+                font-weight: 100;
                 padding: 0;
                 right: 10px;
                 margin: 0;
                 transition: .5s all;
                 border: none;
-                font-size:25px;
+                font-size:30px;
                 background-color: rgba(0, 0, 0, 0);
                 
                 &:hover {
@@ -1699,23 +1700,38 @@ footer ul li a {
 .wishlist_remove_btn {
   background-color: rgba(48, 48, 48, 0);
   color: white;
-  font-size: 13px;
-  width: 80px;
-  font-weight: bold;
+  /* font-size: 13px; */
+  /* width: 80px; */
+  font-weight:500;
   position: absolute;
-  bottom: 150px;
-  right: 5px;
+  /* bottom: 150px; */
+  right: -15px;
+  top: -20px;
+  /* background-color: rgba(0, 0, 0, 0.135); */
   border: none;
-  border: 2px solid red;
+  /* border: 2px solid red; */
   border-radius: 10px;
-  padding: 5px 5px;
+  font-size: 30px;
+  padding: 0px 10px;
   cursor: pointer;
   transition: 0.5s all;
   &:hover {
-    background-color: rgb(255, 0, 0);
-    color: white;
-    width: 100px;
+    /* background-color: rgb(255, 0, 0); */
+    color: rgb(255, 0, 0);
+    /* width: 100px; */
   }
+}
+
+.wishlist_remove_btn:hover::after{
+  content: "Remove";
+  /* font-family: "Font Awesome 5 Free"; */
+  font-weight: 900;
+  padding: 0px 10px;
+  position:absolute;
+  border-radius: 10px;
+  font-size: 15px;
+  background-color:#111e2f;
+  color: rgb(216, 216, 216);
 }
 
 .wishlist-Wrapper {

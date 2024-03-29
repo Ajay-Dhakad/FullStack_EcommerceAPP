@@ -9,17 +9,21 @@ function WishlistPage() {
 
     const {userWishlist,dispatch} = useCart()
 
-    console.log(userWishlist)
 
     const navigate = useNavigate();
 
     const getWishlist = async () => {
         try {
-            const wishlist = await GetWishlistItems()
+            const Wishlist = await GetWishlistItems()
+            
+            console.log(Wishlist)
            
-            if (wishlist.success){
-                dispatch({type:'ADDTOWISHLIST',payload:wishlist.wishlist})
+            if (Wishlist?.success){
+                dispatch({type:'ADDTOWISHLIST',payload:Wishlist.wishlist})
             }
+            // if (!Wishlist.success){
+            //   toast.error(Wishlist.message)
+            // }
            
         } catch (e) {
             toast.error(e.message)
@@ -32,7 +36,7 @@ function WishlistPage() {
         window.scrollTo({ top: 0, behavior: "smooth" });
 
 
-    },[])
+    },[]) 
 
 
 
@@ -44,12 +48,11 @@ function WishlistPage() {
         <center style={{backgroundColor:'brown'}}><h1>Your Wishlist</h1></center>
        <div className="products">
         
-        {userWishlist.length <= 0 &&<div  id='wishlist_not_found'> <img src='https://ouch-cdn2.icons8.com/Maghupt7qF3mWeKSBK2OVdjVNQv3E11s-3bnlZnjO9s/rs:fit:368:393/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9zdmcvODM1/LzJkYzVlOTZhLWNl/MTUtNGVlMi04MmZh/LTM0NzVmMmRhZDkw/Ny5zdmc.png'/></div> }
-        {userWishlist.length <= 0 && <h2>No Products Found!</h2>}
+        {userWishlist.length == 0 && <div  id='wishlist_not_found'> <img src='https://ouch-cdn2.icons8.com/Maghupt7qF3mWeKSBK2OVdjVNQv3E11s-3bnlZnjO9s/rs:fit:368:393/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9zdmcvODM1/LzJkYzVlOTZhLWNl/MTUtNGVlMi04MmZh/LTM0NzVmMmRhZDkw/Ny5zdmc.png'/></div> }
+        {userWishlist.length == 0 && <h2>No Products Found!</h2>}
 
-          {userWishlist?.map((product, index) => {
-            console.log(product.product);
-            return (
+          {userWishlist?.length > 0 && userWishlist?.map((product, index) => {
+            return product.product && (
               <motion.div
                 initial={{ opacity: 0, translateX: -50 }}
                 whileInView={{ opacity: 1, translateX: 0 }}
@@ -66,11 +69,11 @@ function WishlistPage() {
                   <del style={{ color: "red" }}>{product.product.actualprize}₹ </del>
                   {product.product.price}₹{" "}
                 </p>
-                <h3>{product.product.name.slice(0,50)}</h3>
+                <h3>{product?.product?.name?.slice(0,50)}</h3>
                 <div class="star-rating-productspage">
                   {Array.from({ length: 5 }).map((_, index) =>
                     index <
-                    product.product.totalRatings / product.product.productReviews.length ? (
+                    product?.product?.totalRatings / product?.product?.productReviews?.length ? (
                       <span style={{ color: "gold" }}>★</span>
                     ) : (
                       <span style={{ color: "grey" }}>★</span>
@@ -84,7 +87,7 @@ function WishlistPage() {
                     100)}{'% '}
                   Off
                 </div>
-                <button onClick={() => RemoveFromWishlist(product._id).then((data) =>data.success ? dispatch({type:'REMOVEFROMWISHLIST',payload:data.wishlist._id}): toast.error(data.message))} className='wishlist_remove_btn'>Remove</button>
+                <button onClick={() => RemoveFromWishlist(product._id).then((data) =>data.success ? dispatch({type:'REMOVEFROMWISHLIST',payload:data.wishlist._id}): toast.error(data.message))} className='wishlist_remove_btn'>x</button>
               </motion.div>
             );
           })}

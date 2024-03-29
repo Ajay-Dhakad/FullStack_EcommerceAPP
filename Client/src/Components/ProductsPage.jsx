@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import ImageSliderComponent from "./ImageSlider/ImageSliderComponent";
-import Categories from "./Categories";
+// import Categories from "./Categories";
 import { getProducts } from "./ProductHandlers/ProductHandler.jsx";
-import { useParams, useNavigate, useLocation } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 function ProductPage() {
   const [Products, setproducts] = useState();
