@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Homepage() {
@@ -9,23 +9,23 @@ function Homepage() {
     {
       title: "Men's Fashion",
       videourl:
-      "https://videos.pexels.com/video-files/7764127/7764127-hd_720_1366_25fps.mp4",
-     link: "/category/men",
-     poster:''
+        "https://videos.pexels.com/video-files/7764127/7764127-hd_720_1366_25fps.mp4",
+      link: "/category/men",
+      poster: ''
     },
     {
-      
       title: "Women's Fashion",
       videourl:
         "https://videos.pexels.com/video-files/3894706/3894706-hd_720_1366_50fps.mp4",
       link: "/category/women",
-      poster:''
+      poster: ''
     },
     {
       title: "Accessories",
-      videourl:'https://videos.pexels.com/video-files/3946211/3946211-hd_1080_2048_25fps.mp4',
+      videourl:
+        "https://videos.pexels.com/video-files/3946211/3946211-hd_1080_2048_25fps.mp4",
       link: "/category/accessories",
-      poster:''
+      poster: ''
     },
   ];
 
@@ -58,7 +58,7 @@ function Homepage() {
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
-},[])
+  }, []);
 
   return (
     <div className="containerhome">
@@ -68,89 +68,38 @@ function Homepage() {
             autoPlay
             loop
             preload="metadata"
-            onLoad={(e) => console.log(e.target)}
             src="https://videos.pexels.com/video-files/5889058/5889058-hd_1920_1080_25fps.mp4"
             className="video"
           ></video>
-
-          <motion.p
-            initial={{ opacity: 0, translateY: -20 }}
-            whileInView={{ opacity: 1, translateY: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
+          <p>
             Biggest <b>SALE</b> is Almost Here!
-          </motion.p>
-          <motion.h1
-            initial={{ opacity: 0, translateY: -20 }}
-            whileInView={{ opacity: 1, translateY: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.5 }}
-          >
+          </p>
+          <h1>
             Elevate your lifestyle with our handpicked selection of must-have
             items
-          </motion.h1>
-          <motion.button
-            initial={{ opacity: 0, width: "100px" }}
-            whileInView={{ opacity: 1, translateY: 0, width: "250px" }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.6 }}
-            onClick={() => {
-              navigate("/products");
-            }}
-          >
-            ShopNow
-          </motion.button>
+          </h1>
+          <button onClick={() => navigate("/products")}>Shop Now</button>
         </div>
 
         <div className="advertise">
           <div className="content">
             <div className="text">
-              <motion.h3
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.2, delay: 0.2 }}
-                viewport={{ once: true }}
-              >
-                Up To 25% Off
-              </motion.h3>
-              <motion.h1
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.4 }}
-                viewport={{ once: true }}
-              >
+              <h3>Up To 25% Off</h3>
+              <h1>
                 GRAB YOUR FAVORITES <br /> BEFORE THEY'RE GONE
-              </motion.h1>
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.6 }}
-                viewport={{ once: true }}
-              >
+              </h1>
+              <p>
                 Discover unparalleled quality at SnapStore. With meticulous
                 attention to detail and stringent quality control, we promise a
                 shopping experience where excellence is not just a commitment
                 but our brand's foundation
-              </motion.p>
-              <motion.button
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.8 }}
-                viewport={{ once: true }}
-                onClick={() => {
-                  navigate("/categories");
-                }}
-              >
+              </p>
+              <button onClick={() => navigate("/categories")}>
                 EXPLORE CATEGORIES
-              </motion.button>
+              </button>
             </div>
             <div className="product">
-              <motion.img
-                initial={{ opacity: 0, scale: 0.5 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.5 }}
+              <img
                 src="https://websitedemos.net/black-friday-04/wp-content/uploads/sites/1419/2023/11/headphone-01.png"
                 alt=""
               />
@@ -164,22 +113,18 @@ function Homepage() {
           <div className="products">
             {products.map((product, index) => {
               return (
-                <motion.div
+                <div
                   onClick={() => {
-                    navigate(product.link); 
+                    navigate(product.link);
                   }}
-                  initial={{ opacity: 0, translateY: -100 }}
-                  whileInView={{ opacity: 1, translateY: 0 }}
-                  transition={{ delay: 0.3 * index, duration: 1.5 }}
-                  viewport={{ once: true }}
                   key={product.title}
                   className="product"
                 >
                   <div className="img">
-                    <video onMouseOver={(e) => e.target.play()} onMouseLeave={(e) => e.target.pause()} loop={true} src={product.videourl}></video>
+                    <video loop autoPlay src={product.videourl} type='video/mp4'></video>
                   </div>
                   <h1>{product.title}</h1>
-                </motion.div>
+                </div>
               );
             })}
           </div>
@@ -190,18 +135,11 @@ function Homepage() {
           <h1>THE JOY OF SHOPPING AT ITS BEST</h1>
           <div className="services">
             {servicesData.map((service, index) => (
-              <motion.div
-                viewport={{ once: true }}
-                initial={{ opacity: 0, translateX: -200 }}
-                transition={{ delay: 0.2 * index, duration: 1 }}
-                whileInView={{ opacity: 1, translateX: 0 }}
-                key={index}
-                className="service"
-              >
+              <div key={index} className="service">
                 <img src={service.iconSrc} alt="ServiceImage" />
                 <h2>{service.title}</h2>
                 <p>{service.description}</p>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { useLocation } from "react-router-dom";
+import { useLocation ,Link} from "react-router-dom";
 import { useAuth } from "../authContext/AuthContext.jsx";
 import { useCart } from "../cartContext/CartContext.jsx";
 function Header() {
@@ -73,7 +73,7 @@ function Header() {
             src="https://www.pngitem.com/pimgs/b/105-1055966_google-search-logos-ecommerce-logo-logo-google-a.png"
             alt=""
           />
-          <h2>SnapStore</h2>
+          <h2><Link to='/'>SnapStore</Link></h2>
         </div>
 
         {/* hamberger Buttons |>> */}

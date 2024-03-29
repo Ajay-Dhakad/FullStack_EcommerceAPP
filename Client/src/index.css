@@ -85,6 +85,11 @@ header h1 {
   font-family: cursive;
 }
 
+header h1 a{
+  text-decoration: none;
+  color: white;
+}
+
 .useractions{
   display: flex;
   gap: 15px;
@@ -361,9 +366,14 @@ header h1 {
   font-size: 20px;
 }
 
+.sitelogo a {
+  text-decoration: none;
+  color: white;
+}
+
 .sitelogo img {
-  width: 37px;
-  height: 37px;
+  width: 35px;
+  height: 35px;
 }
 
 header ul li a {
@@ -410,6 +420,7 @@ header ul li a {
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   transition: 0.5s;
   border-radius: 10px;
+  padding: 5px 0px;
 
   cursor: pointer;
   &:hover {
@@ -468,7 +479,7 @@ header ul li a {
 
 .homepage.advertise.content,
 .text h1 {
-  font-size: 55px;
+  font-size: 50px;
   font-family: sans-serif;
   line-height: 50px;
   letter-spacing: -1px;
@@ -501,6 +512,7 @@ header ul li a {
   height: 40px;
   background-color: red;
   padding: 0 10px;
+  border-radius: 10px;
   font-weight: bold;
   border: none;
   letter-spacing: -1px;
@@ -579,7 +591,7 @@ header ul li a {
 }
 
 .products .product {
-  width: 400px;
+  width: 350px;
   height: 500px;
   display: flex;
   justify-content: center;
@@ -967,7 +979,7 @@ footer ul li a {
     .text {
       width: 100%;
       text-align: center;
-      padding: 10px;
+      padding:20px 10px;
       justify-content: center;
       /* border: 2px solid red; */
       backdrop-filter: brightness(0.6);
@@ -977,6 +989,7 @@ footer ul li a {
 
       & h1 {
         font-size: 30px;
+        line-height: 1.2;
       }
     }
   }
@@ -2493,6 +2506,12 @@ table img {
 @media only screen and (max-width: 600px) {
   .card {
     width: 90%;
+  }
+
+
+  .products .product{
+    width: 100%;
+    height: fit-content;
   }
 
   .productdetails img {
