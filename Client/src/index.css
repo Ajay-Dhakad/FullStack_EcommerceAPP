@@ -205,7 +205,7 @@ header h1 a{
 .hamberger-menu {
   display: flex;
   /* border: 2px solid red; */
-  justify-content: center;
+  justify-content:start;
   align-items: center;
   flex-direction: column;
   width: 100%;
@@ -217,7 +217,7 @@ header h1 a{
   backdrop-filter: blur(100px);
   z-index: 99;
   text-align: center;
-  gap: 20px;
+  gap: 0px;
   padding: 5px 20px;
 
   & .useroptions {

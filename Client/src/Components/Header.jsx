@@ -104,10 +104,10 @@ function Header() {
       </header>
 
       {menu && (
-        <motion.div
-          initial={{ translateX: 1000, display: "none" }}
-          animate={{ translateX: 0, display: "block" }}
-          transition={{ duration: 0.3 }}
+        <div
+          // initial={{ translateX: 1000, display: "none" }}
+          // animate={{ translateX: 0, display: "block" }}
+          // transition={{ duration: 0.3 }}
           className="hamberger-menu"
         >
           <form onSubmit={(e) =>{
@@ -168,7 +168,7 @@ function Header() {
 
             
           </div>}
-        </motion.div>
+        </div>
       )}
 
       <div className="useractionsphone">
