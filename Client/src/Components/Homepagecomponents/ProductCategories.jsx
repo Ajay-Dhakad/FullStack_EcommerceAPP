@@ -2,6 +2,8 @@ import {useNavigate} from 'react-router-dom'
 import {motion} from 'framer-motion'
 function ProductCategories() {
     const navigate = useNavigate();
+    const isPC = !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
   
     const products = [
       {
@@ -30,7 +32,7 @@ function ProductCategories() {
         <h1>EXPLORE THE VARIETIES</h1>
         <div className="products">
           {products.map((product, index) => (
-            <motion.div
+           isPC ? <motion.div
               key={product.title}
               className="product"
               initial={{ opacity: 0, translateX: -20 }}
@@ -43,7 +45,17 @@ function ProductCategories() {
                 <img src={product.imageurl} alt="" />
               </div>
               <h1>{product.title}</h1>
-            </motion.div>
+            </motion.div> : <div
+              key={product.title}
+              className="product"
+              onClick={() => navigate(product.link)}
+            >
+              <div className="img">
+                <img src={product.imageurl} alt="" />
+              </div>
+              <h1>{product.title}</h1>
+            </div>
+
           ))}
         </div>
       </div>

@@ -41,17 +41,25 @@ function Services() {
             <h1>THE JOY OF SHOPPING AT ITS BEST</h1>
             <div className="services">
                 {servicesData.map(service => (
-                    <motion.div
+                   isPC ? <motion.div
                         key={service.id}
                         className="service"
                         initial={{ opacity: 0, y: 50 }}
-                        whileInView={{ opacity: isPC ? 1 : 0, y: isPC ? 0 : 50 }}
+                        whileInView={{ opacity: 1, y:0}}
                         transition={{ duration: 0.5, delay: service.id * 0.2 }}
                     >
                         <img src={service.iconSrc} alt="ServiceImage" />
                         <h2>{service.title}</h2>
                         <p>{service.description}</p>
-                    </motion.div>
+                    </motion.div> : <div
+                        key={service.id}
+                        className="service"
+                    >
+                        <img src={service.iconSrc} alt="ServiceImage" />
+                        <h2>{service.title}</h2>
+                        <p>{service.description}</p>
+                    </div>
+
                 ))}
             </div>
         </div>
