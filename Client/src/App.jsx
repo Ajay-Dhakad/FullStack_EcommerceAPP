@@ -27,6 +27,36 @@ function App() {
   const { dispatch: cartdispatch } = useCart();
   const [loader, setLoader] = useState(true);
 
+  const getWishlist = async () => {
+    try {
+      const wishlist = await GetWishlistItems();
+      cartdispatch({ type: "ADDTOWISHLIST", payload: wishlist.success ? wishlist.wishlist : [] });
+    } catch (error) {
+      console.error("Error fetching wishlist:", error);
+    }
+  };
+
+  const getCartData = async () => {
+    try {
+      const cart = await getCart();
+      cartdispatch({ type: "ADDTOCART", payload: cart.success ? cart.cart : [] });
+    } catch (error) {
+      console.error("Error fetching cart data:", error);
+    }
+  };
+
+  const getUsersOrders = async () => {
+    try {
+      const data = await getOrders();
+      if (data.success) {
+        cartdispatch({ type: "SETORDERS", payload: data.orders });
+      }
+    } catch (error) {
+      console.error("Error fetching user orders:", error);
+    }
+  };
+
+  
   const getUserData = async () => {
     const token = localStorage.getItem("auth_token");
     if (!token) {
@@ -61,34 +91,6 @@ function App() {
     }
   };
 
-  const getWishlist = async () => {
-    try {
-      const wishlist = await GetWishlistItems();
-      cartdispatch({ type: "ADDTOWISHLIST", payload: wishlist.success ? wishlist.wishlist : [] });
-    } catch (error) {
-      console.error("Error fetching wishlist:", error);
-    }
-  };
-
-  const getCartData = async () => {
-    try {
-      const cart = await getCart();
-      cartdispatch({ type: "ADDTOCART", payload: cart.success ? cart.cart : [] });
-    } catch (error) {
-      console.error("Error fetching cart data:", error);
-    }
-  };
-
-  const getUsersOrders = async () => {
-    try {
-      const data = await getOrders();
-      if (data.success) {
-        cartdispatch({ type: "SETORDERS", payload: data.orders });
-      }
-    } catch (error) {
-      console.error("Error fetching user orders:", error);
-    }
-  };
 
   useEffect(() => {
     if (user) {
