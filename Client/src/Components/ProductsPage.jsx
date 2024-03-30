@@ -4,6 +4,7 @@ import ImageSliderComponent from "./ImageSlider/ImageSliderComponent";
 import { getProducts } from "./ProductHandlers/ProductHandler.jsx";
 import { useParams, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import formatPrice from "./Utils/formatPrice.js";
 function ProductPage() {
   const [Products, setproducts] = useState();
 
@@ -127,8 +128,8 @@ function ProductPage() {
                 </div>
 
                 <p>
-                  <del style={{ color: "red" }}>{product.actualprize}₹ </del>
-                  {product.price}₹{" "}
+                  <del style={{ color: "red" }}>{formatPrice(product.actualprize)}₹ </del>
+                  {formatPrice(product.price)}₹{" "}
                 </p>
                 <h3>{product.name.slice(0,50)+'...'}</h3>
                 <div class="star-rating-productspage">

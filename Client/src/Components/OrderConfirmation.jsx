@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import {motion} from 'framer-motion'
 import { PaymentHandler } from '../PaymentHandler/PaymentHandler';
 import {useNavigate} from 'react-router-dom'
+import formatPrice from './Utils/formatPrice';
 
 const OrderConfirmation = ({ Product, quantity, user,setbuying }) => {
 
@@ -50,9 +51,9 @@ const OrderConfirmation = ({ Product, quantity, user,setbuying }) => {
           </div>
         </div>
         <div className="productamount">
-          <h2>Product Price: {Product?.price}₹</h2>
+          <h2>Product Price: {formatPrice(Product?.price)}₹</h2>
           <h2>Quantity: {quantity} units</h2>
-          <h2>Total Bill: {Product?.price * quantity}₹</h2>
+          <h2> <b>Total Bill: {formatPrice(Product?.price * quantity)}₹</b></h2>
         </div>
         <div className="address-section">
           <h2>Delivery Address:</h2>

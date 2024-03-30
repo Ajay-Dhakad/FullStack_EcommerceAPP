@@ -6,6 +6,7 @@ import {useNavigate} from 'react-router-dom'
 import { useCart } from '../cartContext/CartContext'
 import OrderConfirmation from './OrderConfirmation'
 import { updateCartQuantity,deleteFromCart } from "../Components/ProductHandlers/ProductHandler";
+import formatPrice from './Utils/formatPrice'
 
 function CartPage() {
     const {user} = useAuth()
@@ -66,11 +67,11 @@ useEffect(() => {
                         </div>
                         <div className="product_details">
                             <p onClick={() => navigate(`/product/${item.product._id}`)}>{item?.product?.name?.slice(0,40)}...</p>
-                            <p>Price : {item.product.price}₹</p>
-                            <p>TotalPrice : {item.product.price  * item.quantity}₹</p>
+                            <p>Price : {formatPrice(item.product.price)}₹</p>
+                            <p>TotalPrice : {formatPrice(item.product.price  * item.quantity)}₹</p>
                             
                             <div className="quantity">
-                                <button  onClick={() => updateCartQuantity(item.product._id,'decrement').then((data) => data.success ? dispatch({type:'DECREASEQUANTITY',payload:item._id}) : toast.error(data.message) )}  >-</button>
+                                <button  onClick={() =>updateCartQuantity(item.product._id,'decrement').then((data) => data.success ? dispatch({type:'DECREASEQUANTITY',payload:item._id}) : toast.error(data.message) )}  >-</button>
                                 <input value={item.quantity} type="text" />
                                 <button onClick={() => item.quantity < 10 ? updateCartQuantity(item.product._id,'increment').then((data) => data.success ? dispatch({type:'INCREASEQUANTITY',payload:item._id}) : toast.error(data.message) ) : toast.error('Max quantity is 10')}>+</button>
                             </div>

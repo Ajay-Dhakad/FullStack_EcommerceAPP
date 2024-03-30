@@ -11,6 +11,7 @@ import { useAuth } from "../authContext/AuthContext";
 import { AddToCart } from "./ProductHandlers/ProductHandler";
 import { useCart } from "../cartContext/CartContext";
 import OrderConfirmation from "./OrderConfirmation";
+import formatPrice from "./Utils/formatPrice";
 
 function ProductPage() {
   const { productid } = useParams(null);
@@ -235,8 +236,8 @@ function ProductPage() {
 
                 <h2>
                   {" "}
-                  ₹{Product.price}{" "}
-                  <del style={{ opacity: 0.8 }}>₹{Product.actualprize}</del>{" "}
+                  ₹{formatPrice(Product.price)}{" "}
+                  <del style={{ opacity: 0.8 }}>₹{formatPrice(Product.actualprize)}</del>{" "}
                   <b>{parseInt(((Product.actualprize - Product.price) /
                     Product.actualprize) *
                     100)+'% Off'}</b>
