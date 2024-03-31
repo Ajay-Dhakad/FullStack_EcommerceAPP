@@ -3,7 +3,6 @@ import {motion} from 'framer-motion'
 function ProductCategories() {
     const navigate = useNavigate();
     const isPC = !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-
   
     const products = [
       {
@@ -37,7 +36,7 @@ function ProductCategories() {
               className="product"
               initial={{ opacity: 0, translateX: -20 }}
               whileInView={{ opacity: 1, translateX: 0 }}
-              transition={{ duration: index * 0.3, delay: index * 0.3 }}
+              transition={{ duration: index * 0.4, delay: index * 0.4 }}
               onClick={() => navigate(product.link)}
               viewport={{ once: true }}
             >

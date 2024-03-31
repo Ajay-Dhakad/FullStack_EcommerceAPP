@@ -1,11 +1,10 @@
-
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 import homepagebackground from '../assets/homepagebackground.jpg'
 import ProductAdvertise from "./Homepagecomponents/ProductAdvertise";
 import Services from "./Homepagecomponents/Services";
 import ProductCategories from "./Homepagecomponents/ProductCategories";
-
 
 function Homepage() {
   const navigate = useNavigate();
@@ -16,16 +15,19 @@ function Homepage() {
 
   return (
     <div className="containerhome">
-      <div style={{backgroundImage:`url(${homepagebackground})`}} className="homepage">
-        <div className="intro">
-          {/* <video
-            autoPlay
-            loop
-            preload="auto"
-            src="https://videos.pexels.com/video-files/5889058/5889058-hd_1920_1080_25fps.mp4"
-            className="video"
-          ></video> */}
-
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+        style={{ backgroundImage: `url(${homepagebackground})` }}
+        className="homepage"
+      >
+        <motion.div
+          initial={{ opacity: 0, y: 100 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5, duration: 1 }}
+          className="intro"
+        >
           <p>
             Biggest <b>SALE</b> is Almost Here!
           </p>
@@ -33,15 +35,19 @@ function Homepage() {
             Elevate your lifestyle with our handpicked selection of must-have
             items
           </h1>
-          <button onClick={() => navigate("/products")}>Shop Now</button>
-        </div>
+          <motion.button
+            onClick={() => navigate("/products")}
+          >
+            Shop Now
+          </motion.button>
+        </motion.div>
 
-          <ProductAdvertise/>
+        <ProductAdvertise/>
 
-          <ProductCategories/>
+        <ProductCategories/>
 
         <Services/>
-      </div>
+      </motion.div>
     </div>
   );
 }

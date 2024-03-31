@@ -16,8 +16,8 @@ function ImageSliderComponent() {
 
       {images.map((image, index) => {
           return <div key={image.category} style={{position:'relative'}}> <img key={index} src={image.url} alt={image.imgAlt} /> <div className="slidertext"><h1>Grab Your Favorites Before There're Gone!</h1>
-          <p>Get <b>MAXX </b> Discounts On Every Product Category </p>
-          <button onClick={() => navigate(`/products/category/${image.category}`)}>{image.category}</button>
+          <p>Get <b>MAXX </b> Discounts On {image.category}</p>
+          <button onClick={() => navigate(`/products/category/${image.category.toLowerCase()}`)}>{image.category}</button>
           </div></div>;
         })}
         

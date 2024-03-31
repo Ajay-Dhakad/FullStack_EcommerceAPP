@@ -43,7 +43,7 @@ const productDeleteHandler = async(productid) => {
     <>
     <Toaster position='top-center' />
     <div className={classname}>
-        <h1 className='title'>{!newProduct ? "All Products" : 'New Product'} <button style={{backgroundColor:newProduct && 'red',content:newProduct && 'Cancel'}} onClick={() => {setnewProduct((prev) => !prev);setproducttoedit(null)}} className='new_productbtn'>{newProduct ? 'x' : '+'}</button></h1>
+        <h1 className='title'>{!newProduct ? "All Products" : 'New Product'} <button style={{backgroundColor:newProduct && 'red'}} onClick={() => {setnewProduct((prev) => !prev);setproducttoedit(null)}} className='new_productbtn'>{newProduct ? 'x' : '+'}</button></h1>
     {!newProduct &&
         <motion.table initial={{opacity:0}} whileInView={{opacity:1,translateX:0}} transition={{duration:.5}}  border="0">
   <thead>

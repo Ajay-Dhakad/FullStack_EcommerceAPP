@@ -8,7 +8,7 @@
   font-style: normal;
 }
 
-::-webkit-scrollbar{
+::-webkit-scrollbar {
   display: none;
 }
 
@@ -27,7 +27,7 @@ html,
 body {
   width: 100%;
   height: 100%;
-  background-color: black;
+  background-color: rgb(0, 0, 0);
   color: white;
 }
 
@@ -53,15 +53,15 @@ body {
   /* border: 2px solid red; */
 }
 
-.intro video{
+.intro video {
   width: 100%;
-  height: 100%;
+  height: 100%; 
   object-fit: cover;
   object-position: center center;
   border-radius: 10px;
   /* border: 2px solid red; */
   position: absolute;
-  filter: brightness(.2) blur(10px);
+  filter: brightness(0.2) blur(10px);
   z-index: -10;
 }
 
@@ -86,19 +86,18 @@ header h1 {
   font-family: cursive;
 }
 
-header h1 a{
+header h1 a {
   text-decoration: none;
   color: white;
 }
 
-.useractions{
+.useractions {
   display: flex;
   gap: 15px;
   height: fit-content;
 }
 
-.useractions i{
-
+.useractions i {
   background-color: transparent;
   color: rgb(247, 68, 68);
   font-size: 28px;
@@ -108,14 +107,13 @@ header h1 a{
   position: relative;
   font-size: 28px;
   justify-content: center;
-
 }
 
-.useractions i:hover{
+.useractions i:hover {
   color: white;
 }
 
-.useractions .searchbarPC{
+.useractions .searchbarPC {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -123,13 +121,13 @@ header h1 a{
   /* border: 2px solid red; */
 }
 
-.searchbarPC input{
+.searchbarPC input {
   width: 500px;
   height: 40px;
   border: none;
   border-radius: 10px;
   outline: none;
-  background-color:rgb(53, 53, 53);
+  background-color: rgb(53, 53, 53);
   color: white;
   font-size: 20px;
   padding: 10px;
@@ -137,27 +135,27 @@ header h1 a{
   /* border: 2px solid red; */
 }
 
-.searchbarPC button{
+.searchbarPC button {
   width: 50px;
   height: 40px;
   border: none;
   text-align: center;
   outline: none;
-  background-color:rgb(253, 47, 47);    
+  background-color: rgb(253, 47, 47);
   color: white;
   font-size: 20px;
   margin-left: -10px;
-  padding:5px 10px;
+  padding: 5px 10px;
   border-radius: 10px;
   /* border: 2px solid red; */
 }
 
-.searchbarPC button:hover{
+.searchbarPC button:hover {
   background-color: rgb(247, 68, 68);
   color: white;
 }
 
-.searchbarPC button i{
+.searchbarPC button i {
   padding: 0;
   color: white;
   margin: 0;
@@ -166,16 +164,15 @@ header h1 a{
   background-color: transparent;
 }
 
-.useractions .count{
+.useractions .count {
   position: absolute;
   top: 0px;
   right: 0;
   font-size: 15px;
-
 }
 
-.useractionsphone{
-  position:fixed;
+.useractionsphone {
+  position: fixed;
   bottom: 0px;
   right: 0px;
   width: 100vw;
@@ -191,7 +188,7 @@ header h1 a{
   display: none;
 }
 
-.useractionsphone i{
+.useractionsphone i {
   font-size: 30px;
   color: white;
   background-color: transparent;
@@ -206,7 +203,7 @@ header h1 a{
 .hamberger-menu {
   display: flex;
   /* border: 2px solid red; */
-  justify-content:start;
+  justify-content: start;
   align-items: center;
   flex-direction: column;
   width: 100%;
@@ -301,6 +298,15 @@ header h1 a{
       border-radius: 10px;
       /* background-color: transparent; */
       cursor: pointer;
+
+      & i{
+        padding: 0;
+        color: white;
+        margin: 0;
+        font-weight: bold;
+        width: fit-content;
+        background-color: transparent;
+      }
     }
   }
 
@@ -419,17 +425,16 @@ header ul li a {
   border: none;
   color: white;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  transition: 0.5s;
+  transition: 0.2s;
   border-radius: 10px;
   padding: 5px 0px;
 
   cursor: pointer;
+  
   &:hover {
     background-color: rgb(255, 0, 0);
     color: white;
-    box-shadow: 0 0 10px rgb(255, 0, 0);
-    transform: translateY(-5px);
-    /* width: 250px; */
+    box-shadow: 0 0 20px rgb(255, 0, 0);
   }
 }
 
@@ -558,27 +563,24 @@ header ul li a {
   font-weight: bold;
 }
 
-
-.homepage .productshowcase .product .img{
-
+.homepage .productshowcase .product .img {
   overflow: hidden;
   width: 100%;
   height: 100%;
   border-radius: 10px;
-} 
+}
 
-.homepage .productshowcase .product video{
+.homepage .productshowcase .product video {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: top;
-  transition: .5s all;
+  transition: 0.5s all;
 
-  &:hover{
+  &:hover {
     scale: 1.1;
   }
 }
-
 
 .homepage .productshowcase .products {
   width: 90%;
@@ -607,18 +609,18 @@ header ul li a {
 .products .product .img {
   width: 100%;
   height: 400px;
-  transition: .5s;
+  transition: 0.5s;
 }
 
 .products .product .img img {
   width: 100%;
   height: 100%;
   cursor: pointer;
-  transition: .5s;
+  transition: 0.5s;
 
   object-fit: cover;
 
-  &:hover{
+  &:hover {
     transform: scale(1.1);
   }
 }
@@ -989,7 +991,7 @@ footer ul li a {
     .text {
       width: 100%;
       text-align: center;
-      padding:20px 10px;
+      padding: 20px 10px;
       justify-content: center;
       /* border: 2px solid red; */
       backdrop-filter: brightness(0.6);
@@ -1030,6 +1032,7 @@ footer ul li a {
 .productspage {
   width: 100%;
   padding-top: 70px;
+  background-color: #0a0f18;
 
   min-height: 100%;
 
@@ -1171,7 +1174,7 @@ footer ul li a {
       flex-direction: column;
       position: relative;
 
-      & h3{
+      & h3 {
         font-size: 18px;
         color: rgb(255, 255, 255);
         font-weight: bold;
@@ -1222,7 +1225,6 @@ footer ul li a {
         overflow: hidden;
         border-radius: 10px;
 
-
         & img {
           width: 100%;
           height: 300px;
@@ -1268,14 +1270,13 @@ footer ul li a {
     & img {
       width: 100%;
       transition: 0.5s all;
-      object-fit:cover;
+      object-fit: cover;
       object-position: center;
       &:hover {
         scale: 1.1;
         cursor: pointer;
       }
     }
-
 
     & i {
       position: absolute;
@@ -1311,14 +1312,15 @@ footer ul li a {
     min-height: 500px;
     padding: 0 10px;
 
-    & .productsName{
+    & .productsName {
       font-size: 25px;
       line-height: 1;
-      font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+        "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
       color: white;
     }
 
-    & h1{
+    & h1 {
       font-size: 20px;
       color: white;
     }
@@ -1525,7 +1527,7 @@ footer ul li a {
   /* background-image: url("https://websitedemos.net/black-friday-04/wp-content/uploads/sites/1419/2023/11/bg-01-b.jpg"); */
   background-position: center;
   background-size: cover;
-  background-color:#243b55;
+  background-color: #243b55;
   position: relative;
 
   & .cart_text {
@@ -1657,7 +1659,6 @@ footer ul li a {
               gap: 10px;
               flex-direction: column;
 
-
               & button {
                 width: 70%;
                 /* padding: 0 10px; */
@@ -1675,7 +1676,6 @@ footer ul li a {
                   color: white;
                 }
 
-             
                 &:hover {
                   width: 80%;
                   background-color: green;
@@ -1683,8 +1683,7 @@ footer ul li a {
                 }
               }
 
-              
-              & #deletefromcart{
+              & #deletefromcart {
                 position: absolute;
                 top: 0;
                 width: auto;
@@ -1692,24 +1691,24 @@ footer ul li a {
                 padding: 0;
                 right: 10px;
                 margin: 0;
-                transition: .5s all;
+                transition: 0.5s all;
                 border: none;
-                font-size:30px;
+                font-size: 30px;
                 background-color: rgba(0, 0, 0, 0);
-                
+
                 &:hover {
                   color: red;
                 }
 
-                &:hover::after{
+                &:hover::after {
                   content: "Remove";
                   /* font-family: "Font Awesome 5 Free"; */
                   font-weight: 900;
                   padding: 0px 10px;
-                  position:absolute;
+                  position: absolute;
                   border-radius: 10px;
                   font-size: 15px;
-                  background-color:#111e2f;
+                  background-color: #111e2f;
                   color: rgb(216, 216, 216);
                 }
               }
@@ -1726,7 +1725,7 @@ footer ul li a {
   color: white;
   /* font-size: 13px; */
   /* width: 80px; */
-  font-weight:500;
+  font-weight: 500;
   position: absolute;
   /* bottom: 150px; */
   right: -15px;
@@ -1746,15 +1745,15 @@ footer ul li a {
   }
 }
 
-.wishlist_remove_btn:hover::after{
+.wishlist_remove_btn:hover::after {
   content: "Remove";
   /* font-family: "Font Awesome 5 Free"; */
   font-weight: 900;
   padding: 0px 10px;
-  position:absolute;
+  position: absolute;
   border-radius: 10px;
   font-size: 15px;
-  background-color:#111e2f;
+  background-color: #111e2f;
   color: rgb(216, 216, 216);
 }
 
@@ -2201,7 +2200,7 @@ footer ul li a {
   }
 }
 
-.dashboard_page{
+.dashboard_page {
   width: 100%;
   margin-top: 70px;
   text-align: center;
@@ -2214,7 +2213,7 @@ footer ul li a {
   background-color: #111e2f;
 }
 
-.dashboard_page .sidesection{
+.dashboard_page .sidesection {
   width: 15%;
   min-height: 100vh;
   background-color: rgba(25, 25, 25, 0.82);
@@ -2222,71 +2221,59 @@ footer ul li a {
   position: sticky;
 }
 
-.dashboard_page .mainsection{
-
+.dashboard_page .mainsection {
   width: 85%;
   height: 100vh;
   border-radius: 10px;
   background-color: rgba(25, 25, 25, 0.82);
   overflow: scroll;
-
 }
 
-.dashboard_page .sidesection .admin_controls{
+.dashboard_page .sidesection .admin_controls {
   width: 100%;
   height: fit-content;
   font-size: 20px;
-
 }
 
-
-.dashboard_page .sidesection .admin_controls li{
+.dashboard_page .sidesection .admin_controls li {
   width: 100%;
   height: 40px;
   margin-bottom: 5px;
-  
 
-
- 
-
-  & a{
+  & a {
     color: rgb(255, 255, 255);
     width: 100%;
     height: 100%;
-  border-radius: 10px;  
-  display: flex;
-  font-weight: bold;
-  cursor: pointer;
-  align-items: center;
-  transition: .2s all;
-  text-decoration: none;
-  justify-content: center;
+    border-radius: 10px;
+    display: flex;
+    font-weight: bold;
+    cursor: pointer;
+    align-items: center;
+    transition: 0.2s all;
+    text-decoration: none;
+    justify-content: center;
 
-
-    &:hover{
+    &:hover {
       background-color: #ff2b2b;
       color: rgb(255, 255, 255);
     }
   }
-
-
- 
 }
 
-.selected{
+.selected {
   background-color: #ff2b2b;
-  border-radius: 10px; 
-
+  border-radius: 10px;
 }
 
-.mainsection .products,.users,.orders{
-
+.mainsection .products,
+.users,
+.orders {
   width: 100%;
   min-height: 100vh;
   font-size: 18px;
 }
 
-.mainsection .new_productbtn{
+.mainsection .new_productbtn {
   padding: 5px 15px;
   background-color: green;
   color: white;
@@ -2294,16 +2281,14 @@ footer ul li a {
   border-radius: 10px;
   border: none;
   position: relative;
-  transition: .5s all;
-  
+  transition: 0.5s all;
 }
 
-
-.mainsection .new_productbtn:hover::after{
+/* .mainsection .new_productbtn:hover::after {
   content: "New Product";
   display: block;
-  left: 0;
-  transition: .5s;
+  
+  transition: 0.5s;
   width: 100px;
   margin-top: 10px;
   font-size: 15px;
@@ -2311,10 +2296,9 @@ footer ul li a {
   color: rgb(239, 239, 239);
   position: absolute;
   background-color: rgb(59, 59, 59);
- 
-}
+} */
 
-.mainsection .title{
+.mainsection .title {
   text-align: center;
   display: flex;
   justify-content: center;
@@ -2329,28 +2313,27 @@ table {
   width: 100%;
 }
 
-th, td {
+th,
+td {
   padding: 10px;
   text-align: left;
   border-bottom: 1px solid #ddd;
   font-size: 17px;
-  letter-spacing: -.5px;
+  letter-spacing: -0.5px;
 }
 
 th {
   background-color: #000000;
 }
 
-
-
-i{
+i {
   padding: 5px 20px;
   border-radius: 10px;
   border: none;
   background-color: #ff0000;
   color: #fff;
   cursor: pointer;
-  transition: .3s all;
+  transition: 0.3s all;
 }
 
 i:hover {
@@ -2400,8 +2383,6 @@ table img {
   padding: 8px;
 }
 
-
-
 .form select {
   margin-bottom: 10px;
   padding: 12px;
@@ -2409,14 +2390,22 @@ table img {
   outline: none;
   border: 1px solid #ccc;
   border-radius: 8px;
-  background-image: linear-gradient(to bottom, #ffffff, #f2f2f2); /* Custom background gradient */
+  background-image: linear-gradient(
+    to bottom,
+    #ffffff,
+    #f2f2f2
+  ); /* Custom background gradient */
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 /* Hover effect */
 .form select:hover {
-  background-image: linear-gradient(to bottom, #f2f2f2, #e5e5e5); /* Gradient transition on hover */
+  background-image: linear-gradient(
+    to bottom,
+    #f2f2f2,
+    #e5e5e5
+  ); /* Gradient transition on hover */
 }
 
 /* Focus effect */
@@ -2434,7 +2423,6 @@ table img {
   background-color: #fff;
 }
 
-
 .form input,
 .form textarea {
   margin-bottom: 10px;
@@ -2451,7 +2439,7 @@ table img {
   color: #fff;
   border: none;
   border-radius: 8px;
-  transition: .3s all;
+  transition: 0.3s all;
   cursor: pointer;
 }
 
@@ -2459,12 +2447,12 @@ table img {
   background-color: #388e3c;
 }
 
-.dashboard_page .mainsection .orders{
+.dashboard_page .mainsection .orders {
   width: 100%;
   font-size: 18px;
 }
 
-.select_orderstatus{
+.select_orderstatus {
   height: fit-content;
   font-weight: 100;
   font-size: 18px;
@@ -2473,12 +2461,12 @@ table img {
   border-radius: 10px;
 }
 
-.select_orderstatus option{
+.select_orderstatus option {
   background-color: white;
   color: black;
 }
 
-#filterStatus{
+#filterStatus {
   height: fit-content;
   font-weight: 100;
   font-size: 18px;
@@ -2489,8 +2477,13 @@ table img {
   border-radius: 10px;
 }
 
-
-
+.chart{
+  width: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 @media (max-width: 620px) {
   .orderspage .orders .order {
@@ -2522,16 +2515,16 @@ table img {
 }
 
 @media (max-width: 660px) {
-  .useractions .searchbarPC{
+  .useractions .searchbarPC {
     display: none;
   }
-  .hamberger-menu form{
+  .hamberger-menu form {
     display: flex;
     width: 100%;
     margin-top: 10px;
     justify-content: center;
   }
-  .hamberger-menu form input{
+  .hamberger-menu form input {
     width: 70%;
     border-radius: 10px;
     border: none;
@@ -2550,8 +2543,7 @@ table img {
     width: 90%;
   }
 
-
-  .products .product{
+  .products .product {
     width: 100%;
     height: fit-content;
   }
@@ -2571,10 +2563,21 @@ table img {
     font-size: 30px;
   }
 
-  .searchbarPC input{
+  .searchbarPC input {
     width: 300px;
   }
 
+  .dashboard_page {
+    flex-direction: column;
+  }
+  .dashboard_page .mainsection {
+    width: 100%;
+  }
+  .dashboard_page .sidesection {
+    width: 100%;
+    min-height: 200px;
+    font-size: 18px;
+  }
 
   .productspage {
     color: red;
@@ -2647,4 +2650,3 @@ table img {
     /* border: 2px solid red; */
   }
 }
-

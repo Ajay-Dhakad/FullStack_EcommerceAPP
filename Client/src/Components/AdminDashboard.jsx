@@ -3,6 +3,7 @@ import { Link, useParams,useNavigate } from "react-router-dom";
 import ProductsAdminPage from "./AdminDashboardServices/ProductsAdminPage";
 import UsersAdminpage from "./AdminDashboardServices/UsersAdminpage";
 import OrdersAdminPage from "./AdminDashboardServices/OrdersAdminPage";
+import Dashboard from "./AdminDashboardServices/Analytics";
 
 function AdminDashboard() {
   const { option } = useParams();
@@ -12,7 +13,7 @@ function AdminDashboard() {
   useEffect(() => {
 
     if(option === undefined){
-        navigate('/admin/dashboard/products');
+        navigate('/admin/dashboard/analytics');
     }
 
   },[option])
@@ -60,7 +61,7 @@ function AdminDashboard() {
       <div className="mainsection">
 
         {
-            option == 'analytics' && <h1>Analytics</h1>
+            option == 'analytics' && <Dashboard/>
         }
         {
             option == 'products' && <ProductsAdminPage classname={'products'}/>

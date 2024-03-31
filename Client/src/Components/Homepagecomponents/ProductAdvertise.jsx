@@ -1,7 +1,9 @@
 import { motion } from "framer-motion";
 import headPhoneImage from '../../assets/headphone.png';
+import {useNavigate} from 'react-router-dom'
 
 function ProductAdvertise() {
+    const navigate = useNavigate()
   const isPC = !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
   return (
@@ -18,7 +20,7 @@ function ProductAdvertise() {
             shopping experience where excellence is not just a commitment
             but our brand's foundation
           </p>
-          <button>EXPLORE CATEGORIES</button>
+          <button onClick={() => navigate('/categories')}>EXPLORE CATEGORIES</button>
         </div>
         {isPC && (
           <motion.div
