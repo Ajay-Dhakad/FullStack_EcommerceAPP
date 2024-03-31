@@ -688,7 +688,7 @@ header ul li a {
   }
 }
 
-footer {
+/* footer {
   width: 100%;
   background-color: black;
   border-top: 1px solid white;
@@ -730,9 +730,72 @@ footer ul li a {
     box-shadow: 0 0 30px rgb(255, 0, 0);
     transform: translateY(-5px);
   }
-}
+} */
 
 /* LoginSection */
+.footer {
+  background: #141414;
+  padding: 50px 0;
+  color: #fff;
+  margin-top: 10px;
+}
+
+.footer__content {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  font-size: 18px;
+}
+
+.footer__section {
+  flex: 1 1 300px;
+  margin: 0 20px;
+  text-align: center;
+}
+
+.footer__section h3 {
+  font-size: 25px;
+  margin-bottom: 15px;
+  color: #f31212;
+}
+
+.footer__social-icons a {
+  color: #fff;
+  font-size: 24px;
+  margin-right: 15px;
+  transition: color 0.3s ease;
+}
+
+.footer__social-icons a:hover {
+  color: #f31212;
+}
+
+.footer__section p {
+  margin: 10px 0;
+}
+
+.footer__developers {
+  text-align: center;
+  margin-top: 20px;
+  color: #ccc;
+}
+
+.footer__developers a {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.footer__developers a:hover {
+  color: #f31212;
+}
+
+.footer__copyright {
+  text-align: center;
+  margin-top: 20px;
+  color: #ccc;
+  font-size: 18px;
+}
+
 
 .loginsection {
   width: 100%;
