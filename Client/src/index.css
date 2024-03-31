@@ -2548,6 +2548,20 @@ table img {
   align-items: center;
 }
 
+@media (max-width: 400px) {
+  
+  .productspage{
+
+    & .products {
+      padding: 10px 0px;
+      & .product{
+        width: 90%;
+      }
+    }
+  }
+  
+}
+
 @media (max-width: 620px) {
   .orderspage .orders .order {
     width: 90%;
@@ -2605,6 +2619,8 @@ table img {
   .card {
     width: 90%;
   }
+
+
 
   .products .product {
     width: 100%;

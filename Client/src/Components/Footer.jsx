@@ -27,8 +27,10 @@ import { Link } from 'react-router-dom';
 // import './Footer.css'; // Import CSS file for styling
 
 const Footer = () => {
+    const isPC = !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
   return (
-    <motion.footer initial={{opacity:0,y:100}} transition={{delay:.5,duration:.5}} whileInView={{opacity:1,y:0}} viewport={{once:true}} className="footer">
+    <motion.footer initial={isPC && {opacity:0,y:100}} transition={ isPC && {delay:.5,duration:.5}} whileInView={ isPC && {opacity:1,y:0}} viewport={{once:true}} className="footer">
       <div className="footer__content">
         <div className="footer__section">
           <h3>Follow Us</h3>
