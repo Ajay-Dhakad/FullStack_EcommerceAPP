@@ -22,12 +22,13 @@
 // export default Footer
 import React from 'react';
 import { FaFacebook, FaTwitter, FaInstagram, FaPinterest } from 'react-icons/fa';
+import {motion} from 'framer-motion'
 import { Link } from 'react-router-dom';
 // import './Footer.css'; // Import CSS file for styling
 
 const Footer = () => {
   return (
-    <footer className="footer">
+    <motion.footer initial={{opacity:0,y:100}} transition={{delay:.5,duration:.5}} whileInView={{opacity:1,y:0}} viewport={{once:true}} className="footer">
       <div className="footer__content">
         <div className="footer__section">
           <h3>Follow Us</h3>
@@ -55,7 +56,7 @@ const Footer = () => {
       <div className="footer__copyright">
         &copy; {new Date().getFullYear()} SnapStore. All Rights Reserved.
       </div>
-    </footer>
+    </motion.footer>
   );
 }
 

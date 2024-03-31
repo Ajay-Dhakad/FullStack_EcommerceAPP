@@ -47,6 +47,7 @@ function Services() {
                         initial={{ opacity: 0, y: 50 }}
                         whileInView={{ opacity: 1, y:0}}
                         transition={{ duration: 0.5, delay: service.id * 0.2 }}
+                        viewport={{once:true}}
                     >
                         <img src={service.iconSrc} alt="ServiceImage" />
                         <h2>{service.title}</h2>
