@@ -9,6 +9,8 @@ function Header() {
   const { userCart, userWishlist } = useCart();
   const navigate = useNavigate();
   const { pathname } = useLocation();
+  const isPC = !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
 
   const [menuOpen, setMenuOpen] = useState(false);
   const [search, setSearch] = useState('');
@@ -121,9 +123,9 @@ function Header() {
                 option.title === 'DashBoard' && user.role !== 'admin' ? null :
                   <motion.div
                     onClick={() => { navigate(option.link); setMenuOpen(false) }}
-                    initial={{ opacity: 0, scale: 0 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.02 * index, duration: 0.05 * index }}
+                    initial={isPC && { opacity: 0, scale: 0 }}
+                    animate={isPC && { opacity: 1, scale: 1 }}
+                    transition={isPC && { delay: 0.02 * index, duration: 0.05 * index }}
                     key={index}
                     className="option"
                   >
