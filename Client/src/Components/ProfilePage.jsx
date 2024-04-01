@@ -28,12 +28,12 @@ function ProfilePage() {
 
     const {user} = useAuth()
 
-    console.log(editedProfile)
+    // console.log(editedProfile)
     
    
     useEffect(() => {
       setUserData(user)
-      console.log(user)
+      // console.log(user)
     }, [])
 
    return (
@@ -46,12 +46,12 @@ function ProfilePage() {
         </div>
         <div className="userdetails">
             <h2>Profile</h2>
-           <p>Username : <b style={{border:profileEditable && '1px solid white',overflowX:'scroll'}} contentEditable={profileEditable} onInput={(e) => setEditedProfile({...editedProfile,name:e.target.innerText}) }>{userData?.name}</b></p>
+           <p>Username : <b style={{border:profileEditable && '1px solid white',overflowX:'scroll'}} contentEditable={profileEditable} onInput={(e) => setEditedProfile({...editedProfile,name:e.target.innerText}) }>{userData?.name}{userData?.role == 'admin' && '(Admin)'}</b></p>
             <p>Email : <b > {userData?.email}</b></p>
             {userData?.phoneNumber && <p>Phone Number : <b style={{border:profileEditable && '1px solid white'}} contentEditable={profileEditable} onInput={(e) => setEditedProfile({...editedProfile,phoneNumber:e.target.innerText}) }> {userData?.phoneNumber}</b></p>}
             <p>Address : <b style={{border:profileEditable && '1px solid white'}} contentEditable={profileEditable} onInput={(e) => setEditedProfile({...editedProfile,address:e.target.innerText}) }>{userData?.address}</b></p>
             <button onClick={() => {profileEditable ? UpdatedProfileHandler(): setProfileEditable(true)}} className="edit-btn">{ !profileEditable ? 'Edit Profile' : 'Save'}</button>
-            <button className="logout-btn">Logout</button>
+            {/* <button className="logout-btn">Logout</button> */}
     
       </div>
       </div>

@@ -1870,11 +1870,11 @@ footer ul li a {
     }
 
     & button {
-      width: 130px;
-      height: 30px;
-      margin-left: 10px;
+      width: 100%;
+      height: 35px;
       margin-top: 10px;
       color: white;
+      outline: none;
       background-color: green;
       font-size: 20px;
       border: none;
@@ -1882,7 +1882,7 @@ footer ul li a {
       transition: 0.5s all;
 
       &:hover {
-        background-color: rgba(0, 0, 0, 0);
+        background-color: rgba(6, 158, 54, 0.557);
         color: white;
       }
     }
@@ -1917,6 +1917,7 @@ footer ul li a {
     }
   }
 }
+
 
 .product_confirmation {
   display: flex;
@@ -2543,6 +2544,19 @@ table img {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.testelementslogin{
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.testelementslogin p{
+  background-color: red;
+  border-radius: 10px;
+  width: fit-content !important;
+  padding: 0px 5px;
 }
 
 @media (max-width: 400px) {
