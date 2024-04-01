@@ -39,10 +39,7 @@ body {
 
 .homepage {
   width: 100%;
-  /* background-image: url("https://websitedemos.net/black-friday-04/wp-content/uploads/sites/1419/2023/11/bg-01-b.jpg"); */
-  background-size: contain;
-  /* background-image: url('https://images.unsplash.com/photo-1631477076114-9123f721b9dc?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); */
-  /* background-position: start; */
+  background-size:contain;
   background-repeat: no-repeat;
   min-height: 100vh;
 }
