@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import {Link,useNavigate} from 'react-router-dom'
 import { useState } from 'react';
 import { UseRegister } from './AuthHandlers/authHandlers';
