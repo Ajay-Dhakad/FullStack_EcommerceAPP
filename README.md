@@ -33,7 +33,7 @@ SnapStore is a fullstack ecommerce project developed using React, Express, Node.
 1. Clone the repository:
 
    ```bash
-  git clone https://github.com/Ajay-Dhakad/FullStack_EcommerceAPP.git
+    git clone https://github.com/Ajay-Dhakad/FullStack_EcommerceAPP.git
    ```
 
 2. Install dependencies for both frontend and backend:
