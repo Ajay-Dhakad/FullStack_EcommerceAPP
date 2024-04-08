@@ -39,6 +39,8 @@ export const getCart = async(req,res) => {
         return res.status(404).json({success:false,message:"Cart Not Found"})
     }
 
+    cart?.length > 0 && cart.map(async(product) => product.product == null && await Cart.findByIdAndDelete(product._id))
+
     return res.status(200).json({success:true,cart})}
 
     catch(e){

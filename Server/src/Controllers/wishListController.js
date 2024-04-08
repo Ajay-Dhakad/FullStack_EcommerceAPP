@@ -48,6 +48,8 @@ export const getWishlist = async(req,res) => {
         if (!wishlist || wishlist.length == 0 ){
             return res.status(404).json({success:false,message:"Currently There are no products !"})
         }
+
+        wishlist?.length > 0 && wishlist.map(async(product) => product.product == null && await Wishlist.findByIdAndDelete(product._id))
         
         return res.status(200).json({success:true,wishlist})
 
