@@ -33,37 +33,31 @@ SnapStore is a fullstack ecommerce project developed using React, Express, Node.
 1. Clone the repository:
 
    ```bash
-  git clone https://github.com/Ajay-Dhakad/FullStack_EcommerceAPP.git
+    git clone https://github.com/Ajay-Dhakad/FullStack_EcommerceAPP.git
    ```
 
-2. Navigate to the project directory:
+2. Install dependencies for both frontend and backend:
 
    ```bash
-   cd snapstore
+   cd ./client && npm install
+   cd ./server && npm install
    ```
 
-3. Install dependencies for both frontend and backend:
-
-   ```bash
-   cd client && npm install
-   cd ../server && npm install
-   ```
-
-4. Set up environment variables:
-   - Create a `.env` file in the `server` directory.
+3. Set up environment variables:
+   - Create a `.env` file in the `server` directory and also in the `client` directory
    - Add the required environment variables such as database connection URI, Razorpay API keys, etc.
 
-5. Run the development server:
+4. Run the development server:
    - For frontend:
      ```bash
-     cd ../client && npm run dev
+     cd ./client && npm run dev
      ```
    - For backend:
      ```bash
-     cd ../server && npm run start
+     cd ./server && npm run start
      ```
 
-6. Access SnapStore in your browser:
+5. Access SnapStore in your browser:
    - Open [http://localhost:3000](http://localhost:3000) to view the application.
 
 ## Usage
