@@ -14,6 +14,8 @@ function CartPage() {
     const [buying,setbuying] = useState(false)
     const [Product,setproduct]  = useState(null)
 
+    console.log(userCart)
+
 
 const navigate= useNavigate()
 
@@ -61,14 +63,16 @@ useEffect(() => {
 
 
                 {
-                    userCart !== null && userCart?.length > 0 && userCart?.map((item,index) => <div className="product">
+                    userCart !== null && userCart?.length > 0 && userCart?.map((item,index) =>
+                    item.product != null &&
+                     <div className="product">
                         <div className="product_image">
-                            <img onClick={() => navigate(`/product/${item.product._id}`)} src={item.product.image} alt="" />
+                            <img onClick={() => navigate(`/product/${item?.product?._id}`)} src={item?.product?.image} alt="" />
                         </div>
                         <div className="product_details">
-                            <p onClick={() => navigate(`/product/${item.product._id}`)}>{item?.product?.name?.slice(0,40)}...</p>
-                            <p>Price : {formatPrice(item.product.price)}₹</p>
-                            <p>TotalPrice : {formatPrice(item.product.price  * item.quantity)}₹</p>
+                            <p onClick={() => navigate(`/product/${item?.product?._id}`)}>{item?.product?.name?.slice(0,40)}...</p>
+                            <p>Price : {formatPrice(item?.product?.price)}₹</p>
+                            <p>TotalPrice : {formatPrice(item?.product?.price  * item?.quantity)}₹</p>
                             
                             <div className="quantity">
                                 <button  onClick={() =>updateCartQuantity(item.product._id,'decrement').then((data) => data.success ? dispatch({type:'DECREASEQUANTITY',payload:item._id}) : toast.error(data.message) )}  >-</button>
@@ -77,7 +81,7 @@ useEffect(() => {
                             </div>
                          
                             <div className="options">
-                            <button id='deletefromcart' onClick={() => deleteFromCart(item.product._id).then((data) => data.success? dispatch({type:'REMOVEFROMCART',payload:item._id}) : toast.error(data.message) )}>x</button>
+                            <button id='deletefromcart' onClick={() => deleteFromCart(item?.product?._id).then((data) => data.success? dispatch({type:'REMOVEFROMCART',payload:item._id}) : toast.error(data.message) )}>x</button>
 
                                 <button onClick={() => {setbuying(true);setproduct({...item.product,quantity:item.quantity})}}>Buy Now</button>
 

@@ -9,6 +9,7 @@ function WishlistPage() {
 
     const {userWishlist,dispatch} = useCart()
 
+    // console.log(userWishlist)
 
     const navigate = useNavigate();
 
@@ -16,7 +17,6 @@ function WishlistPage() {
         try {
             const Wishlist = await GetWishlistItems()
             
-            console.log(Wishlist)
            
             if (Wishlist?.success){
                 dispatch({type:'ADDTOWISHLIST',payload:Wishlist.wishlist})
@@ -52,7 +52,7 @@ function WishlistPage() {
         {userWishlist.length == 0 && <h2>No Products Found!</h2>}
 
           {userWishlist?.length > 0 && userWishlist?.map((product, index) => {
-            return product.product && (
+            return product.product != null && (
               <motion.div
                 initial={{ opacity: 0, translateX: -50 }}
                 whileInView={{ opacity: 1, translateX: 0 }}
