@@ -13,6 +13,8 @@ export const getOrders = async (req, res) => {
         .json({ success: false, message: "No orders found !" });
     }
 
+    orders?.map(async(order) =>order.product == null ? await Order.findByIdAndDelete(order._id) : order)
+
     return res.status(200).json({ success: true,orders,message:'orders fetched!' });
   } catch (e) {
     return res.status(404).json({ success: false, message: e.message });
