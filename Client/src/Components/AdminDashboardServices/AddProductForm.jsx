@@ -72,8 +72,8 @@ const AddProductForm = ({setnewProduct,setproducts,toast,producttoedit}) => {
 
   return (
     <motion.div initial={{opacity:0}} whileInView={{opacity:1,translateX:0}} transition={{duration:.5}} className="form-container">
-      <div className="image-preview">
-        {<img src={imagePreview ? imagePreview : 'https://www.indivillagefoundation.org/wp-content/themes/charitian/assets/img/no_image.jpg'} alt="Preview" />}
+      <div className="image-preview"  >
+        {<img src={imagePreview ? imagePreview : 'https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-website-design-mobile-app-no-photo-available_87543-11093.jpg'} alt="Preview" />}
       </div>
       <form  onSubmit={handleSubmit} className="form">
         <input  disabled={loader} type="file" accept="image/*" onChange={handleImageChange} />

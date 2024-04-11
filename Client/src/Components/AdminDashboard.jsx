@@ -4,6 +4,7 @@ import ProductsAdminPage from "./AdminDashboardServices/ProductsAdminPage";
 import UsersAdminpage from "./AdminDashboardServices/UsersAdminpage";
 import OrdersAdminPage from "./AdminDashboardServices/OrdersAdminPage";
 import Dashboard from "./AdminDashboardServices/Analytics";
+import Notifications from "./AdminDashboardServices/Notifications";
 
 function AdminDashboard() {
   const { option } = useParams();
@@ -40,6 +41,10 @@ function AdminDashboard() {
       name: "Users",
       link: "/admin/dashboard/users",
     },
+    // {    
+    //   name: "Notifications",
+    //   link: "/admin/dashboard/notifications",
+    // }
   ];
 
   return (
@@ -71,6 +76,8 @@ function AdminDashboard() {
         }
         {
             option == 'users' && <UsersAdminpage  classname={'users'}/>
+        }{  
+          option == 'notifications' && <Notifications classname={'manageNotifications'}/>
         }
 
       </div>
