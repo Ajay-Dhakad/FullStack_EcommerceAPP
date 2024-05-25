@@ -246,7 +246,7 @@ export const getProducts = async (req, res) => {
           
               const updatedProduct = await product.save();
           
-              res.status(201).json({ success: true, product: updatedProduct, message:'Thanks For The Review!' });
+              return res.status(201).json({ success: true, product: updatedProduct, message:'Thanks For The Review!' });
             } catch (error) {
               console.error(error);
               res.status(500).json({success:false,message:error.message});
