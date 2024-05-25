@@ -11,7 +11,7 @@ const loginUser = async (req, res) => {
 
     const token = generateToken(user._id);
 
-    res
+    return res
       .status(200)
       .json({
         success: true,
@@ -20,7 +20,7 @@ const loginUser = async (req, res) => {
         message: "Logged in successfully",
       });
   } catch (e) {
-    res.status(400).json({ error: e.message });
+   return  res.status(400).json({ error: e.message });
   }
 };
 
@@ -40,7 +40,7 @@ const signUpUser = async (req, res) => {
 
     const token = generateToken(user._id);
 
-    res
+   return res
       .status(200)
       .json({
         success: true,
@@ -49,7 +49,7 @@ const signUpUser = async (req, res) => {
         message: "SignUp SuccessFull",
       });
   } catch (e) {
-    res.status(400).json({ error: e.message });
+   return  res.status(400).json({ error: e.message });
   }
 };
 
@@ -78,7 +78,7 @@ const getUser = async (req, res) => {
       .json({ error: "You are not authorized to view this resource." });
   }
 
-  res.status(200).json({ success: true, user });
+ return res.status(200).json({ success: true, user });
 };
 const UpdateProfile = async (req, res) => {
   for (const key in req.body) {
