@@ -14,7 +14,7 @@ function ProfilePage() {
 
     const data = await UpdateUserProfile(editedProfile)
 
-    if (data.success){
+    if (data.success){ 
       toast.success(data.message)
       setProfileEditable(false)
       // setEditedProfile({})
