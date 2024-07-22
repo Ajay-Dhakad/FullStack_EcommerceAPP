@@ -17,7 +17,7 @@ function ProfilePage() {
     if (data.success){ 
       toast.success(data.message)
       setProfileEditable(false)
-      // setEditedProfile({})
+      // setEditedProfile({}) 
       setUserData(data.updatedUser)
     }
     else{
