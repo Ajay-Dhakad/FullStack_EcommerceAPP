@@ -3,7 +3,7 @@ import { useAuth } from '../authContext/AuthContext'
 import { UpdateUserProfile } from './userAuthComponents/AuthHandlers/authHandlers'
 import {Toaster,toast} from 'react-hot-toast'
 
-function ProfilePage() {
+function ProfilePage() { 
 
   const [userData,setUserData] = useState(null)
   const [profileEditable,setProfileEditable] = useState(false)
