@@ -48,7 +48,7 @@ const Footer = () => {
         <div className="footer__section">
           <h3>Contact</h3>
           <p>Email: ajaydhakad.py@gmail.com</p>
-          <p>Portfolio : <a target='_blank' style={{color:"white"}} href="https://ajaydhakad.vercel.app/">ajaydhakad.vercel.app</a></p>
+          <p>Portfolio : <a target='_blank'  style={{color:"white"}} href="https://ajaydhakad.vercel.app/">ajaydhakad.vercel.app</a></p>
           <p>Phone:91xxxxxxxx</p>
           <p>Address: 123 Main Street, City, Country</p>
         </div>
